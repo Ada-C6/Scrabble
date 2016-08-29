@@ -5,9 +5,9 @@ require_relative '../scoring'
 
 describe Scrabble::Scoring do
     describe "#initialize" do
-        let(:score) {Scoring.new}
+        let(:score) {Scrabble::Scoring.new}
         it "can create a new instance of Scoring" do
-            score.must_be_instance_of(Scoring)
+            score.must_be_instance_of(Scrabble::Scoring)
         end
     end
 end
