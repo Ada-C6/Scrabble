@@ -9,6 +9,8 @@ known_words = {
 
 test_words = ["farm", "cat", "ferrets"]
 
+#create test array with tied score words with different lengths, one with seven
+
 describe Scrabble::Scoring do
 	it "should have a constant equal to a hash" do
 		Scrabble::Scoring::LETTERS.must_be_instance_of(Hash)
@@ -44,6 +46,8 @@ describe Scrabble::Scoring do
 				Scrabble::Scoring.highest_score_from(test_words).must_equal("ferrets")
 
 		end
+
+		#separate tests with each tie breaker
 
 	end
 
