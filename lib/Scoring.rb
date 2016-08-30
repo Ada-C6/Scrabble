@@ -2,9 +2,9 @@
 
 #2 Create Spec file - DONE
 
-#3 Create one red test in Spec file
+#3 Create one red test in Spec file - DONE!
 
-#4 Execute one test - Rake from project root
+#4 Execute one test - Rake from project root DONE!
 
 #_________________________
 
@@ -22,14 +22,20 @@
 
 
 class Scoring
-  def initialize
+
+  def initialize(word)
+    @word = word
+
   end
 
   def self.score(word)
+    #.upcase
 
-  end 
+  end
+  def self.highest_score_from(array_of_words)
+    # output is word in array with highest_score_from
 
-
+  end
 
 
 end
