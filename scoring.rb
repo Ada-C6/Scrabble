@@ -11,15 +11,14 @@ module Scrabble
 
     def self.score(word)
       score_array = []
-      word = "word"
+
       word.each_char do |l|
 
-          score_array << SCORE_CHART.values_at(l)
+          score_array << SCORE_CHART.values_at(l).join.to_i
 
 
       end
-      return score_array
-      #.reduce(:+)
+      return score_array.reduce(:+)
     end
   end
 end
