@@ -3,6 +3,7 @@ require_relative '../scrabble.rb'
 class Scrabble::Scoring
 
   def self.score(word)
+    check_input(word)
     letter_array = word.upcase.split('')
     score = 0
     # this adds 50 if word length is >= 7 by calling bingo.
@@ -26,7 +27,11 @@ class Scrabble::Scoring
 
   # this is not ready to go
   def self.check_input(word)
-    word = word.gsub
+    if word =~ /^[a-zA-Z]+$/
+    return word
+    else
+     raise ArgumentError
+    end
   end
 
 end
