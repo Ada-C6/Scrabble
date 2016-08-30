@@ -11,9 +11,10 @@ module Scrabble
 		}
 
 		def self.score(word)
-			if word == ""
+			if word.length < 1 || word.length > 7
 				raise ArgumentError.new("No empty strings")
 			end
+
 			score = 0
 			user_word = word.upcase.split("")
 			user_word.each do |letter|

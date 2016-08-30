@@ -24,6 +24,10 @@ describe Scrabble::Scoring do
 		end
 
 		# write assertion for words greater than 7
+
+		it "must not take an argument greater than 7 letters" do
+			proc {Scrabble::Scoring.score("caterpillar")}.must_raise(ArgumentError)
+		end
 	end
 
 end
