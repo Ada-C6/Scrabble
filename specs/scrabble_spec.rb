@@ -26,6 +26,10 @@ describe Scrabble::Scoring do
         it "ought to throw an Argument Error if the parameter contains non-letters" do
             proc { Scrabble::Scoring.score("1")}.must_raise(ArgumentError)
         end
+
+        it "must throw an ArgumentError if word is not 1-7 characters long" do
+          proc { Scrabble::Scoring.score("California")}.must_raise(ArgumentError)
+        end
     end
 
 end

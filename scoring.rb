@@ -10,19 +10,27 @@ module Scrabble
           10 => %w(Q Z)
       }
 
+      def self.valid_length?(word)
+        return word.length <= 7 && word.length > 0
+      end
+
       def self.is_alpha?(word)
           letters = word.upcase.chars
           letters.each do |ch|
               if !("A".."Z").include?(ch)
                   return false
               end
-              return true
           end
+          return true
       end
 
       def self.score(word)
           if !is_alpha?(word)
-              raise ArgumentError.new("Oops, letters only please")
+            raise ArgumentError.new("Oops, letters only please")
+          end
+
+          if !valid_length?(word)
+            raise ArgumentError.new("Your word must be 1-7 letters.")
           end
       end
   end
