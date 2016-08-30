@@ -9,5 +9,9 @@ module Scrabble
 			8 => %w(J X),
 			10 => %w(Q Z)
 		}
+
+		def self.score(word)
+
+		end
 	end
 end
