@@ -49,7 +49,15 @@ module Scrabble
           end
           return score
       end
+
+      def self.highest_score_from(words_array)
+          scores = {}
+          words_array.each do |word|
+              scores[word] = score(word)
+          end
+          puts scores
+      end
   end
 end
 
-puts Scrabble::Scoring::SCORE_TABLE
+Scrabble::Scoring.highest_score_from(["cat", "dolphin", "elephan"])

@@ -42,4 +42,11 @@ describe Scrabble::Scoring do
         end
     end
 
+    describe "highest_score_from(words_array)" do
+        it "will return the default from the array" do
+            skip
+            Scrabble::Scoring.highest_score_from(["cat"]).must_equal("cat")
+        end
+    end
+
 end
