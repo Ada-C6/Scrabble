@@ -24,7 +24,7 @@ require_relative "../module"
 
 class Scrabble::Scoring
 
-  attr_accessor :word
+  attr_accessor :word, :total
 
   def initialize(word)
     @word = word
@@ -37,7 +37,6 @@ class Scrabble::Scoring
     letters = word.upcase.split('')
 
     letters.length >= 7 ? total = 50 : total = 0
-    print letters
 
     letters.each do |letter|
       total += Scrabble::LETTER_HASH[letter]
@@ -50,8 +49,18 @@ class Scrabble::Scoring
 
   def self.highest_score_from(array_of_words)
     # output is word in array with highest_score_from
-
+    scored_words_array = []
+    array_of_words.each do |word|
+       scored_words_array << score(word).to_i
+       puts "Word.score #{score(word)}"
+    end
+    return scored_words_array.max
   end
 
 
 end
+
+test1 = Scrabble::Scoring.highest_score_from(["cat", "anchovy", "bob"])
+
+
+puts test1
