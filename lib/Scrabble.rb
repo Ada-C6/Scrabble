@@ -1,11 +1,14 @@
-require_relative 'spec_helper'
+# Hint from Chris raise ArgumentError unless number.class == Fixnum
 
-class Scoring
+
+require_relative '../Scrabble.rb'
+
+class Scrabble::Scoring
 
   attr_reader :word, :points, :word_array, :letter_scores
+  @word_array = []
 
-  def initialize
-    @word_array = []
+  def self.letters
     @letter_scores = {"A"=>1, "B"=>3, "C"=>3, "D"=>2,
    "E"=>1, "F"=>4, "G"=>2, "H"=>4,
    "I"=>1, "J"=>8, "K"=>5, "L"=>1,
@@ -16,7 +19,13 @@ class Scoring
   end
 
   def self.score(word)
-    word.upcase
+
+      raise ArgumentError unless word.class == String
+      word.upcase
+        word.split(//).each do |char|
+          p char
+        end
+        print word.split(//)
   end
 
   def self.points
@@ -29,3 +38,5 @@ class Scoring
   end
 
 end
+
+tst = Scrabble::Scoring.score('potato')
