@@ -9,6 +9,22 @@ module Scrabble
           8 => %w(J X),
           10 => %w(Q Z)
       }
+
+      def self.is_alpha?(word)
+          letters = word.upcase.chars
+          letters.each do |ch|
+              if !("A".."Z").include?(ch)
+                  return false
+              end
+              return true
+          end
+      end
+
+      def self.score(word)
+          if !is_alpha?(word)
+              raise ArgumentError.new("Oops, letters only please")
+          end
+      end
   end
 end
 

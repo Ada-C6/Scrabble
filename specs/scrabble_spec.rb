@@ -22,5 +22,10 @@ describe Scrabble::Scoring do
             score.must_be_instance_of(Scrabble::Scoring)
         end
     end
-    
+    describe "#self.score(word)" do
+        it "ought to throw an Argument Error if the parameter contains non-letters" do
+            proc { Scrabble::Scoring.score("1")}.must_raise(ArgumentError)
+        end
+    end
+
 end
