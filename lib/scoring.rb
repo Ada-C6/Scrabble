@@ -39,10 +39,25 @@ module Scrabble
     end
 
     def self.score(word)
-
-      return
+      score = 0
+      word_array = word.upcase.split(//)
+      word_array.each do |letter|
+        score += Scrabble::Scoring::TILES[letter]
+      end
+      return score
     end
-
+    def self.highest_score_from(array_of_words)
+      max_score = 0
+      max_word = ''
+      array_of_words.each do |word|
+        current_score = score(word)
+        if max_score < current_score
+          max_score = current_score
+          max_word = word
+        end #if
+      end #each
+      return max_word
+    end
   end
 
 end

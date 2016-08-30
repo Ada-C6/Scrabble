@@ -21,6 +21,14 @@ describe Scoring do
     it "method will return a fixnum" do
       Scoring.score("string").must_be_instance_of(Fixnum)
     end
+# @todo we need to make sure the score is added correctly, using an each for an array of words
+  end
+
+  describe "#self.highest_score_from(array_of_words)" do
+
+    it "method will return a string" do
+      Scoring.highest_score_from(["xena", "toy", "dog"]).must_be_instance_of(String)
+    end
 
   end
 
