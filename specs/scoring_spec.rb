@@ -9,6 +9,13 @@ describe Scrabble::Scoring do
     end
   end
 
+  describe "#convert_word_to_array_upcase" do
+    it "should return an array of all uppercase letters" do
+      word = Scrabble::Scoring.word_to_array("develop")
+      word[2].must_equal("V")
+    end
+  end
+  
   #does the correct score return for the given word
   describe "#self.score(word)" do
     it "should return the correct score for the given word" do
@@ -23,8 +30,6 @@ describe Scrabble::Scoring do
 
 
   describe "#highest_score_from_array" do
-  #  it "should test that array stores words" do
-      # end
 
     it "should return the word with the highest score" do
       test_words = %w(dog tours develop)

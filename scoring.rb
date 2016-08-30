@@ -13,10 +13,15 @@ module Scrabble
       10 => %w(Q Z)
     }
 
+    def self.word_to_array(word)
+      word.upcase.split(//)
+    end
+
+
     # return appropriate score for letter
     def self.score (word)
-      word_array = word.upcase.split(//)
       score = 0
+      word_array = self.word_to_array(word) 
 
       word_array.each do | i |
         SCORE_CHART.each do | key, value |
