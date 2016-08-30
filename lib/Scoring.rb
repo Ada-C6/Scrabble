@@ -46,11 +46,20 @@ class Scrabble::Scoring
 
   end
 
+  def tie_breaker 
+    #[15, 20, 20, 30]
+
+
+  end
+
+
+
   def self.highest_score_from(array_of_words)
     # output is word in array with highest_score_from
     scored_words_array = []
     array_of_words.each do |word|
        scored_words_array << score(word).to_i
+       puts "Word.score #{score(word)}"
     end
     return scored_words_array.max
   end

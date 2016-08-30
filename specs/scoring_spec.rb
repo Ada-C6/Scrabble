@@ -53,10 +53,23 @@ describe Scrabble::Scoring do
 
   # input 2 words that scored the same.
   #
-  it '' do
-    expect(Scrabble::Scoring.score([15, 15, 10)).must_equal()
+  it 'Two word tie goes to the word with fewest letters' do
+    expect(Scrabble::Scoring.highest_score_from(["frizzy","mezuzah", "cat", "milk"])).must_equal("frizzy")
   end
 
+  it 'three word tie that goes to the word with fewest letters'
+
+  do
+    expect(Scrabble::Scoring.highest_score_from(["boxwood", "chintz", "bozeman", "bozeman", "dog", "litter", "bike"])).must_equal("chintz")
+  end
+
+  # this would only be relevant w/ extra points vis double or triple letter or word scores.
+  # it 'tie between words of different lengths but same point value.' do
+  #   expect(Scrabble::Scoring.highest_score_from(["abyss", "abrupt", "dog", "cat"]).must_equal("abyss")
+  # end
+  it 'tie two words of the same length and value' do
+    expect(Scrabble::Scoring.highest_score_from(["nuzzle", "nozzle", "dog", "cat"])).must_equal("nuzzle")
+  end
 
 
 # -----------------------------------#
