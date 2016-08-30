@@ -9,10 +9,12 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.score("DOG").must_equal(5)
     end
 
-    a = Scrabble::Scoring.new
-
     it "should throw an error when an invalid parameter is supplied" do
       proc {Scrabble::Scoring.score("123")}.must_raise(ArgumentError)
+    end
+
+    it "should give a 50 point bonus for seven letter words" do
+      Scrabble::Scoring.score("bunnies").must_equal(59)
     end
 
 
