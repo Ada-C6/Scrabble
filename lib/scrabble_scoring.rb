@@ -25,7 +25,7 @@ class Scrabble::Scoring
     end
   end
 
-  # this is not ready to go
+
   def self.check_input(word)
 
     raise ArgumentError unless word.class == String
@@ -37,7 +37,18 @@ class Scrabble::Scoring
     end
   end
 
+  def self.highest_score_from(array_of_words)
+    raise ArgumentError unless array_of_words.class == Array
+
+     word_hash = {}
+
+     array_of_words.each do |element|
+       word_hash[element] = score(element)
+     end
+    
+  end
+
 end
 
-
-puts Scrabble::Scoring.score("a")
+puts Scrabble::Scoring.highest_score_from(["zzzz", "abc", "xat"])
+#puts Scrabble::Scoring.score("a")

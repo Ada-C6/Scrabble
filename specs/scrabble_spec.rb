@@ -38,11 +38,13 @@ describe 'testing scrabble module' do
   end
 
   it 'highest_score_method raise ArgError if the arg is not an array' do
-    expect( proc {Scrabble::Scoring.score("string")} ).must_raise(ArgumentError)
-    expect( proc {Scrabble::Scoring.score(:symbol)} ).must_raise(ArgumentError)
-    expect( proc {Scrabble::Scoring.score(4000000.49)} ).must_raise(ArgumentError)
+    expect( proc {Scrabble::Scoring.highest_score_from("string")} ).must_raise(ArgumentError)
+    expect( proc {Scrabble::Scoring.highest_score_from(:symbol)} ).must_raise(ArgumentError)
+    expect( proc {Scrabble::Scoring.highest_score_from(4000000.49)} ).must_raise(ArgumentError)
   end
 
-
+   it 'must return word with with hihgest score' do
+     expect(Scrabble::Scoring.highest_score_from("zzzz", "abc", "xat").must_equal("zzzz"))
+   end
 
 end
