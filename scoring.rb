@@ -11,7 +11,22 @@ module Scrabble
 		}
 
 		def self.score(word)
-
+			if word == ""
+				raise ArgumentError.new("No empty strings")
+			end
+			score = 0
+			user_word = word.upcase.split("")
+			user_word.each do |letter|
+				LETTERS.each do |key, value|
+					if value.include?(letter)
+						score += key
+					end
+				end
+			end
+			if user_word.length == 7
+				score += 50
+			end
+			return score
 		end
 	end
 end
