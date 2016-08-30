@@ -1,7 +1,8 @@
 module Scrabble
   class Scoring
-    attr_reader :word
-    
+    attr_accessor :array_of_words, :word
+    attr_reader
+
     # SCORE_CHART = {
     #   1: ["A", "E", "I", "O", "U", "L", "N", "R", "S", "T"],
     #   2: ["D", "G"],
@@ -12,8 +13,18 @@ module Scrabble
     #   10: ["Q", "Z"]
     # }
 
-    # def initialize(word)
-    #   # @word = word
+    # @array_of_words = []
+    #
+    def initialize(word)
+      @word = word
+      # @array_of_words << word
+    end
+
+
+    # def self.score
+    # end
+    #
+    # def self.highest_score_from_array(array_of_words)
     # end
 
   end
