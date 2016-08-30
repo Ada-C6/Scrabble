@@ -16,11 +16,16 @@ describe Scoring do
   end
 
   describe "#self.score(word)" do
-  #let(:scoring) {Scoring.new("string") }
+  #let(:scoring) {Scoring.score("cat") }
 
     it "method will return a fixnum" do
       Scoring.score("string").must_be_instance_of(Fixnum)
     end
+
+    it "must add up values of letters in word correctly" do
+      Scoring.score("STRING").must_equal(7)
+    end
+
 # @todo we need to make sure the score is added correctly, using an each for an array of words
   end
 
