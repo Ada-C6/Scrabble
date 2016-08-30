@@ -17,9 +17,12 @@ module Scrabble
     #
     def initialize(word)
       @word = word
-      # @array_of_words << word
+      collect_word(word)
     end
 
+    def collect_word(word)
+      # @array_of_words << word
+    end
 
     # def self.score
     # end

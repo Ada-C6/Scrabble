@@ -10,11 +10,18 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.new("word").must_be_instance_of(Scrabble::Scoring)
     end
 
-    # it "should initialize with a word" do
-    #
-    # end
+    it "should initialize with a word" do
+      Scrabble::Scoring.new("word").must_respond_to(:word)
+    end
+
+    it "should call collect_word method" do
+      Scrabble::Scoring.new("word").must_respond_to(:collect_word)
+    end
+
 
 
   end
 
 end
+
+# Scrabble::Scoring.new("word").collect_word("word")
