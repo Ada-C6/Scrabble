@@ -3,7 +3,7 @@ require_relative 'Spec_helper'
 
 require_relative '../lib/Scoring'
 
-describe Scoring do
+describe Scrabble::Scoring do
 
 
 
@@ -18,6 +18,7 @@ describe Scoring do
   it 'Testing Words with associated scoring metrics' do
     expect(Scrabble::Scoring.score("bad")).must_equal(6)
   end
+
   it 'Testing Words with associated scoring metrics' do
     expect(Scrabble::Scoring.score("fake")).must_equal(11)
   end
@@ -32,9 +33,9 @@ describe Scoring do
 # -----------------Tie Breaking------------------#
   # array of entered words.
 # may also be self.score(word) for method instead of .score(word)?
-it 'Test output in array is highest score.' do
-  expect(Scrabble::Scoring.highest_score_from[6, 11, 22, 68])).must_equal(68)
-end
+# it 'Test output in array is highest score.' do
+#   expect(Scrabble::Scoring.highest_score_from[6, 11, 22, 68])).must_equal(68)
+# end
 
 
 # ----------------Ensure Input is wanted-------------------#
@@ -43,13 +44,13 @@ end
 # Will with the argument be a string that verifies that its a string.
 # ex: "Cat":
 
-  it 'word equals string' do
-    expect( Scoring.new("word").score).must_equal(String)
-  end
-
-  it '(case insensitivity): Accepts input of upper or lower case letter returns all upcase.' do
-    expect( Scoring.new("a").score).must_equal("A")
-  end
+  # it 'word equals string' do
+  #   expect( Scoring.new("word").score).must_equal(String)
+  # end
+  #
+  # it '(case insensitivity): Accepts input of upper or lower case letter returns all upcase.' do
+  #   expect( Scoring.new("a").score).must_equal("A")
+  # end
 # -----------------------------------#
 
 
