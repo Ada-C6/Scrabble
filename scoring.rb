@@ -15,6 +15,12 @@ module Scrabble
 				raise ArgumentError.new("No empty strings")
 			end
 
+			# raise ArgumentError.new("Invalid characters")
+
+#			if !LETTERS.values.include?(word.split(""))
+#				puts "no!"
+#			end
+
 			score = 0
 			user_word = word.upcase.split("")
 			user_word.each do |letter|
