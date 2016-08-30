@@ -14,4 +14,12 @@ describe 'testing scrabble module' do
     expect(Scrabble::SCORE_HASH[:Q]).must_equal(10)
   end
 
+  it 'score method must return a fixnum' do
+    # put this on hold rn
+  end
+
+  it 'score method must return correct score for a word' do
+    expect(Scoring.score("hello")).must_equal(8)
+  end
+
 end
