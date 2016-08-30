@@ -13,7 +13,7 @@ module Scrabble
       10 => %w(Q Z)
     }
 
-
+    # return appropriate score for letter
     def self.score (word)
       word_array = word.upcase.split(//)
       score = 0
@@ -37,14 +37,24 @@ module Scrabble
 
       array_of_words.each do |word|
         score = self.score(word)
+        # should return the word with the highest score
         if score > winning_score
           winner = word
           winning_score = score
 
         elsif score == winning_score
-          unless winner.length == 7
-            winner = word
-            winning_score = score
+          # should return the first word supplied in the case of tie of both score and length
+          unless winner.length == 7 # this runs if winner length is not 7
+            # should return the 7 letter word if there is a tie
+            if word.length == 7 # if word length is 7, word is winner
+              winner = word
+              winning_score = score
+
+            # if score tie, shorter length wins
+            elsif word.length < winner.length
+              winner = word
+              winning_score = score
+            end
           end
         end
       end

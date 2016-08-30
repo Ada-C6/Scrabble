@@ -32,7 +32,7 @@ describe Scrabble::Scoring do
     end
     # test tie: if score of 3 letter word == score of 4 letter word, does it return 3 letter word
     it "should return the word with the shorter length if there is a tie" do
-      test_words = %w(dog tours hi go)
+      test_words = %w(hi dog tours go)
       Scrabble::Scoring.highest_score_from(test_words).must_equal("hi")
     end
     # special case: if tie and 7 letter word used, 7 letter word wins
@@ -43,7 +43,8 @@ describe Scrabble::Scoring do
 
     # if multiple words with same score and length, pick the first onesupplied
     it "should return the first word supplied in the case of tie of both score and length" do
-      
+      test_words = %w(aaaaad zzzzzj zzzzzx wut)
+      Scrabble::Scoring.highest_score_from(test_words).must_equal("zzzzzj")
     end
 
   end
