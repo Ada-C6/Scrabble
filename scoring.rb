@@ -14,7 +14,18 @@ module Scrabble
     }
 
 
+    def self.score (word)
+      word_array = word.upcase.split(//)
+      score = 0
 
-
+      word_array.each do | i |
+        SCORE_CHART.each do | key, value |
+          if SCORE_CHART[key].include?(i)
+          score += key
+          end
+        end
+      end
+      return score
+    end
   end
 end
