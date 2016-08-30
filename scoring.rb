@@ -15,13 +15,16 @@ module Scrabble
       end
 
       def self.is_alpha?(word)
-          letters = word.upcase.chars
-          letters.each do |ch|
+          letter_array(word).each do |ch|
               if !("A".."Z").include?(ch)
                   return false
               end
           end
           return true
+      end
+
+      def self.letter_array(word)
+        return word.upcase.chars
       end
 
       def self.score(word)
@@ -32,6 +35,18 @@ module Scrabble
           if !valid_length?(word)
             raise ArgumentError.new("Your word must be 1-7 letters.")
           end
+
+          score = 0
+          letter_array(word).each do |ch|
+            SCORE_TABLE.each do |k, v|
+              if v.include?(ch)
+                score += k
+              end
+            end
+          end
+          return score
+
+
       end
   end
 end

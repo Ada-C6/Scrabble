@@ -29,7 +29,14 @@ describe Scrabble::Scoring do
 
         it "must throw an ArgumentError if word is not 1-7 characters long" do
           proc { Scrabble::Scoring.score("California")}.must_raise(ArgumentError)
+          proc { Scrabble::Scoring.score("")}.must_raise(ArgumentError)
         end
+
+        it "must score words properly" do
+          Scrabble::Scoring.score("fox").must_equal(13)
+        end
+
+
     end
 
 end
