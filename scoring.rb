@@ -25,6 +25,9 @@ module Scrabble
           end
         end
       end
+      if word_array.length == 7
+        score += 50
+      end 
       return score
     end
   end

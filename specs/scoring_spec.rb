@@ -15,9 +15,11 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.score("dog").must_equal(5)
     end
 
-  #does it return the word with the highest_score_from method
+    it "should add a 50 pt bonus on top of normal word score if 7 letters" do
+      Scrabble::Scoring.score("develop").must_equal(50+13)
+    end
 
-  #is there a 50 pt bonus for a 7 letter word
+  #does it return the word with the highest_score_from method
 
   # test tie: if score of 3 letter word == score of 4 letter word, does itreturn 3 letter word
 
