@@ -36,6 +36,10 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.highest_score_from(test_words).must_equal("hi")
     end
     # special case: if tie and 7 letter word used, 7 letter word wins
+    it "should return the 7 letter word if there is a tie" do
+      test_words = %w(aaaaaad zzzzzx wut)
+      Scrabble::Scoring.highest_score_from(test_words).must_equal("aaaaaad")
+    end
 
   end
 
