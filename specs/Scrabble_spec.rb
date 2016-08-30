@@ -4,7 +4,7 @@ require_relative 'spec_helper.rb'
 describe "Testing Scrabble" do
 
   it "It must raise an ArgumentError if given a Fixnum" do
-    expect (proc { Scrabble::Scoring.score(11)} ).must_raise ArgumentError
+    expect (proc { Scrabble::Scoring.start_word(11)} ).must_raise ArgumentError
   end
 
   # it "It must raise an ArgumentError if LETTER_SCORES[char] is not a Fixnum" do
@@ -12,7 +12,7 @@ describe "Testing Scrabble" do
   # end
 
   it "Testing to remove case sensitivity" do
-    expect(Scrabble::Scoring.score("HeLLo")  ).must_equal(8)
+    expect(Scrabble::Scoring.start_word("HeLLo")  ).must_equal("HELLO")
   end
 
   it "Testing to make sure score is correct" do
