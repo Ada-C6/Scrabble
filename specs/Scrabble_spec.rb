@@ -20,7 +20,7 @@ describe "Testing Scrabble" do
   end
 
   it "Testing to make sure 7 tiles gets an extra 50 points" do
-    expect(Scrabble::Scoring.score("potatos")  ).must_equal(59)
+    expect(Scrabble::Scoring.score("majesty")  ).must_equal(69)
   end
-  
+
 end
