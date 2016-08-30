@@ -37,14 +37,19 @@ describe Scrabble::Scoring do
     end
     # special case: if tie and 7 letter word used, 7 letter word wins
     it "should return the 7 letter word if there is a tie" do
-      test_words = %w(aaaaaad zzzzzx wut)
+      test_words = %w(zzzzzx aaaaaad wut)
       Scrabble::Scoring.highest_score_from(test_words).must_equal("aaaaaad")
+    end
+
+    # if multiple words with same score and length, pick the first onesupplied
+    it "should return the first word supplied in the case of tie of both score and length" do
+      
     end
 
   end
 
 
-  # if multiple words with same score and length, pick the first onesupplied
+
 
 
 

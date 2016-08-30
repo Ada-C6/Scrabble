@@ -37,19 +37,15 @@ module Scrabble
 
       array_of_words.each do |word|
         score = self.score(word)
-        if score == winning_score
-        # still not sure how to get this to return the 7 letter word if the 6 letter word comes after  
+        if score > winning_score
+          winner = word
+          winning_score = score
+
+        elsif score == winning_score
           unless winner.length == 7
-          #   if word.length == 7
-          #     winner = word
-          #     winning_score = score
-          #   elsif word.length < winner.length
-          #   winner = word
-          #   winning_score = score
-          end
-        elsif score > winning_score
             winner = word
             winning_score = score
+          end
         end
       end
       return winner
