@@ -27,6 +27,9 @@ class Scrabble::Scoring
 
   # this is not ready to go
   def self.check_input(word)
+
+    raise ArgumentError unless word.class == String
+
     if word =~ /^[a-zA-Z]+$/
     return word
     else
@@ -37,4 +40,4 @@ class Scrabble::Scoring
 end
 
 
-puts Scrabble::Scoring.score("jazzmen")
+puts Scrabble::Scoring.score("a")

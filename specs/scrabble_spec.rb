@@ -14,10 +14,6 @@ describe 'testing scrabble module' do
     expect(Scrabble::SCORE_HASH[:Q]).must_equal(10)
   end
 
-  it 'score method must return a fixnum' do
-    # put this on hold rn
-  end
-
   it 'score method must return correct score for a word' do
     expect(Scrabble::Scoring.score("hello")).must_equal(8)
   end
@@ -33,6 +29,12 @@ describe 'testing scrabble module' do
   it 'score method\'s argument should only include letters' do
     expect( proc {Scrabble::Scoring.score("everything!!!")} ).must_raise(ArgumentError)
     expect( proc {Scrabble::Scoring.score("everything123")} ).must_raise(ArgumentError)
+  end
+
+  it 'score method should raise ArgError if the arg is not a string' do
+    expect( proc {Scrabble::Scoring.score(12345)} ).must_raise(ArgumentError)
+    expect( proc {Scrabble::Scoring.score(:symbol)} ).must_raise(ArgumentError)
+    expect( proc {Scrabble::Scoring.score(4000000.49)} ).must_raise(ArgumentError)
   end
 
 end
