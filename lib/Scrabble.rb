@@ -5,7 +5,7 @@ require_relative '../Scrabble.rb'
 
 class Scrabble::Scoring
 
-  # attr_reader :word, :points, :word_array, :letter_scores
+  # attr_reader :word, :points, :word_array, :letter_scores, :score
   # @word_array = []
 
   LETTER_SCORES = {"A"=>1, "B"=>3, "C"=>3, "D"=>2,
@@ -16,20 +16,26 @@ class Scrabble::Scoring
    "U"=>1, "V"=>4, "W"=>4, "X"=>8,
    "Y"=>4, "Z"=>10}
 
-   def self.score(word)
+  def self.score(word)
 
-       raise ArgumentError unless word.class == String
-       @word = word.upcase
-       letters = @word.split(//)
-       score = 0
-       letters.each do |char|
-         score += LETTER_SCORES[char]
-       end
-       puts "\n#{@word} scores #{score} points\n\n"
-       return score
-   end
+    raise ArgumentError unless word.class == String
+    @word = word.upcase
+    letters = @word.split(//)
+
+    @word.length == 7 ? @score = 50 : @score = 0
+
+    # @score = 0
+
+    letters.each do |char|
+      @score += LETTER_SCORES[char]
+    end
+    puts "\n#{@word} scores #{@score} points\n\n"
+    return @score
+  end
 
   def self.points
+    # @word_hash{:@score} => @word
+    #syntax lel
   end
 
   def self.score_highest(word_array)
@@ -40,4 +46,4 @@ class Scrabble::Scoring
 
 end
 
-tst = Scrabble::Scoring.score('potato')
+# tst = Scrabble::Scoring.score('potato')
