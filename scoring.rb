@@ -8,10 +8,14 @@ module Scrabble
     end
 
     def self.score(word)
-      word.upcase!
+        word.upcase!
       current_score = 0
       word_letters = word.split("")
+
       word_letters.each do |i|
+        if !LETTERS.values.join.include?(i)
+          raise ArgumentError.new("Invalid input")
+        end
         LETTERS.values.length.times do |j|
           if LETTERS.values[j].include?(i)
             current_score += LETTERS.keys[j]
