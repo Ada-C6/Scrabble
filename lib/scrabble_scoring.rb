@@ -1,15 +1,14 @@
 require_relative '../scrabble.rb'
 
-class Scoring
+class Scrabble::Scoring
 
   def self.score(word)
     letter_array = word.upcase.split('')
     score = 0
+    # this adds 50 if word length is >= 7 by calling bingo.
+    score += bingo(word)
 
-    # go through each item in the letter array
-    # convert it to a symbol
-    # get the symbol (the key)'s value from the hash constant
-    # add that value to the score
+    # iterate through array and add score
     letter_array.each do |letter|
       score += Scrabble::SCORE_HASH[letter.to_sym]
     end
@@ -17,7 +16,20 @@ class Scoring
   end
 
 
+  def self.bingo(word)
+    if word.length >= 7
+      return 50
+    else
+      return 0
+    end
+  end
+
+  # this is not ready to go
+  def self.check_input(word)
+    word = word.gsub
+  end
+
 end
 
 
-# puts Scoring.score("hello")
+puts Scrabble::Scoring.score("jazzmen")
