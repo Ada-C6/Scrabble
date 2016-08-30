@@ -4,9 +4,6 @@ require_relative 'Spec_helper'
 require_relative '../lib/Scoring'
 
 describe Scrabble::Scoring do
-
-
-
 # The letters A, E, I, O, U, L, N, R, S, T equal 1 points.
 # The letters D, G equal 2 point(s).
 # The letters B, C, M , P equal 3 point(s).
@@ -33,9 +30,9 @@ describe Scrabble::Scoring do
 # -----------------Tie Breaking------------------#
   # array of entered words.
 # may also be self.score(word) for method instead of .score(word)?
-# it 'Test output in array is highest score.' do
-#   expect(Scrabble::Scoring.highest_score_from[6, 11, 22, 68])).must_equal(68)
-# end
+  it 'Test output in array is highest score.' do
+    expect(Scrabble::Scoring.highest_score_from([6, 11, 100, 68])).must_equal(100)
+  end
 
 
 # ----------------Ensure Input is wanted-------------------#
@@ -52,8 +49,16 @@ describe Scrabble::Scoring do
   #   expect( Scoring.new("a").score).must_equal("A")
   # end
 # -----------------------------------#
+  # Dealing with Ties
+
+  # input 2 words that scored the same.
+  #
+  it '' do
+    expect(Scrabble::Scoring.score([15, 15, 10)).must_equal()
+  end
 
 
 
+# -----------------------------------#
 
 end
