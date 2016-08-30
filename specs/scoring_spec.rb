@@ -10,16 +10,22 @@ describe Scrabble::Scoring do
 
     it "should have 26 English Alphabet letters in the scoring chart" do
       Scrabble::Scoring::POINTS.length.must_equal(26)
-      # Scrabble::Scoring::POINTS.must_include "A"
     end
 
-    # it "should have a score corresponding to each letter" do
-    #   total_value = Scrabble::Scoring::POINTS.values
-    #   total_value.reduce(:+)
-    #   total_value.must_equal
-    # end
+    # not a 100% accurate test of each letter's value, but the most efficient idea we could come up with aside from checking every letter's score individually
+    it "should have a total score corresponding to each letter's score" do
+      sum_array = []
+      Scrabble::Scoring::POINTS.each do |letter|
+        sum_array += letter.values
+      end
+      sum_array.reduce(:+).must_equal (84)
+    end
 
-
+    it "sums up scores of each word" do
+      score_test = {}
+      score_test["HOUSE"] = 8
+      #score_test[""] = 
+    end
 
 
   end
