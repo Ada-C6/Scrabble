@@ -38,14 +38,14 @@ module Scrabble
 
     def self.score(word)
       sum = 0
-
       Scrabble::Scoring::POINTS.each do |k, v|
-
         occurances = word.count(k.to_s)
         sum += v.to_i * occurances
       end
+      if word.length == 7
+        sum +=50
+      end
       return sum
-
     end
 
   end

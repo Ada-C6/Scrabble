@@ -27,12 +27,14 @@ describe Scrabble::Scoring do
       score_test["HOUSE"] = 8
       score_test["ANIMAL"] = 8
       score_test["DOG"] = 5
+      score_test["GORILLA"] = 58
 
       score_test.each do |k, v|
         Scrabble::Scoring.score(k).must_equal(v)
       end
-
     end
+
+
 
 
   end
