@@ -30,11 +30,13 @@ module Scrabble
       "Q" => 10,
       "Z" => 10
     }
+    SEVEN_LETTER_BONUS = 50
 
     attr_reader :word
 
     def initialize(word)
       @word = word
+      #@max_words = []
 
     end
 
@@ -44,20 +46,40 @@ module Scrabble
       word_array.each do |letter|
         score += Scrabble::Scoring::TILES[letter]
       end
-      return score
+      if word_array.length !=7
+        return score
+      else
+        return score += SEVEN_LETTER_BONUS
+      end
     end
+
     def self.highest_score_from(array_of_words)
       max_score = 0
-      max_word = ''
+      max_words = []
+      shortest_word = 'PIZZAZZas'
       array_of_words.each do |word|
         current_score = score(word)
-        if max_score < current_score
+        if current_score == max_score
+          max_words << word
+        elsif current_score > max_score
+          max_words = [word]
           max_score = current_score
-          max_word = word
-        end #if
+        else
+          #karion
+        end
       end #each
-      return max_word
+      max_words.each do |word|
+        if word.length < shortest_word.length
+          shortest_word = word
+        end
+      end
+        #find the shortest word
+        # words_scores.each_with_index do |word_score, i|
+        #   current_word = word_score[i][max_score]
+        #   max_words << current_word
+        # end
+        return shortest_word # will return the first if tie breaker
+      end
     end
-  end
 
-end
+  end

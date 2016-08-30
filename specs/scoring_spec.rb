@@ -26,7 +26,9 @@ describe Scoring do
       Scoring.score("STRING").must_equal(7)
     end
 
-# @todo we need to make sure the score is added correctly, using an each for an array of words
+    it "must add 50 points to score for seven-letter-words" do
+      Scoring.score("PIZZAZZ").must_equal(95)
+    end
   end
 
   describe "#self.highest_score_from(array_of_words)" do
@@ -34,6 +36,17 @@ describe Scoring do
     it "method will return a string" do
       Scoring.highest_score_from(["xena", "toy", "dog"]).must_be_instance_of(String)
     end
+
+    #TIEBREAKERS
+    # make @max_words = [] what needs testing?
+
+    # fewer tiles better for equal score
+    it "will return the shortest word within an array of equal scored words" do
+      Scoring.highest_score_from(["gels", "cat", "long"]).must_equal("cat")
+    end
+    # seven letters better than all other
+
+    # pick first one in array_of_words - use .find
 
   end
 
