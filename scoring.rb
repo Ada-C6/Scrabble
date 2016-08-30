@@ -27,8 +27,23 @@ module Scrabble
       end
       if word_array.length == 7
         score += 50
-      end 
+      end
       return score
     end
+
+    def self.highest_score_from(array_of_words)
+      winner = ""
+      winning_score = 0
+
+      array_of_words.each do |word|
+        score = self.score(word)
+        if score > winning_score
+          winner = word
+          winning_score = score
+        end
+      end
+      return winner 
+    end
+
   end
 end
