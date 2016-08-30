@@ -3,6 +3,14 @@ require_relative '../Scoring.rb'
 
 describe Scrabble::Scoring do
 
+  it "should have a scoring chart" do
+    Scrabble::Scoring::SCORE_CHART.wont_be_nil
+  end
+
+  it "should have array_of_words" do
+      :array_of_words.wont_be_nil
+  end
+
   describe "#initialize" do
     # let(:s) { Scrabble::Scoring.new("word") }
 
@@ -18,7 +26,11 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.new("word").must_respond_to(:collect_word)
     end
 
+  end
 
+  describe "#collect_word" do
+
+    it "should "
 
   end
 
