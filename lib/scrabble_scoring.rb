@@ -27,7 +27,6 @@ class Scrabble::Scoring
 
 
   def self.check_input(word)
-
     raise ArgumentError unless word.class == String
 
     if word =~ /^[a-zA-Z]+$/
@@ -45,10 +44,17 @@ class Scrabble::Scoring
      array_of_words.each do |element|
        word_hash[element] = score(element)
      end
-    
+
+     if word_hash.values.length == word_hash.values.uniq.length
+       tie(word_hash)
+     else
+       return word_hash.key(word_hash.values.max)
+     end
+
   end
 
-end
+  def self.tie(hash)
+    puts "it's a tie!"
+  end
 
-puts Scrabble::Scoring.highest_score_from(["zzzz", "abc", "xat"])
-#puts Scrabble::Scoring.score("a")
+end # end of Scoring class

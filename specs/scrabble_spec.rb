@@ -37,14 +37,29 @@ describe 'testing scrabble module' do
     expect(Scrabble::Scoring.score("jazzmen").must_equal(84))
   end
 
-  it 'highest_score_method raise ArgError if the arg is not an array' do
+  it 'highest_score_from method raise ArgError if the arg is not an array' do
     expect( proc {Scrabble::Scoring.highest_score_from("string")} ).must_raise(ArgumentError)
     expect( proc {Scrabble::Scoring.highest_score_from(:symbol)} ).must_raise(ArgumentError)
     expect( proc {Scrabble::Scoring.highest_score_from(4000000.49)} ).must_raise(ArgumentError)
   end
 
-   it 'must return word with with hihgest score' do
-     expect(Scrabble::Scoring.highest_score_from("zzzz", "abc", "xat").must_equal("zzzz"))
-   end
+  it 'must return word with with highest score' do
+    expect(Scrabble::Scoring.highest_score_from(["zzzz", "abc", "xat"]).must_equal("zzzz"))
+  end
+
+  it 'in the case of a tie, highest_score_from method must return fewer-lettered word over higher lettered-word unless higher.length == 7' do
+    expect(Scrabble::Scoring.highest_score_from(["aaaa","y"]).must_equal("y"))
+  end
+
+  it 'in the case of a tie, if one of the tied words is 7 letters, highest_score_method must return the 7 letter word' do
+    expect(Scrabble::Scoring.highest_score_from(["zzzzzz","iiiiiif"]).must_equal("iiiiiif"))
+  end
+
+  it 'in the case of a tie, if the two words are the same score & same length, pick the first one to win' do
+    expect(Scrabble::Scoring.highest_score_from(["aaaaaa","iiiiii"]).must_equal("aaaaaa"))
+  end
+
+
+
 
 end
