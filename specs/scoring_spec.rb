@@ -2,21 +2,14 @@ require_relative '../scoring'
 require_relative 'spec_helper'
 
 describe Scrabble::Scoring do
+    trial = Scrabble::Scoring.new
     describe "#initialize" do
-        trial = Scrabble::Scoring.new
-
-        it "red" do
-            # this is the red test
-            # trial = Scrabble::Scoring.new
-            trial.must_be_instance_of(Scrabble::Scoring)
-        end
-
-        it "should have test value as 2" do
-            trial.test.must_equal(2)
-        end
     end
 
     describe "#self.score(word)" do
+        it "should raise an error for invalid parameter input" do
+            proc { Scrabble::Scoring.score(123) }.must_raise(ArgumentError)
+        end
 
     end
 end

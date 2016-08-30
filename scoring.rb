@@ -1,6 +1,7 @@
 module Scrabble
     class Scoring
-        attr_reader :test
+        attr_reader
+
         HASH ={
             "1" => %w(A E I O U L N R S T),
             "2" => %w(D G),
@@ -12,8 +13,25 @@ module Scrabble
         }
 
         def initialize
-            @test = 3
         end
 
-    end
-end
+        def self.score(word)
+            if word.class != String
+                raise ArgumentError, "Invalid input"
+            end
+        end # self.score method
+
+    end # Scoring class
+end # Scrabble module
+
+
+
+# def score(input, hash)
+#   result = nil
+#   hash.each do |k, v|
+#     if v.include?(input)
+#       result = k.to_i
+#     end
+#   end
+#   return result
+# end
