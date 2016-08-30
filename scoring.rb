@@ -40,9 +40,12 @@ module Scrabble
         if score > winning_score
           winner = word
           winning_score = score
+        elsif score == winning_score && word.length < winner.length
+          winner = word
+          winning_score = score 
         end
       end
-      return winner 
+      return winner
     end
 
   end
