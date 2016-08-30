@@ -30,10 +30,11 @@ module Scrabble
       {Z: 10}
     ]
 
-    attr_accessor :word
+    attr_accessor :word, :round_words
 
-    def initialize(word)
+    def initialize
       @word = word
+      @round_words = round_words
     end
 
   end
