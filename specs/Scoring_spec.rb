@@ -8,7 +8,7 @@ describe Scrabble::Scoring do
   end
 
   it "should have array_of_words" do
-      :array_of_words.wont_be_nil
+    :array_of_words.wont_be_nil
   end
 
   describe "#initialize" do
@@ -26,11 +26,18 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.new("word").must_respond_to(:collect_word)
     end
 
+    # it "should pass in a string" do
+    #   (:word).must_be_kind_of(String)
+    # end
+
   end
 
   describe "#collect_word" do
 
-    it "should "
+    it "should add a word to the array" do
+      scrabble_scorecard = Scrabble::Scoring.new()
+      collect_word(flibble)
+    end
 
   end
 
