@@ -1,5 +1,4 @@
-# Hint from Chris raise ArgumentError unless number.class == Fixnum
-
+# STUCK? Did you remember to .self the method?
 
 require_relative '../Scrabble.rb'
 
@@ -26,12 +25,14 @@ class Scrabble::Scoring
   def self.start_word(word)
     raise ArgumentError unless word.class == String
     @word = word.upcase
+    create_word_array(@word)
     @letters = @word.split(//)
     return @word
   end
 
-  def split_wor
-
+  def self.create_word_array(word)
+    @word_array = []
+    @word_array << word
   end
 
   # def self.points
@@ -49,4 +50,4 @@ class Scrabble::Scoring
 
 end
 
-# tst = Scrabble::Scoring.score('potato')
+puts tst = Scrabble::Scoring.start_word('potato')
