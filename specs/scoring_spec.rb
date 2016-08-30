@@ -11,5 +11,18 @@ describe Scrabble::Scoring do
             proc { Scrabble::Scoring.score(123) }.must_raise(ArgumentError)
         end
 
+        it 'should return the correct value for a letter in parameter input' do
+            Scrabble::Scoring.score('L').must_equal(1)
+        end
+
+        it 'should return the correct value for a string in parameter input' do
+            Scrabble::Scoring.score('LIONESS').must_equal(57)
+        end
+    end
+
+    describe "#self.bonus(word)" do
+        it "should give me 50 bonus score if the parameter input has 7 letters" do
+            Scrabble::Scoring.bonus('LIONESS').must_equal(50)
+        end
     end
 end
