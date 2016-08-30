@@ -16,24 +16,24 @@ describe Scoring do
 # The letters Q, Z  equals 10 point(s).
 
   it 'Testing Words with associated scoring metrics' do
-    expect( Scoring.new("bad").score).must_equal(6)
+    expect(Scrabble::Scoring.score("bad")).must_equal(6)
   end
   it 'Testing Words with associated scoring metrics' do
-    expect( Scoring.new("fake").score).must_equal(11)
+    expect(Scrabble::Scoring.score("fake")).must_equal(11)
   end
 
   it 'Testing Words with associated scoring metrics' do
-    expect( Scoring.new("quiz").score ).must_equal(22)
+    expect(Scrabble::Scoring.score("quiz")).must_equal(22)
   end
 # 7 letter scrabble Word, testing various score combinations
   it 'Testing Words with associated scoring metrics' do
-    expect( Scoring.new("anchovy").score).must_equal(68)
+    expect(Scrabble::Scoring.score("anchovy")).must_equal(68)
   end
 # -----------------Tie Breaking------------------#
   # array of entered words.
 # may also be self.score(word) for method instead of .score(word)?
 it 'Test output in array is highest score.' do
-  expect( Scoring.new([6, 11, 22, 68]).self.highest_score_from).must_equal(68)
+  expect(Scrabble::Scoring.highest_score_from[6, 11, 22, 68])).must_equal(68)
 end
 
 
