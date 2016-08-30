@@ -17,7 +17,18 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.score("bunnies").must_equal(59)
     end
 
+  end
 
+  describe "#highest_score_from" do
+
+    it "should choose the shortest word in case of a tie" do
+      Scrabble::Scoring.highest_score_from(["aeoiu", "dog", "deee"]).must_equal("DOG")
+    end
+
+    it "should choose the first 7 letter word over a shorter word in case of a tie" do
+      Scrabble::Scoring.highest_score_from(["aaaaaaa", "ddda", "eeeeeee"]).must_equal("AAAAAAA")
+    end
 
   end
+
 end
