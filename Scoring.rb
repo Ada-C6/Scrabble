@@ -30,18 +30,14 @@ module Scrabble
 
       letter_array.each do |i|
         Scrabble::Scoring::SCORE_CHART.each do |letter_score, letters|
-          if letters.include? i
-            single_word_score << key
+          if letters.include?(i)
+            single_word_score << letter_score
             break
           end
         end
       end
 
-      if key's array .include? i, return key(i)
-
-
-
-      # single_word_score.inject(:+)
+      single_word_score.inject(:+)
     end
 
     def self.highest_score_from_array(array_of_words)
