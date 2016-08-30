@@ -42,8 +42,8 @@ module Scrabble
 			array_of_words.each do |word|
 				scoring_hash[word] = Scrabble::Scoring.score(word)
 			end
-			# scoring_hash.max_by{|k, v| return k}
-			return scoring_hash
+			max_val = scoring_hash.values.max
+			return scoring_hash.index(max_val)
 		end
 	end
 end
