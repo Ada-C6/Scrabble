@@ -41,7 +41,11 @@ module Scrabble
         end
       end
 
-      single_word_score.reduce(:+)
+      if letter_array.length == 7
+        single_word_score.reduce(:+) + 50
+      else
+        return single_word_score.reduce(:+)
+      end
     end
 
     def self.highest_score_from_array(array_of_words)
@@ -52,22 +56,37 @@ module Scrabble
       end
 
       scored_hash = {}
-      word_score_array = []
+      # word_score_array = []
 
       array_of_words.each do |word|
         word_score = Scrabble::Scoring.score(word)
-        word_score_array << word_score
-
-          word_score_array.each do |score|
-            scored_hash[score] = Array.new
-          end
-
-    #   Need to figure out where this goes: scored_hash[score] << word
+        scored_hash[word_score] = Array.new
       end
-      scored_hash
 
-      # array_of_highest_words = scored_hash.max
-      # array_of_highest_words[1]
+      array_of_words.each do |word|
+        word_score = Scrabble::Scoring.score(word)
+        scored_hash[word_score] << word
+      end
+
+      high_scores = scored_hash.max[1]
+      high_scores_lengths = []
+
+      if high_scores.length == 1
+        return high_scores[0]
+      else
+        high_scores.each do |word|
+          length = word.length
+          high_scores_lengths << length
+        end
+        lowest = high_scores_lengths.min
+
+        high_scores.each do |word|
+          if word.length == lowest
+            return word
+          end
+        end
+
+      end
     end
 
   end
