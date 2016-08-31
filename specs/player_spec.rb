@@ -74,11 +74,6 @@ describe Scrabble::Player do
 
         it "should return false if empty" do
             john = Scrabble::Player.new("John")
-
-            empty_array.each do |thing|
-                john.play(thing)
-            end
-
             john.won?.must_equal(false)
         end
 
@@ -103,6 +98,11 @@ describe Scrabble::Player do
             john.highest_scoring_word.must_equal("fox")
         end
 
+        it "should return 'NO WORDS PLAYED' if no words have been played" do
+            john = Scrabble::Player.new("John")
+            john.highest_scoring_word.must_equal("NO WORDS PLAYED")
+        end
+
     end
 
     describe "#highest_word_score" do
@@ -113,6 +113,11 @@ describe Scrabble::Player do
                 john.play(word)
             end
             john.highest_word_score.must_equal(13)
+        end
+
+        it "should return 0 if no words in array" do
+            john = Scrabble::Player.new("John")
+            john.highest_word_score.must_equal(0)
         end
     end
 

@@ -31,14 +31,21 @@ module Scrabble
     end
 
     def highest_scoring_word
-        highest = Scrabble::Scoring.highest_score_from(@plays)
-        return highest
+        if @plays.empty?
+            return "NO WORDS PLAYED"
+        else
+            highest = Scrabble::Scoring.highest_score_from(@plays)
+            return highest
+        end
     end
 
     def highest_word_score
-        highest = Scrabble::Scoring.highest_score_from(@plays)
-        highest_score = Scrabble::Scoring.score(highest)
-        return highest_score
+        if @plays.empty?
+            return 0
+        else
+            highest_score = Scrabble::Scoring.score(highest_scoring_word)
+            return highest_score
+        end
     end
   end
 end
