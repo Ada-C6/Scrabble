@@ -41,5 +41,12 @@ describe Scrabble::Scoring do
     it "recognizes that the shorter word with same value should win" do
       Scrabble::Scoring.highest_score_from(["trees", "dog"]).must_equal("dog")
     end
+    it "will declare the 7 letter word the winner over the shorter word" do
+      Scrabble::Scoring.highest_score_from(["foursts", "qqzzqq"]).must_equal("foursts")
+    end
+    it "will return the first word even if it has the same value and tiles as another" do
+      skip
+      Scrabble::Scoring.highest_score_from(["dog", "boy", "cow"]).must_equal("boy")
+    end
   end
 end
