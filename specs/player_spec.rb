@@ -14,6 +14,7 @@ module Scrabble
         player.must_respond_to(:name)
       end
     end
+
     describe "#plays" do
       let(:player) { Player.new(:name) }
       it "should return an array" do
@@ -21,10 +22,27 @@ module Scrabble
       end
 
       it "should return an array of words/string" do
-        #@todo START HERE NOWHERE ELSE
+        player.plays.each{|word| word.must_be_instance_of(String)}
       end
-
     end
+
+    describe "#play(word)" do
+      let(:player) { Player.new("Alma") }
+
+      it "should append word to @words_played" do
+        player.play("dog")
+        "dog".must_equal(player.plays.last)
+      end
+      #
+      # it "method returns the score of a word from Scoring" do
+      #   player.play("imposter").must_equal(12)
+      # end
+
+      #it "method returns false if winner is true" do
+      #  player.play("imposter") == false
+      #end
+
+    end #ends play(word)
 
 
 
