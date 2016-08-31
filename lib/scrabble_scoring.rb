@@ -77,19 +77,24 @@ class Scrabble::Scoring
   end
 
   def self.tiebreaker(tie_array)
-#returns winning word if words are same length.
-    seven = 7
+    #returns winning word if words are same length.
+    two_d_array = []
+    tie_array.each do |word|
+      two_d_array << [word, word.length]
+    end
+    max = 7
+    new_array = two_d_array.select {|word| word[1] >= max}
+    if new_array.length == 0
+      find_winner_non7(tie_array)
+    else
+      return new_array[0][0] # returns the first word played has 7 or greater letters
+    end
+  end
 
+  def self.find_winner_non7(tie_array)
     winning_word = ""
     winning_length = 10000
     tie_array.each do |word|
-      if word.length >= seven
-        winning_word = word
-      end
-    end
-
-
-      tie_array.each do |word|
       if word.length < winning_length
         winning_length = word.length
         winning_word = word
@@ -99,5 +104,6 @@ class Scrabble::Scoring
   end
 
 
-
 end # end of Scoring class
+
+puts Scrabble::Scoring.tiebreaker(["sabrina", "knitting"])
