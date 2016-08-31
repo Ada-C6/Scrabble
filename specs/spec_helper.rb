@@ -1,3 +1,7 @@
+#adds coverage folder to tree
+require 'simplecov'
+SimpleCov.start
+
 require 'minitest'
 require 'minitest/spec'
 require "minitest/autorun"
