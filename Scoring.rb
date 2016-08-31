@@ -52,12 +52,18 @@ module Scrabble
       end
 
       scored_hash = {}
+      word_score_array = []
+
       array_of_words.each do |word|
         word_score = Scrabble::Scoring.score(word)
-        scored_hash[word_score] = []
-        scored_hash[word_score] << word
-      end
+        word_score_array << word_score
 
+          word_score_array.each do |score|
+            scored_hash[score] = Array.new
+          end
+
+    #   Need to figure out where this goes: scored_hash[score] << word
+      end
       scored_hash
 
       # array_of_highest_words = scored_hash.max
