@@ -34,6 +34,7 @@ module Scrabble
         end
     end
 end
+
 # c = Scrabble::Player.new("me")
 # c.play("penguin")
 # c.play("it")
