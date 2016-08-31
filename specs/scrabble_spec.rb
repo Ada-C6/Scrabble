@@ -66,7 +66,7 @@ describe 'testing scrabble module' do
   end
 
   it 'in the case of a tie, if the two words are the same score & same length, pick the first one to win' do
-    skip
+
     expect(Scrabble::Scoring.highest_score_from(["aaaaaa","iiiiii"]).must_equal("aaaaaa"))
   end
 
@@ -75,8 +75,8 @@ describe 'testing scrabble module' do
     expect(Scrabble::Scoring.determine_tie("xxkehgbnb"=>85,"a"=>1).must_equal(false))
   end
 
-  it 'tie method must return an array with highest score keys (aka words)' do
-    expect(Scrabble::Scoring.tie({"zzz"=>30,"qqq"=>30, "abc"=>5}).must_equal(["zzz", "qqq"]))
+  it 'tie method must return winning word' do
+    expect(Scrabble::Scoring.tie({"zzz"=>30,"qqq"=>30, "abc"=>5}).must_equal("zzz"))
   end
 
 

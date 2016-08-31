@@ -72,14 +72,30 @@ class Scrabble::Scoring
     tie_words = []
     # iterates through hash and adds word to the array if the value is one of the max values
     word_hash.each { |key, value| tie_words << key if value == word_hash.values.max }
-    return tie_words
+    winner = tiebreaker(tie_words)
+    return winner
   end
 
   def self.tiebreaker(tie_array)
-    if
+#returns winning word if words are same length.
+    seven = 7
 
+    winning_word = ""
+    winning_length = 10000
+    tie_array.each do |word|
+      if word.length >= seven
+        winning_word = word
+      end
     end
 
+
+      tie_array.each do |word|
+      if word.length < winning_length
+        winning_length = word.length
+        winning_word = word
+          end
+      end
+      return winning_word
   end
 
 
