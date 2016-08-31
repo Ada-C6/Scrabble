@@ -26,23 +26,6 @@ class Scrabble::Scoring
 
   attr_accessor :word, :total
 
-
-  #   if word == nil || word == ""
-  #     raise NameError.new("You must enter a string")
-  #   end
-  # end
-
-  ## if word.empty || word.nil
-  ##   puts "Enter a string, damnit!"
-  ## end
-  ##  NameError: uninitialized constant Scoring
-
-#   if word != String && @word != ""
-#     raise NameError.new("You must enter a string")
-#   end
-# end
-
-
   # create an array of strings (letters) from word
   # loop through letters array in order to determine total score (by referencing LETTER_HASH)
 

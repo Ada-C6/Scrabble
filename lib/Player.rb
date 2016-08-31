@@ -8,18 +8,26 @@ class Scrabble::Player
     @name = name
     @word_score = 0
     @total_score = 0
+    @words_by_player = []
 
   end
 
   def plays
     # returns Array of words played by player: # words_by_player = []
+    return @words_by_player
   end
 
   def play(word)
     #play(word): Adds the input word to the plays Array:words_by_player
-    # Returns false if player has already won if score
+    # if score, returns false if player has already won
+
+    if @total_score > 100
+      return false
+    end
+    @words_by_player << word
     # Returns the score of the word: @word_score
-    #
+    @word_score = Scrabble::Scoring.score(word)
+    return @word_score
   end
 
   def total_score
@@ -44,6 +52,11 @@ class Scrabble::Player
   end
 
 end
+
+
+# player1 = Scrabble::Player.new("Joe")
+# puts player1.play("cats")
+# #=> ["cats"] 6
 
 # same length, same score.
 # player1 = Scrabble::Scoring.total_score([["sizzles", "fuzz", "dog", "cat"])
