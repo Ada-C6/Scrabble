@@ -15,6 +15,10 @@ describe Scrabble::Scoring do
             Scrabble::Scoring.score('L').must_equal(1)
         end
 
+        it 'should return the correct value for a lowercase letter in parameter input' do
+            Scrabble::Scoring.score('a').must_equal(1)
+        end
+
         it 'should return the correct value for a string in parameter input' do
             Scrabble::Scoring.score('LIONESS').must_equal(57)
         end

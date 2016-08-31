@@ -26,7 +26,7 @@ module Scrabble
                 raise ArgumentError, "Invalid input"
             end
 
-            arr = word.split('')
+            arr = word.upcase.split('')
 
             score = 0
 
@@ -52,11 +52,12 @@ module Scrabble
             score_result = {}
 
             array_of_words.map do |word|
-                score = self.score(word)
+                w = word.upcase
+                score = self.score(w)
                 if score_result.keys.include?(score)
-                    score_result[score] += [word]
+                    score_result[score] += [w]
                 else
-                    score_result[score] = [word]
+                    score_result[score] = [w]
                 end
             end
 
