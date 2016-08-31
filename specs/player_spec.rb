@@ -3,19 +3,37 @@ require_relative '../player'
 
 # Create a Scrabble::Player class with a minimum of 11 specs. The only required paramter for instances of the class is the player's name. Instances of the class should repond to the following messages:
 describe Scrabble::Player do
+
   describe "#initialize" do
-    it "should only initialize when passed a player name" do
-      Scrabble::Player.new("Jane") #WIP
+    jane = Scrabble::Player.new("Jane")
+
+    it "should create an instance of Player with a name parameter" do
+      jane.must_be_instance_of(Scrabble::Player)
     end
-    # use must_be_instance_of for something
+
+    #name: returns the value of the @name instance variable
+    it "should be able to return value of @name instance variable" do
+      jane.name.must_equal("Jane")
+    end
+  end
+
+  #plays: returns an Array of the words played by the player
+  describe "#plays" do
+    jane = Scrabble::Player.new("Jane")
+    word = "scary"
+    it "should return an Array" do
+      jane.plays(word).must_be_kind_of(Array)
+    end
+#play(word): Adds the input word to the plays Array
+    it "should add input word to the plays Array" do
+      jane.plays(word).must_include("scary")
+    end
+
   end
 
 end
 
-#
-# #name: returns the value of the @name instance variable
-# #plays: returns an Array of the words played by the player
-# #play(word): Adds the input word to the plays Array
+
 # Returns false if player has already won
 # Returns the score of the word
 # #total_score: Returns the sum of scores of played words
