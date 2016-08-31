@@ -46,8 +46,10 @@ describe Scrabble::Player do
       end
       john.total_score.must_equal(36)
     end
+  end
 
-
+  describe "#won?" do
+    
   end
 
 end

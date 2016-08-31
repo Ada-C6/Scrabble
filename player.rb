@@ -14,7 +14,12 @@ module Scrabble
     end
 
     def total_score
-
+      score_sum = 0
+      @plays.each do |word|
+        score = Scrabble::Scoring.score(word)
+        score_sum += score
+      end
+      return score_sum
     end
   end
 end
