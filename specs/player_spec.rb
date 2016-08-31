@@ -51,7 +51,28 @@ module Scrabble
         player.total_score.must_equal(26)
       end
 
-    end
+    end #end describe total score
+
+    describe "#won?" do
+      let(:player) { Player.new("Alma") }
+
+      it "should return true if total player score is greater than 100" do
+        player.play("pizzazz")
+        player.play("coffee")
+        player.total_score #will return sum
+        player.won?.must_equal(true)
+      end
+    end #end won? method
+
+    describe "#highest_scoring_word" do
+      let(:player) { Player.new("Alma") }
+
+      it "should return the highest scoring word player played" do
+        player.play("pizzazz")
+        player.play("coffee")
+        Scoring.highest_score_from(player.plays).must_equal("pizzazz")
+      end
+    end #end highest scoring word method
 
 
   end

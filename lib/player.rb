@@ -33,6 +33,19 @@ module Scrabble
       return player_score
     end
 
+    def won?
+      if total_score > 100
+        return true
+      else
+        return false
+      end
+    end #end won? method
+
+    def highest_scoring_word
+      best_word = Scoring.highest_score_from(plays)
+      return best_word
+    end
+
   end
 
 
