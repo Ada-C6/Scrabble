@@ -58,9 +58,12 @@ describe Scrabble::Player do
           proc {player_test.play(nil)}.must_raise(NoMethodError)
         end
 
-        it "will change the plays array" do
+        it "will append to the plays array the most recently played word" do
             player_test.play("check")
             player_test.plays.must_equal(["check"])
+            player_test.play("apple")
+            player_test.plays.last.must_equal("apple")
+            player_test.plays.first.must_equal("check")
         end
 
         it "will return false if score is over 100" do
