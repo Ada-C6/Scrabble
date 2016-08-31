@@ -1,6 +1,6 @@
 module Scrabble
   class Scoring
-    attr_accessor :array_of_words, :word, :store_all_game_words, :length
+    attr_accessor :array_of_words, :word, :length, :score
     attr_reader
 
     SCORE_CHART = {
@@ -27,6 +27,8 @@ module Scrabble
     # end
 
     def self.score(word)
+      raise ArgumentError.new("invalid input type") unless word.is_a?(String)
+
       letter_array = word.upcase.split(//)
       single_word_score = []
 
@@ -49,6 +51,13 @@ module Scrabble
         raise ArgumentError.new("invalid input type") unless word.is_a?(String)
       end
 
+      score_array = []
+      array_of_words.each do |word|
+        word_score = word.score
+        score_array << word_score
+      end
+
+      return single_word_score.max
     end
 
   end

@@ -45,36 +45,34 @@ describe Scrabble::Scoring do
   end
 
   describe "#self.score" do
-    it "should have an array of letters" do
-      :letter_array.wont_be_nil
+    it "should raise an error if the input is not a string" do
+      proc { Scrabble::Scoring.score(1) }.must_raise(ArgumentError)
     end
 
-    it "should have an array for a word's score" do
-      :single_word_score.wont_be_nil
+    it "should output something, not nothing" do
+      Scrabble::Scoring.score("word").wont_be_nil
     end
 
-    it "should have a word_score_array that's only filled with numbers" do
-      :single_word_score.must_be_kind_of Symbol
-    end
-
-    it "should check to see if everything in letter_array is upcase letter" do
-      #Blah
+    it "should output something has a class of Fixnum" do
+      Scrabble::Scoring.score("word").must_be_kind_of Fixnum
     end
 
   end
 
   describe "self.highest_score_from_array(array_of_words)" do
-    it "should accept a parameter" do
-      Scrabble::Scoring.highest_score_from_array([]).must_respond_to(:array_of_words)
-    end
 
     it "should raise an error when something that isn't an array is passed in" do
       proc { Scrabble::Scoring.highest_score_from_array({}) }.must_raise(ArgumentError)
     end
 
-    it "should raise an error when an element inside of the array isn't a string" do
+    it "should raise an error when an element inside of the input array isn't a string" do
       proc { Scrabble::Scoring.highest_score_from_array( [1] )}.must_raise(ArgumentError)
     end
+
+    it "should output something has a class of String" do
+      Scrabble::Scoring.highest_score_from_array([]).must_be_kind_of String
+    end
+
   end
 
   # Defunct collect game words into arrya (We don't need this right now, hopefully never)
