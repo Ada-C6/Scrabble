@@ -6,14 +6,16 @@ describe Scrabble::Player do
   p = Scrabble::Player.new("name")
 
   describe "initialize" do
+    it "should be an instance of Player" do
+      p.must_be_instance_of(Scrabble::Player)
+    end
 
-    it "should initialize with exactly one parameter (name)" do
+    it "should initialize with only one parameter (name)" do
       p.must_respond_to(:name)
     end
   end
 
   describe "plays" do
-
     it "should return an Array of the words played by the player" do
       p.plays = []
       p.play("cat")
@@ -32,6 +34,11 @@ describe Scrabble::Player do
     it "should return false if player has already won" do
         p.total = 101
         p.play("hi").must_equal(false)
+    end
+
+    it "should return word_score if player has not already won" do
+      p.total = 0
+      p.play("hi").must_equal(5)
     end
   end
 
@@ -75,7 +82,3 @@ describe Scrabble::Player do
      end
    end
 end
-
-
-#highest_scoring_word: Returns the highest scoring played word
-#highest_word_score: Returns the highest_scoring_word score

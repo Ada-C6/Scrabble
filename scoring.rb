@@ -16,7 +16,6 @@ module Scrabble
 
       word_letters.each do |i|
         if !LETTERS.values.join.include?(i)
-          puts i
           raise ArgumentError.new("Invalid input")
         end
         LETTERS.values.length.times do |j|
