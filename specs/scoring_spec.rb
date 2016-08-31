@@ -35,6 +35,16 @@ describe Scrabble::Scoring do
         Scrabble::Scoring.score(k).must_equal(v)
       end
     end
+
+    it "should add 50 points if the word length is 7 letters" do
+      skip
+      Scrabble::Scoring.new
+      if Scrabble::Scoring.word.length == 7
+        Scrabble::Scoring.bonus(word).must_equal(50)
+      else
+        Scrabble::Scoring.bonus(word).must_equal(0)
+      end
+    end
   end
 
   describe "highest_score" do

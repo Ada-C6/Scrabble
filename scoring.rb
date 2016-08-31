@@ -29,12 +29,22 @@ module Scrabble
       "Y" => 4,
       "Z" => 10}
 
-    attr_accessor :word, :round_words
+    attr_accessor :word, :round_words, :bonus
 
     def initialize
       @word = word
       @round_words = []
+      @bonus = bonus
     end
+
+    # def self.bonus(word)
+    #   @bonus = 0
+    #   if word.length == 7
+    #     @bonus = 50
+    #     return @bonus
+    #     # consider refactoring
+    #   end
+    # end
 
     def self.score(word)
       sum = 0
@@ -43,8 +53,15 @@ module Scrabble
         sum += v.to_i * occurances
       end
       if word.length == 7
-        sum +=50
+        sum += 50
       end
+
+      # puts sum.class
+      # bonus = self.bonus(word)
+      #
+      # # self.bonus(word).class
+      #
+      # sum += bonus
       return sum
     end
 
@@ -53,11 +70,10 @@ module Scrabble
       array_of_words.each do |word|
         scored_word[word] = self.score(word)
       end
-      return 0
-
+      return scored_word.max_by{|k,v| v}[0]
     end
 
-    #  highest_test.max_by{|k,v| v}
+
 
 
   end
