@@ -56,7 +56,6 @@ module Scrabble
       end
 
       scored_hash = {}
-      # word_score_array = []
 
       array_of_words.each do |word|
         word_score = Scrabble::Scoring.score(word)

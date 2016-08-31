@@ -70,7 +70,7 @@ describe Scrabble::Scoring do
     end
 
     it "should output something has a class of String" do
-      Scrabble::Scoring.highest_score_from_array([]).must_be_kind_of String
+      Scrabble::Scoring.highest_score_from_array(["sdf","sdfds"]).must_be_kind_of String
     end
 
   end
