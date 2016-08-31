@@ -28,19 +28,24 @@ describe Scrabble::Scoring do
     expect(Scrabble::Scoring.score("anchovy")).must_equal(68)
   end
 
-# ----------------Ensure Input is wanted-------------------#
+# ----------------Ensure Input is what we wanted-------------------#
 # test word entered is a strings
 # @word eventually?
 # Will with the argument be a string that verifies that its a string.
 # ex: "Cat":
+  # phase II 
+  # it 'word entered must equal string' do
+  #   expect( Scrabble::Scoring.score("word")).must_equal(String)
+  # end
 
-  # it 'word equals string' do
-  #   expect( Scoring.new("word").score).must_equal(String)
-  # end
-  #
+  it 'word entered should not eqaul nil' do
+    expect(Scrabble::Scoring.score(nil)).must_equal(0)
+  end
+  #phase II
   # it '(case insensitivity): Accepts input of upper or lower case letter returns all upcase.' do
-  #   expect( Scoring.new("a").score).must_equal("A")
+  #   expect(Scrabble::Scoring.score("a")).must_equal("A")
   # end
+
 # -----------------------------------#
   # Dealing with Ties
 
