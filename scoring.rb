@@ -32,11 +32,22 @@ module Scrabble
       end
 
       def self.highest_score_from(array_of_words)
-       array_of_words.max_by do |i|
-       self.score(i)
-       end
-       array_of_words.each do |a|
-         a.length
+        letters = []
+        max = ""
+        # This block evaluates words with the same value
+        array_of_words.max_by do |i|
+          letters << self.score(i)
+          max = self.score(i)
+        end
+        if max == letters.detect { |b| letters.count(b) > 1}
+          array_of_words.min_by do |a|
+            a.length
+          end
+        else
+          array_of_words.max_by do |i|
+            self.score(i)
+          end
+        end
       end
   end
 end
