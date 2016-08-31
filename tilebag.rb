@@ -30,6 +30,10 @@ module Scrabble
       return tiles_drawn
     end
 
+    def tiles_remaining
+      return @bag_of_tiles.length
+    end
+
 
   end
 end
