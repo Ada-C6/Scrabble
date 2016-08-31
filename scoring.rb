@@ -52,6 +52,7 @@ module Scrabble
         occurances = word.count(k.to_s)
         sum += v.to_i * occurances
       end
+      puts "each word: #{word} #{sum}"
       if word.length == 7
         sum += 50
       end
@@ -73,22 +74,42 @@ module Scrabble
       puts scored_word
       max_score = scored_word.max_by{|k,v| v}[1]
 
-      @highest_words = {}
+      @highest_words = []
 
       scored_word.each do |k,v|
         if v == max_score
-          @highest_words[k] = v
+          @highest_words.push(k)
         end
       end
-      return @highest_words
+      self.tie_breaker(@highest_words)
     end
 
-    # def self.tie_breaker(hash_of_highest_words)
-    #   if hash_of_highest_words.length > 1
-    #     
-    #   end
+    def self.tie_breaker(array_of_highest_words)
+      array_of_highest_words.sort
 
-    # end
+      if array_of_highest_words.length == 1
+        winner = array_of_highest_words[0]
+        puts winner
+        return winner
+
+      elsif array_of_highest_words.length > 1
+
+        if array_of_highest_words.any? { |word| word.length == 7 }
+          # winner = word.length == 7 (HOLD)
+          puts winner
+          return winner
+
+         # The third tiebreaker condition (tile/point tie) is automatically met due to Ruby's preference to pick the first word with equal points and character length
+         else
+          winner = array_of_highest_words.min_by { |word| word.length }
+          puts winner
+          return winner
+      #     if
+      #
+        end
+      end
+
+    end
   end
 end
 
@@ -103,4 +124,6 @@ Scrabble::Scoring.score("RAT")
 Scrabble::Scoring.score("LINES")
 Scrabble::Scoring.score("DOG")
 
+Scrabble::Scoring.highest_score_from(["QQQQQQJ", "GORILLA"])
 Scrabble::Scoring.highest_score_from(["LINES","DOG","RAT"])
+Scrabble::Scoring.highest_score_from(["LINES","DOG","GOD","RAT"])
