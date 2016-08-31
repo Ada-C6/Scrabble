@@ -47,13 +47,21 @@ describe Scrabble::Scoring do
             Scrabble::Scoring.highest_score_from(["cat"]).must_be_instance_of(String)
         end
 
-        it "will return the highest score word" do
-        Scrabble::Scoring.highest_score_from(["cat", "soup"]).must_equal("soup")
+        it "will return the highest score word if no ties" do
+          Scrabble::Scoring.highest_score_from(["cat", "soup"]).must_equal("soup")
         end
 
-        it "will return the word with fewer letters in case of a tied score" do
-        Scrabble::Scoring.highest_score_from(["rats", "tag"]).must_equal("tag")
-      end
+        it "will return the word with fewer letters in case of a tied score of words less than seven letters" do
+          Scrabble::Scoring.highest_score_from(["rats", "tag"]).must_equal("tag")
+        end
+
+        it "returns seven letter word if tied with non-seven-letter word" do
+          Scrabble::Scoring.highest_score_from(["zqzqzq", "penguin"]).must_equal("penguin")
+        end
+
+        it "returns first word in supplied list in case of tied score and length" do
+          Scrabble::Scoring.highest_score_from(["tags", "rags", "legs", "at"]).must_equal("tags")
+        end
     end
 
 end
