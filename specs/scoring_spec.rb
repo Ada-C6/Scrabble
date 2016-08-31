@@ -24,26 +24,22 @@ describe Scrabble::Scoring do
     end
 
     it "raises ArgumentError if string is more than seven letters" do
-    
         proc { Scrabble::Scoring.score("neverminds")}.must_raise(ArgumentError)
+    end
 
+    it "adds 50 points if the string is 7 characters" do
+      Scrabble::Scoring.score("atatata").must_equal(57)
     end
   end
 
   describe "highest_score_from" do
 
-    it "can return the highest scoring word from #{["cat", "mat"]}" do
-      skip
-      Scrabble::Scoring.highest_score_from.must_equal(2)
+    it "can return the highest scoring word from #{["cat", "hat"]}" do
+      Scrabble::Scoring.highest_score_from(["cat", "hat"]).must_equal("hat")
     end
 
-
-
-    it "recognizes when two words have the same score and returns the first word in the array" do
-        skip
-      Scrabble::Scoring.highest_score_from.
+    it "recognizes that the shorter word with same value should win" do
+      Scrabble::Scoring.highest_score_from(["trees", "dog"]).must_equal("dog")
     end
-
   end
-end
 end
