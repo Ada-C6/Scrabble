@@ -4,37 +4,26 @@ require_relative '../module'
 
 class Tilebag
 
+# attr_accessor
+
   def initialize
-# lettters_array = []
 # called When you use TileBag.new sets up an instance with a collection of default tiles.
-default_tile_bag = {
-"A" =>
-"B" =>
-"C" => 3,
-"D" =>
-"E" => 1
-"F" =>
-"G" =>
-"H" =>
-"I" =>
-"J" => 8
-"K"=> 5
-"L"=> 1
-"M"=> 3
-"N"=> 1
-"O"=> 1
-"P"=> 3
-"Q"=> 10
-"R"=> 1
-"S"=> 1
-"T"=> 1
-"U"=> 1
-"V"=> 4
-"W"=> 4
-"X"=> 8
-"Y"=> 4
-"Z"=> 10
-}
+@default_tile_bag = [
+  ["A", "A", "A", "A", "A", "A", "A", "A", "A"],
+  ["B", "B"],["C", "C"], ["D", "D", "D", "D"],
+  ["E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E"],
+  ["F", "F"], ["G", "G", "G"], ["H", "H"],
+  ["I", "I", "I", "I", "I", "I", "I", "I", "I"],
+  ["J"], ["K"], ["L", "L", "L", "L"], ["M", "M"],
+  ["N", "N", "N", "N", "N", "N"],
+  ["O", "O", "O", "O", "O", "O", "O", "O"],
+  ["P", "P"], ["Q"], ["R", "R", "R", "R", "R", "R"],
+  ["S", "S", "S", "S"], ["T", "T", "T", "T", "T", "T"],
+  ["U", "U", "U", "U"], ["V", "V", "V", "V"], ["W", "W"],
+  ["X"], ["Y", "Y"], ["Z"]
+  ]
+
+>>>>>>> f8a36555473cf8e86c1bce047ec5bc96b54d8890
   end
 
   def draw_tiles(num)
