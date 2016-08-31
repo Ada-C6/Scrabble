@@ -11,18 +11,26 @@ module Scrabble
 		}
 
 		def self.score(word)
+			score = 0
+			user_word = word.upcase.split("")
+
 			if word.length < 1 || word.length > 7
 				raise ArgumentError.new("No empty strings")
 			end
 
-			# raise ArgumentError.new("Invalid characters")
+			valid_letters = []
+			LETTERS.values.each do |array|
+				array.each do |letter|
+					valid_letters << letter
+				end
+			end
 
-#			if !LETTERS.values.include?(word.split(""))
-#				puts "no!"
-#			end
+			user_word.each do |letter|
+				if !valid_letters.include?(letter)
+					raise ArgumentError.new("Invalid characters")
+				end
+			end
 
-			score = 0
-			user_word = word.upcase.split("")
 			user_word.each do |letter|
 				LETTERS.each do |key, value|
 					if value.include?(letter)

@@ -30,9 +30,9 @@ describe Scrabble::Scoring do
 			end
 		end
 
-	#	it "should raise an error if there are any non-letter characters in a word" do
-	#		proc { Scrabble::Scoring.score("1de") }.must_raise(ArgumentError)
-	#	end
+		it "should raise an error if there are any non-letter characters in a word" do
+			proc { Scrabble::Scoring.score("1de") }.must_raise(ArgumentError)
+		end
 
 		it "must not have an empty string argument" do
 			proc { Scrabble::Scoring.score("") }.must_raise(ArgumentError)
