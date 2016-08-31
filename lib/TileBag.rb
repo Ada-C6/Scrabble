@@ -23,7 +23,6 @@ class Tilebag
   ["X"], ["Y", "Y"], ["Z"]
   ]
 
->>>>>>> f8a36555473cf8e86c1bce047ec5bc96b54d8890
   end
 
   def draw_tiles(num)
