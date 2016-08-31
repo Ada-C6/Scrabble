@@ -16,19 +16,21 @@ class Scrabble::Scoring
     return score
   end
 
-
+  # this determines whether the word uses all 7 tiles
   def self.bingo(word)
     if word.length >= 7
-      return 50
+      return 50 # this adds the 50 points
     else
-      return 0
+      return 0 # if not, then add 0 points
     end
   end
 
 
   def self.check_input(word)
+    # this will only allow the word to be a string
     raise ArgumentError unless word.class == String
 
+    # this checks to be sure the word only contains letters
     if word =~ /^[a-zA-Z]+$/
     return word
     else
@@ -36,28 +38,50 @@ class Scrabble::Scoring
     end
   end
 
+  # this method finds the highest score from an array of words
   def self.highest_score_from(array_of_words)
+    # make sure the argument is an array
     raise ArgumentError unless array_of_words.class == Array
 
-     word_hash = {}
+    word_hash = {}
 
-     array_of_words.each do |element|
-       word_hash[element] = score(element)
-     end
+    array_of_words.each do |element|
+      word_hash[element] = score(element)
+    end
 
-     if word_hash.values.length == word_hash.values.uniq.length
-       tie(word_hash)
-     else
-       return word_hash.key(word_hash.values.max)
-     end
+    if !determine_tie(word_hash)
+      # this returns the word that has the highest score if there is no tie.
+      return word_hash.key(word_hash.values.max)
+    else
+      tie(word_hash)
+    end
 
+  end
+
+  def self.determine_tie(hash)
+    # determines if there are any ties.
+    if hash.values.length != hash.values.uniq.length
+      return true
+    else
+      return false
+    end
   end
 
   def self.tie(word_hash)
-      tie_words = []
-      word_hash.each { |k, v| tie_words << k if v == word_hash.values.max }
-      puts "it's a tie!"
-return tie_words
+    # make an empty array, will be made of the words that are tied
+    tie_words = []
+    # iterates through hash and adds word to the array if the value is one of the max values
+    word_hash.each { |key, value| tie_words << key if value == word_hash.values.max }
+    return tie_words
   end
+
+  def self.tiebreaker(tie_array)
+    if
+
+    end
+
+  end
+
+
 
 end # end of Scoring class
