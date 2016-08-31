@@ -15,7 +15,7 @@ describe Scrabble::Scoring do
       word[2].must_equal("V")
     end
   end
-  
+
   #does the correct score return for the given word
   describe "#self.score(word)" do
     it "should return the correct score for the given word" do
@@ -36,10 +36,12 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.highest_score_from(test_words).must_equal("develop")
     end
     # test tie: if score of 3 letter word == score of 4 letter word, does it return 3 letter word
+
     it "should return the word with the shorter length if there is a tie" do
-      test_words = %w(hi dog tours go)
+      test_words = %w(dog hi tours go)
       Scrabble::Scoring.highest_score_from(test_words).must_equal("hi")
     end
+
     # special case: if tie and 7 letter word used, 7 letter word wins
     it "should return the 7 letter word if there is a tie" do
       test_words = %w(zzzzzx aaaaaad wut)
