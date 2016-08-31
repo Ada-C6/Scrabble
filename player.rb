@@ -9,8 +9,12 @@ module Scrabble
     end
 
     def play(word)
-      @plays << word
-      return Scrabble::Scoring.score(word)
+      if won?
+          return false
+      else
+          @plays << word
+          return Scrabble::Scoring.score(word)
+      end
     end
 
     def total_score
@@ -21,5 +25,15 @@ module Scrabble
       end
       return score_sum
     end
+
+    def won?
+        total_score > 100
+    end
+
+    def highest_scoring_word
+        highest = Scrabble::Scoring.highest_score_from(@plays)
+        return highest
+    end
+
   end
 end
