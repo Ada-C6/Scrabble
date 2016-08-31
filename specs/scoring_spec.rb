@@ -20,7 +20,9 @@ describe Scrabble::Scoring do
       end
       sum.must_equal (84)
     end
+  end
 
+  describe "score" do
     it "sums up scores of each word" do
       Scrabble::Scoring.new
       score_test = {}
@@ -33,9 +35,17 @@ describe Scrabble::Scoring do
         Scrabble::Scoring.score(k).must_equal(v)
       end
     end
-
-
-
-
   end
+
+  describe "highest_score" do
+    it "should show the highest value and associated key" do
+      Scrabble::Scoring.new
+      highest_test = []
+      highest_test << "ANIMAL"
+      highest_test << "DOG"
+      highest_test << "GORILLA"
+      Scrabble::Scoring.highest_score_from(highest_test).must_equal("GORILLA")
+    end
+  end
+
 end

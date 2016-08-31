@@ -48,6 +48,18 @@ module Scrabble
       return sum
     end
 
+    def self.highest_score_from(array_of_words)
+      scored_word = {}
+      array_of_words.each do |word|
+        scored_word[word] = self.score(word)
+      end
+      return 0
+
+    end
+
+    #  highest_test.max_by{|k,v| v}
+
+
   end
 end
 
