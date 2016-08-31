@@ -4,6 +4,7 @@ require_relative '../player'
 require_relative 'spec_helper'
 
 
+
 describe Scrabble::Player do
     describe "#initialize" do
         it "must be an instance of the Player class" do
@@ -18,5 +19,34 @@ describe Scrabble::Player do
         it "should raise an error if a non-string parameter input is passed in" do
             proc {Scrabble::Player.new(123)}.must_raise(ArgumentError)
         end
+    end
+
+    describe "#play(word)" do
+        it "must raise an error if a non-string parameter input is passed into the method (play(word))" do
+            proc {Scrabble::Player.new("Jasper").play(123)}.must_raise(ArgumentError)
+        end
+
+
+    end
+    # didn't finish the syntax :D
+    describe "#highest_scoring_word" do
+        it "should return nil if we pass in an empty array" do
+            skip
+            new_player = Scrabble::Player.new("Jasper")
+            new_player.highest_scoring_word([]).must_equal(nil)
+        end
+
+        it "should return the highest scoring word if we pass in @plays array" do
+            skip
+            new_player = Scrabble::Player.new("Jasper")
+            new_player.highest_scoring_word(@plays).must_equal()#highest scoring word)
+        end
+
+        it "should return the highest scoring word if we pass in a random array" do
+            skip
+            new_player = Scrabble::Player.new("Jasper")
+            new_player.highest_scoring_word(['CAT', 'QQQQJ', 'QQQQBK']).must_equal('QQQQJ')
+        end
+
     end
 end
