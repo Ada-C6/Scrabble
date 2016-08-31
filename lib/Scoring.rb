@@ -49,7 +49,7 @@ class Scrabble::Scoring
   def self.score(word)
 
     return 0 if word.nil? || word.empty?
-    
+
     letters = word.upcase.split('')
 
     letters.length >= 7 ? total = 50 : total = 0
@@ -88,7 +88,7 @@ end
 
 
 # same length, same score.
-test1 = Scrabble::Scoring.highest_score_from(["nuzzle", "nozzle", "nizzle", "dog", "cat"])
-#
-#
-puts test1
+# test1 = Scrabble::Scoring.highest_score_from([["sizzles", "fuzz", "dog", "cat"])
+# #
+# #
+# puts test1

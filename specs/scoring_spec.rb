@@ -33,7 +33,7 @@ describe Scrabble::Scoring do
 # @word eventually?
 # Will with the argument be a string that verifies that its a string.
 # ex: "Cat":
-  # phase II 
+  # phase II
   # it 'word entered must equal string' do
   #   expect( Scrabble::Scoring.score("word")).must_equal(String)
   # end

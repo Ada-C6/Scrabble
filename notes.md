@@ -1,3 +1,14 @@
+11 SPECS
+
+
+
+
+
+
+
+
+
+_____________
 CURRENT IDEA:
 1. create a variable for max_score and max_scoring_word
 max_score = 0
