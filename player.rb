@@ -40,6 +40,14 @@ module Scrabble
         def won?
             return @total_score > 100 ? true : false
         end
+
+        def highest_scoring_word
+            return Scrabble::Scoring.highest_score_from(@plays)
+        end
+
+        def highest_word_score
+            return Scrabble::Scoring.score(highest_scoring_word)
+        end
     end # Player class
 end # Scrabble class
 

@@ -70,23 +70,19 @@ describe Scrabble::Player do
         end
     end
 
-    # didn't finish the syntax :D
     describe "#highest_scoring_word" do
-        it "should return nil if we pass in an empty array" do
-            skip
-            new_player.highest_scoring_word([]).must_equal(nil)
+        it "should return the highest scoring word from the @plays instance variable" do
+            score_player = Scrabble::Player.new("Jeremy")
+            score_player.plays = ['CAT', 'QQQQQJ', 'AAAAAAG']
+            score_player.highest_scoring_word.must_equal('AAAAAAG')
         end
+    end # highest_scoring_word
 
-        it "should return the highest scoring word if we pass in @plays array" do
-            skip
-            # new_player = Scrabble::Player.new("Jasper")
-            new_player.highest_scoring_word(@plays).must_equal()#highest scoring word)
+    describe "#highest_word_score" do
+        it "should return the highest_scoring_word score" do
+            more_player = Scrabble::Player.new("Dianne")
+            more_player.plays = ['CAT', 'COW', 'LIONESS']
+            more_player.highest_word_score.must_equal(57)
         end
-
-        it "should return the highest scoring word if we pass in a random array" do
-            skip
-            # new_player = Scrabble::Player.new("Jasper")
-            new_player.highest_scoring_word(['CAT', 'QQQQJ', 'QQQQBK']).must_equal('QQQQJ')
-        end
-    end # highst_scoring_word
+    end
 end
