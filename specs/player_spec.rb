@@ -19,7 +19,6 @@ describe Scrabble::Player do
         end
     end
 
-
     describe "#play(word)" do
         test_array = ["hex", "bats", "kittys"]
         winning_array = ["staring", "zzzzzx"]
@@ -60,6 +59,8 @@ describe Scrabble::Player do
 
     describe "#won?" do
         winning_array = ["staring", "zzzzzx"]
+        empty_array =[]
+        losing_array = ["cat", "dog"]
 
         it "should return true if score is > 100" do
             john = Scrabble::Player.new("John")
@@ -69,6 +70,24 @@ describe Scrabble::Player do
             end
 
             john.won?.must_equal(true)
+        end
+
+        it "should return false if empty" do
+            john = Scrabble::Player.new("John")
+
+            empty_array.each do |thing|
+                john.play(thing)
+            end
+
+            john.won?.must_equal(false)
+        end
+
+        it "should return false if not winning" do
+            john = Scrabble::Player.new("John")
+            losing_array.each do |word|
+                john.play(word)
+            end
+            john.won?.must_equal(false)
         end
     end
 
