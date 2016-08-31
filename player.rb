@@ -50,8 +50,3 @@ module Scrabble
         end
     end # Player class
 end # Scrabble class
-
-# a = Scrabble::Player.new("Jasper")
-# puts a.play('lioness')
-# puts a.play('tiger')
-# puts a.total_score
