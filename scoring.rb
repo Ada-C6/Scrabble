@@ -62,7 +62,7 @@ module Scrabble
 
             winners = []
             winners_lengths = []
-            
+
             index = 0
             while index < words_array.length
                 if scores[index] == greatest_val
