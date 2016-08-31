@@ -15,7 +15,7 @@ class Player
     return @words_played
   end
 
-@todo don't start here
+# @todo don't start here
 
 end
 

@@ -21,7 +21,7 @@ module Scrabble
       end
 
       it "should return an array of words/string" do
-        @TODO START HERE NOWHERE ELSE
+        #@todo START HERE NOWHERE ELSE
       end
 
     end
