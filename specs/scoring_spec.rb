@@ -27,16 +27,9 @@ describe Scrabble::Scoring do
   it 'Testing Words with associated scoring metrics' do
     expect(Scrabble::Scoring.score("anchovy")).must_equal(68)
   end
-# -----------------Tie Breaking------------------#
-  # array of entered words.
-# may also be self.score(word) for method instead of .score(word)?
-  it 'Test output in array is highest score.' do
-    expect(Scrabble::Scoring.highest_score_from([6, 11, 100, 68])).must_equal(100)
-  end
-
 
 # ----------------Ensure Input is wanted-------------------#
-# test word enetered is a strings
+# test word entered is a strings
 # @word eventually?
 # Will with the argument be a string that verifies that its a string.
 # ex: "Cat":
@@ -51,26 +44,21 @@ describe Scrabble::Scoring do
 # -----------------------------------#
   # Dealing with Ties
 
-  # input 2 words that scored the same.
-  #
   it 'Two word tie goes to the word with fewest letters' do
-    expect(Scrabble::Scoring.highest_score_from(["frizzy","mezuzah", "cat", "milk"])).must_equal("frizzy")
+    expect(Scrabble::Scoring.highest_score_from(["biz","quasi", "cat", "milk"])).must_equal("biz")
   end
 
-  it 'three word tie that goes to the word with fewest letters'
-
-  do
-    expect(Scrabble::Scoring.highest_score_from(["boxwood", "chintz", "bozeman", "bozeman", "dog", "litter", "bike"])).must_equal("chintz")
+  it 'three word tie that goes to the word with fewest letters'do
+    expect(Scrabble::Scoring.highest_score_from(["biz","quasi", "quid", "cat", "milk"])).must_equal("biz")
   end
 
-  # this would only be relevant w/ extra points vis double or triple letter or word scores.
-  # it 'tie between words of different lengths but same point value.' do
-  #   expect(Scrabble::Scoring.highest_score_from(["abyss", "abrupt", "dog", "cat"]).must_equal("abyss")
-  # end
+  it 'tie between words of length 7 and another word of smaller length with same point value.' do
+    expect(Scrabble::Scoring.highest_score_from(["sizzles", "fuzz", "dog", "cat"])).must_equal("sizzles")
+  end
+
   it 'tie two words of the same length and value' do
-    expect(Scrabble::Scoring.highest_score_from(["nuzzle", "nozzle", "dog", "cat"])).must_equal("nuzzle")
+    expect(Scrabble::Scoring.highest_score_from(["nuzzle", "nozzle", "nizzle", "dog", "cat"])).must_equal("nuzzle")
   end
-
 
 # -----------------------------------#
 

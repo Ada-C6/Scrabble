@@ -8,15 +8,15 @@
 
 #_________________________
 
-#5 create Scrabble::Scoring class with min of 8 specs (from Spec file)
+#5 create Scrabble::Scoring class with min of 8 specs (from Spec file) - DONE
 
 #6 Include the following methods
-#a. self.score(word) - return total score for word. Word is input as string (case insensitive).
+#a. self.score(word) - return total score for word. Word is input as string (case insensitive). - DONE
 #b. self.highest_score_from(array_of_words)
 #  - output is word in array with highest score
 #  - in case of tie, use tie-breaking rules (better to use fewer tiles
 #  - fewer tiles with same score wins)
-#  - bonus for words of 7 letters - 50 pts.
+#  - bonus for words of 7 letters - 50 pts. - DONE 
 #  - choose word with 7 letters over one with fewer tiles with same score
 #  - same score/same length - first one in supplied list wins
 
@@ -46,28 +46,13 @@ class Scrabble::Scoring
 
   end
 
-  def tie_breaker 
-    #[15, 20, 20, 30]
-
-
-  end
-
-
-
   def self.highest_score_from(array_of_words)
-    # output is word in array with highest_score_from
-    scored_words_array = []
-    array_of_words.each do |word|
-       scored_words_array << score(word).to_i
-       puts "Word.score #{score(word)}"
-    end
-    return scored_words_array.max
+    #SEE NOTES
   end
-
 
 end
 
-test1 = Scrabble::Scoring.highest_score_from(["cat", "anchovy", "bob"])
-
-
-puts test1
+# test1 = Scrabble::Scoring.highest_score_from(["nuzzle", "nozzle", "nizzle", "dog", "cat"])
+#
+#
+# puts test1
