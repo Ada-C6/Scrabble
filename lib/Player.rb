@@ -55,14 +55,27 @@ class Scrabble::Player
   def highest_word_score
     # Returns the highest_scoring_word score
     # include?? highest_score_from but also return max_scoring_word somehow??
-    # proudest moment for Rachel lol 
+    # proudest moment for Rachel lol
     high_score_word = highest_scoring_word
     highest_score = Scrabble::Scoring.score(high_score_word)
     return highest_score
 
   end
 
+# additonal wave 3 requirement:
+  def tiles
+# a collection of letters that they player can play. At (max: 7).
+
+  end
+  def draw_tiles(tilebag)
+# fills the tile tile array until it has 7 letters from the given tile bag.
+
+  end
+
+
 end
+
+
 
 
 # player1 = Scrabble::Player.new("Joe")
