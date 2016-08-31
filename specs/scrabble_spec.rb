@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 require_relative '../scrabble' # this is the module file
 require_relative '../lib/scrabble_scoring'
 
-describe 'testing scrabble module' do
+describe 'testing scoring class' do
 
   it 'Must return correct key value' do
     # skip
