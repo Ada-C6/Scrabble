@@ -17,8 +17,24 @@ module Scrabble
       word_score = Scrabble::Scoring.score (word)
       @total_score += word_score
       # Returns the score of the word
-      return word_score
+      if won?
+        return false
+      else
+        return word_score
+      end
     end
 
+    def won?
+      @total_score > 100
+    end
+
+    def highest_scoring_word
+      Scrabble::Scoring.highest_score_from(@plays)
+    end
+
+    def highest_word_score
+      highest_word = highest_scoring_word
+      Scrabble::Scoring.score(highest_word)
+    end 
   end
 end
