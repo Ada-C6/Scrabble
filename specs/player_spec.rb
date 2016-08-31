@@ -6,13 +6,14 @@ require_relative 'spec_helper'
 
 
 describe Scrabble::Player do
+    new_player = Scrabble::Player.new("Jasper")
+
     describe "#initialize" do
         it "must be an instance of the Player class" do
             Scrabble::Player.new("Jasper").must_be_instance_of(Scrabble::Player)
         end
 
         it "should have the same value that we set" do
-            new_player = Scrabble::Player.new("Jasper")
             new_player.name.must_equal("Jasper")
         end
 
@@ -26,27 +27,44 @@ describe Scrabble::Player do
             proc {Scrabble::Player.new("Jasper").play(123)}.must_raise(ArgumentError)
         end
 
+        it "@plays array should be different after calling the play(word) method" do
+            original_array = new_player.plays.clone
+            new_player.play("SHOWERS")
+            new_player.plays.wont_equal(original_array)
+        end
 
-    end
+        it "the word passed in to play(word) method should be the last item in @plays array" do
+            new_player.play("SHOWERS")
+            new_player.plays.last.must_equal("SHOWERS")
+        end
+
+        it "should return the score of the string input if not won" do
+            new_player.play("lioness").must_equal(57)
+        end
+
+        it "should return false if player already won" do
+            new_player.won = true
+            new_player.play("lioness").must_equal(false)
+        end
+    end # play(word)
+
     # didn't finish the syntax :D
     describe "#highest_scoring_word" do
         it "should return nil if we pass in an empty array" do
             skip
-            new_player = Scrabble::Player.new("Jasper")
             new_player.highest_scoring_word([]).must_equal(nil)
         end
 
         it "should return the highest scoring word if we pass in @plays array" do
             skip
-            new_player = Scrabble::Player.new("Jasper")
+            # new_player = Scrabble::Player.new("Jasper")
             new_player.highest_scoring_word(@plays).must_equal()#highest scoring word)
         end
 
         it "should return the highest scoring word if we pass in a random array" do
             skip
-            new_player = Scrabble::Player.new("Jasper")
+            # new_player = Scrabble::Player.new("Jasper")
             new_player.highest_scoring_word(['CAT', 'QQQQJ', 'QQQQBK']).must_equal('QQQQJ')
         end
-
-    end
+    end # highst_scoring_word
 end
