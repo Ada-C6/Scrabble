@@ -10,15 +10,31 @@ describe 'testing player class' do
     expect(player.name.must_equal("sabrina"))
   end
 
+  it 'player must be initialized with a string for a name' do
+    # expecting if we try to init a Player with anything other than a string for a name, it should raise an error
+    expect( proc { player = Scrabble::Player.new(:sabrina) } ).must_raise(ArgumentError)
+  end
+
   it 'play(word) method returns the score of word' do
     player = Scrabble::Player.new("sabrina2")
     expect(player.play("zoo").must_equal(12))
+  end
+
+  it 'play(word) must return a fixnum' do
+    player = Scrabble::Player.new("laurenCat")
+    expect(player.play("something").must_be_instance_of(Fixnum))
   end
 
   it 'play(word) adds word to plays array' do
     player = Scrabble::Player.new("sabrina3")
     player.play("zoo")
     expect(player.plays.must_include("zoo"))
+  end
+
+  it 'play(word) returns false if player has already won' do
+    player = Scrabble::Player.new("lauren0007")
+    player.play("zzzzzzz")
+    expect(player.play("anotherword").must_equal(false))
   end
 
   it 'Returns the highest scoring played word' do
@@ -28,6 +44,7 @@ describe 'testing player class' do
     player.play("boy")
     expect(player.highest_score_word.must_equal("zzzz"))
   end
+
   it 'Returns the score of the highest scoring word ' do
     player = Scrabble::Player.new("sabrina4")
     player.play("zzzz")
