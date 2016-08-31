@@ -14,4 +14,14 @@ class Scrabble::Player
     return score
   end
 
+  def highest_score_word
+    highest_word = Scrabble::Scoring.highest_score_from(@plays)
+    return highest_word
+  end
+
+  def highest_word_score
+    highest_score = Scrabble::Scoring.score(highest_score_word)
+    return highest_score
+  end
+
 end # end of class

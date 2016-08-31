@@ -25,6 +25,22 @@ describe 'testing player class' do
     expect(player.plays.must_include("zoo"))
   end
 
+  it 'Returns the highest scoring played word' do
+      player = Scrabble::Player.new("sabrina4")
+      player.play("zzzz")
+      player.play("cat")
+      player.play("boy")
+    expect(player.highest_score_word.must_equal("zzzz"))
+  end
+  it 'Returns the score of the highest scoring word ' do
+      player = Scrabble::Player.new("sabrina4")
+      player.play("zzzz")
+      player.play("cat")
+      player.play("boy")
+    expect(player.highest_word_score.must_equal(40))
+  end
+
+
   # it 'returns an Array of the words played by the player' do
   #   expect(Scrabble::Player.play(["sabrina", "cat", "Boxer"]).must_equal(["sabrina", "cat", "Boxer"]))
   # end
