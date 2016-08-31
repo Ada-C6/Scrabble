@@ -36,12 +36,10 @@ describe Scrabble::Scoring do
         end
 
         it "should return the winner when an array was passed in, and we have more than one highest scoring words, one of which has 7 letters" do
-            skip
             Scrabble::Scoring.highest_score_from(['CAT', 'QQQQQJ', 'AAAAAAG']).must_equal('AAAAAAG')
         end
 
         it "should return the winner when an array was passed in, and we have more than one highest scoring words, none of them has 7 letters, but one of them has a shorter length than the others" do
-            skip
             Scrabble::Scoring.highest_score_from(['CAT', 'QQQQJ', 'QQQQBK']).must_equal('QQQQJ')
         end
 

@@ -48,6 +48,7 @@ module Scrabble
                 raise ArgumentError, "Invalid input"
             end
 
+            # create a hash that store the score-word(s) pairs
             score_result = {}
 
             array_of_words.map do |word|
@@ -58,10 +59,32 @@ module Scrabble
                     score_result[score] = [word]
                 end
             end
-            puts score_result # @todo - delete/debug
+
+            # retrieve the highest score key in the hash
             highest_score = score_result.keys.max
-            winning_word = score_result[highest_score].first
-            puts winning_word # @todo - delete/debug
+
+            # retrieve the array value corresponding to the highest score key in the hash
+            winning_array = score_result[highest_score]
+
+            # now we consider the length of words inside the winning array
+            # create a hash that store the length-words pairs
+            winning_hash = {}
+            winning_array.map do |word|
+                len = word.length
+                if winning_hash.keys.include?(len)
+                    winning_hash[len] += [word]
+                else
+                    winning_hash[len] = [word]
+                end
+            end
+
+            # first check which word has 7 letters, then check for the letter with the shortest length. 'first' method on array will ensure we retrieve the letter who comes first in the original array input.
+            if winning_hash.keys.include?(7)
+                winning_word = winning_hash[7].first
+            else
+                winning_word = winning_hash[winning_hash.keys.min].first
+            end
+
             return winning_word
         end
 
