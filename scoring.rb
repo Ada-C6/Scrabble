@@ -18,25 +18,25 @@ module Scrabble
           word = word.upcase
         end
         score_array = []
-
+        if word.length == 7
+          word.each_char do |l|
+            score_array << SCORE_CHART.values_at(l).join.to_i
+          end
+          return score_array.reduce(:+) + 50
+        else
         word.each_char do |l|
-
           score_array << SCORE_CHART.values_at(l).join.to_i
         end
-
         return score_array.reduce(:+)
+        end
       end
 
       def self.highest_score_from(array_of_words)
-
-        array_of_words.map do |i|
-        word = self.score(i)
-        end
-
-
-
-
-
+       array_of_words.max_by do |i|
+       self.score(i)
+       end
+       array_of_words.each do |a|
+         a.length
       end
   end
 end
