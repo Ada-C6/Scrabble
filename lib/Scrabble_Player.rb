@@ -29,7 +29,14 @@ class Scrabble::Player
     @plays.each do |word|
       score += Scrabble::Scoring.score(word)
     end
-    return score 
+    return score
+  end
+  def won?
+    if total_score >= 100
+      return true
+    else
+      return false
+    end
   end
 
 end # end of class

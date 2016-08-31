@@ -43,4 +43,21 @@ describe 'testing player class' do
     player.play("kitsch")
     expect(player.total_score.must_equal(84))
   end
+
+it 'won should return true if player has over 100 points' do
+  player = Scrabble::Player.new("Lauren5")
+  player.play("knitting")
+  player.play("oooooo")
+  player.play("kitsch")
+  player.play("zz")
+  expect(player.won?.must_equal(true))
 end
+
+it 'won should return false if player has less than 100 points' do
+  player = Scrabble::Player.new("Lauren5")
+  player.play("knitting")
+  player.play("oooooo")
+  player.play("kitsch")
+  expect(player.won?.must_equal(false))
+end
+end#end of test
