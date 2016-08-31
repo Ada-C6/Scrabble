@@ -36,7 +36,7 @@ module Scrabble
 
     def initialize(word)
       @word = word
-      #@max_words = []
+
 
     end
 
@@ -49,6 +49,7 @@ module Scrabble
       if word_array.length !=7
         return score
       else
+
         return score += SEVEN_LETTER_BONUS
       end
     end
@@ -56,7 +57,7 @@ module Scrabble
     def self.highest_score_from(array_of_words)
       max_score = 0
       max_words = []
-      shortest_word = 'PIZZAZZas'
+      winning_word = 'PIZZAZZas'
       array_of_words.each do |word|
         current_score = score(word)
         if current_score == max_score
@@ -69,17 +70,17 @@ module Scrabble
         end
       end #each
       max_words.each do |word|
-        if word.length < shortest_word.length
-          shortest_word = word
+        if word.length < winning_word.length
+          winning_word = word
+        elsif word.length == 7
+          winning_word = word
+          return winning_word
+        else
+          # karion
         end
       end
-        #find the shortest word
-        # words_scores.each_with_index do |word_score, i|
-        #   current_word = word_score[i][max_score]
-        #   max_words << current_word
-        # end
-        return shortest_word # will return the first if tie breaker
-      end
+      return winning_word # will return the first if tie breaker
     end
-
   end
+
+end

@@ -16,8 +16,6 @@ describe Scoring do
   end
 
   describe "#self.score(word)" do
-  #let(:scoring) {Scoring.score("cat") }
-
     it "method will return a fixnum" do
       Scoring.score("string").must_be_instance_of(Fixnum)
     end
@@ -36,17 +34,14 @@ describe Scoring do
     it "method will return a string" do
       Scoring.highest_score_from(["xena", "toy", "dog"]).must_be_instance_of(String)
     end
-
-    #TIEBREAKERS
-    # make @max_words = [] what needs testing?
-
-    # fewer tiles better for equal score
+    #Tiebreaker tests
     it "will return the shortest word within an array of equal scored words" do
       Scoring.highest_score_from(["gels", "cat", "long"]).must_equal("cat")
     end
-    # seven letters better than all other
 
-    # pick first one in array_of_words - use .find
+    it "will return the word with the highest score and length of 7 in an an array" do
+      Scoring.highest_score_from(["qzqzqz", "aaaaaah"]).must_equal("aaaaaah")
+    end
 
   end
 
