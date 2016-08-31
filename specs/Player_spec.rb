@@ -5,10 +5,6 @@ require_relative '../lib/scrabble_player'
 
 describe 'testing player class' do
 
-  before do
-
-  end
-
   it 'returns the value of the @name instance variable' do
     player = Scrabble::Player.new("sabrina")
     expect(player.name.must_equal("sabrina"))
@@ -26,23 +22,25 @@ describe 'testing player class' do
   end
 
   it 'Returns the highest scoring played word' do
-      player = Scrabble::Player.new("sabrina4")
-      player.play("zzzz")
-      player.play("cat")
-      player.play("boy")
+    player = Scrabble::Player.new("sabrina4")
+    player.play("zzzz")
+    player.play("cat")
+    player.play("boy")
     expect(player.highest_score_word.must_equal("zzzz"))
   end
   it 'Returns the score of the highest scoring word ' do
-      player = Scrabble::Player.new("sabrina4")
-      player.play("zzzz")
-      player.play("cat")
-      player.play("boy")
+    player = Scrabble::Player.new("sabrina4")
+    player.play("zzzz")
+    player.play("cat")
+    player.play("boy")
     expect(player.highest_word_score.must_equal(40))
   end
 
-
-  # it 'returns an Array of the words played by the player' do
-  #   expect(Scrabble::Player.play(["sabrina", "cat", "Boxer"]).must_equal(["sabrina", "cat", "Boxer"]))
-  # end
-
+  it 'total_score method returns sum of scores of played words' do
+    player = Scrabble::Player.new("sabrina5")
+    player.play("knitting")
+    player.play("oooooo")
+    player.play("kitsch")
+    expect(player.total_score.must_equal(84))
+  end
 end

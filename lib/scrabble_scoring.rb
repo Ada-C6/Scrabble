@@ -98,9 +98,9 @@ class Scrabble::Scoring
       if word.length < winning_length
         winning_length = word.length
         winning_word = word
-          end
       end
-      return winning_word
+    end
+    return winning_word
   end
 
 

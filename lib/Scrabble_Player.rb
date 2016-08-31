@@ -24,4 +24,12 @@ class Scrabble::Player
     return highest_score
   end
 
+  def total_score
+    score = 0
+    @plays.each do |word|
+      score += Scrabble::Scoring.score(word)
+    end
+    return score 
+  end
+
 end # end of class
