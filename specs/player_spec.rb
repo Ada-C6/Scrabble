@@ -10,7 +10,6 @@ describe Scrabble::Player do
     it "should initialize with exactly one parameter (name)" do
       p.must_respond_to(:name)
     end
-
   end
 
   describe "plays" do
@@ -21,7 +20,6 @@ describe Scrabble::Player do
       p.play("bird")
       p.plays.must_equal(["CAT", "BIRD"])
     end
-
   end
 
   describe "play" do
@@ -38,7 +36,6 @@ describe Scrabble::Player do
   end
 
   describe "#total_score" do
-
     it "should return the total score of played words" do
       p.plays = []
       p.total = 0
@@ -50,7 +47,6 @@ describe Scrabble::Player do
   end
 
   describe "won?" do
-
     it "should return true if player has over 100 points" do
       p.total = 101
       p.won?.must_equal(true)
@@ -63,4 +59,23 @@ describe Scrabble::Player do
 
   end
 
+  describe "#highest_scoring_word" do
+    it "should return the highest scoring played word" do
+    @plays = []
+    p.plays = ["car", "birdand", "home"]
+    p.highest_scoring_word.must_equal("BIRDAND")
+    end
+  end
+
+   describe "#highest_word_score" do
+     it "should return the highst scoring word score" do
+       @plays = []
+       p.plays = ["car", "birdand", "home"]
+       p.highest_word_score.must_equal(61)
+     end
+   end
 end
+
+
+#highest_scoring_word: Returns the highest scoring played word
+#highest_word_score: Returns the highest_scoring_word score

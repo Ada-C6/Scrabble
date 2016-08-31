@@ -16,6 +16,7 @@ module Scrabble
 
       word_letters.each do |i|
         if !LETTERS.values.join.include?(i)
+          puts i
           raise ArgumentError.new("Invalid input")
         end
         LETTERS.values.length.times do |j|
@@ -49,7 +50,7 @@ module Scrabble
       end
       max_score = word_scores.keys.max
       if word_scores[max_score].length == 1
-        return word_scores[max_score]
+        return word_scores[max_score][0]
       else
         shortest_letters = 7
         shortest_word = ""

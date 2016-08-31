@@ -26,7 +26,7 @@ describe Scrabble::Scoring do
     end
 
     it "should choose the 7 letter word over a shorter word in case of a tie" do
-      Scrabble::Scoring.highest_score_from(["ddda", "eeeeeee"]).must_equal(["EEEEEEE"])
+      Scrabble::Scoring.highest_score_from(["ddda", "eeeeeee"]).must_equal("EEEEEEE")
     end
 
     it "should raise an error when an invalid parameter is supplied" do
