@@ -29,22 +29,29 @@ module Scrabble
     describe "#play(word)" do
       let(:player) { Player.new("Alma") }
 
-      it "should append word to @words_played" do
+      it "should append words to @words_played" do
         player.play("dog")
-        "dog".must_equal(player.plays.last)
+        player.play("foot")
+        "dog".must_equal(player.plays.first)
+        "foot".must_equal(player.plays.last)
       end
-      #
-      # it "method returns the score of a word from Scoring" do
-      #   player.play("imposter").must_equal(12)
-      # end
 
-      #it "method returns false if winner is true" do
-      #  player.play("imposter") == false
-      #end
+      it "method returns the score of a word from Scoring" do
+        player.play("imposter").must_equal(12)
+      end
+    end #play(word)
 
-    end #ends play(word)
+    describe "#total_score" do
+      let(:player) { Player.new("Alma") }
 
+      it "should check total score from plays array" do
+        player.play("dog") #returns score = 5
+        player.play("foot") #returns => 7
+        player.play("coffee") #returns => 14
+        player.total_score.must_equal(26)
+      end
 
+    end
 
 
   end
