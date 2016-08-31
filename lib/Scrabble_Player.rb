@@ -1,16 +1,18 @@
 require_relative '../scrabble.rb'
 require_relative 'scrabble_scoring.rb'
+
 class Scrabble::Player
   attr_reader :name, :plays
 
   def initialize(name)
+    # we want the player to use a string for a name
     raise ArgumentError unless name.class == String
-    
+
     @name = name
     @plays = []
   end
 
-  # plays a word
+  # allows the player to plays a word as long as they have not already won
   def play(word)
     if won?
       return false
@@ -42,7 +44,7 @@ class Scrabble::Player
     return score
   end
 
-  # method that checks if player has 100+ points
+  # method that checks if player has 100+ points; if so, they've won
   def won?
     if total_score >= 100
       return true
