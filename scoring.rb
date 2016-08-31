@@ -15,7 +15,7 @@ module Scrabble
 			user_word = word.upcase.split("")
 
 			if word.length < 1 || word.length > 7
-				raise ArgumentError.new("No empty strings")
+				raise ArgumentError.new("Invalid word length")
 			end
 
 			valid_letters = []
