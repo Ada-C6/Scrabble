@@ -27,12 +27,16 @@ class Tilebag
 
   def draw_tiles(num)
 # returns num of random tiles, removes those tiles from default set.
-
-
+  # we need to figure out another way to randomly grab 7 tiles. from the bag. Likely a better solution than .pop.
+    default_tile_bag.shuffle
+    picked_tiles = default_tile_bag.pop(7)
+    return picked_tiles
   end
 
   def tiles_remaining
 # returns the numbers of tiles remaining in the bag.
+# num_tiles_remain
+    # return num_tiles_remain
 
   end
 
