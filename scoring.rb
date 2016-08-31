@@ -55,9 +55,21 @@ module Scrabble
           words_array.each do |word|
               scores[word] = score(word)
           end
-          puts scores
+          # puts scores
+          #compare values ; hash.max_by{ |k,v| v }[0] ????
+          greatest_val = scores.max_by{|k,v| v}[1] # this is the val
+          my_array = []
+          scores.each do |k,v|
+            if v == greatest_val
+              my_array << k
+            end
+          end
+          puts my_array
+
+          # Use my_array to look for all the preferences.
+
       end
   end
 end
 
-Scrabble::Scoring.highest_score_from(["cat", "dolphin", "elephan"])
+Scrabble::Scoring.highest_score_from(["rats", "tag", "aei"])

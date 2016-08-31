@@ -43,10 +43,18 @@ describe Scrabble::Scoring do
     end
 
     describe "highest_score_from(words_array)" do
-        it "will return the default from the array" do
-            skip
-            Scrabble::Scoring.highest_score_from(["cat"]).must_equal("cat")
+        it "will return a String" do
+
+            Scrabble::Scoring.highest_score_from(["cat"]).must_be_instance_of(String)
         end
+
+        it "will return the highest score word" do
+        Scrabble::Scoring.highest_score_from(["cat", "soup"]).must_equal("soup")
+        end
+
+        it "will return the word with fewer letters in case of a tied score" do
+        Scrabble::Scoring.highest_score_from(["rats", "tag"]).must_equal("tag")
+      end
     end
 
 end
