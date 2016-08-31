@@ -7,10 +7,10 @@ describe Scrabble::Player do
 
 # create a test that will check that you can get the name back
 
-# it 'Returns array of words played by player' do
-#   player1 = Scrabble::Player.new("Michael Jordan")
-#   expect(player1).must_equal(["Michael Jordan"])
-# end
+it 'Makes sure you can call name correctly' do
+  player1 = Scrabble::Player.new("Michael Jordan")
+  expect(player1.name).must_equal("Michael Jordan")
+end
 #1
   it 'Returns array of words played by player' do
     player1 = Scrabble::Player.new("Michael Jordan")

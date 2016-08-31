@@ -3,7 +3,8 @@ require_relative "../lib/Scoring"
 
 class Scrabble::Player
 
-  #attr_accessor :word, :total
+  attr_reader :name
+  
   def initialize(name)
     @name = name
     @word_score = 0
