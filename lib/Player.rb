@@ -32,23 +32,34 @@ class Scrabble::Player
 
   def total_score
     # Returns the sum of scores of played words: @total_score
-
+    @words_by_player.each do |word|
+       @total_score += Scrabble::Scoring.score(word)
+    end
+    return @total_score
   end
 
   def won?
-
     # If the player has over 100 points, returns true, otherwise returns false: if statement, total_score >= 100 return true else return false
-
+    if @total_score >= 100
+      return true
+    else
+      return false
+    end
   end
 
   def highest_scoring_word
     # Returns the highest scoring played word
-    # include?? highest_score_from
+    return Scrabble::Scoring.highest_score_from(@words_by_player)
   end
 
   def highest_word_score
     # Returns the highest_scoring_word score
     # include?? highest_score_from but also return max_scoring_word somehow??
+    # proudest moment for Rachel lol 
+    high_score_word = highest_scoring_word
+    highest_score = Scrabble::Scoring.score(high_score_word)
+    return highest_score
+
   end
 
 end
