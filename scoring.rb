@@ -51,20 +51,25 @@ module Scrabble
       end
 
       def self.highest_score_from(words_array)
-          scores = {}
+          scores = []
           words_array.each do |word|
-              scores[word] = score(word)
+              scores << score(word)
           end
           # puts scores
           #compare values ; hash.max_by{ |k,v| v }[0] ????
-          greatest_val = scores.max_by{|k,v| v}[1] # this is the val
+          greatest_val = scores.max
+          puts greatest_val
           winners = []
-          scores.each do |k,v|
-            if v == greatest_val
-              winners << k
+          index = 0
+            while index < words_array.length
+              if scores[index] == greatest_val
+                winners << words_array[index]
+              end
+              index += 1
             end
-          end
-          puts winners
+
+          # puts winners
+
           if winners.length == 1
               return winners[0]
           else
@@ -89,4 +94,4 @@ module Scrabble
   end
 end
 
-puts Scrabble::Scoring.highest_score_from(["rats", "tag", "aei"])
+# Scrabble::Scoring.highest_score_from(["tag", "rats", "tag", "aei"])
