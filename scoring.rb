@@ -43,7 +43,20 @@ module Scrabble
 
         end # self.score method
 
+        def self.highest_score_from(array_of_words)
+            if array_of_words.class != Array
+                raise ArgumentError, "Invalid input"
+            end
+
+            score_result = {}
+
+            # WIP for test 2 of highest_score_from method
+            array_of_words.map do |word|
+                score = self.score(word)
+                score_result["score"] = [word]
+            end
+
+        end
+
     end # Scoring class
 end # Scrabble module
-
-puts Scrabble::Scoring.score('LIONESS')
