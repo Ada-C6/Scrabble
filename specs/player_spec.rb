@@ -15,19 +15,39 @@ describe Scrabble::Player do
     it "should be able to return value of @name instance variable" do
       jane.name.must_equal("Jane")
     end
+
+    it "should return the sum of scores of played words for that instance of player" do
+      jane.play("bottle")
+      jane.play("poppin")
+      jane.play("salsa")
+      jane.total_score.must_equal(8+12+5)
+    end
   end
 
   #plays: returns an Array of the words played by the player
   describe "#plays" do
     jane = Scrabble::Player.new("Jane")
-    word = "scary"
+
     it "should return an Array" do
-      jane.plays(word).must_be_kind_of(Array)
+      jane.plays.must_be_kind_of(Array)
     end
+  end
 #play(word): Adds the input word to the plays Array
+
+  describe "#play_word" do
+    joan = Scrabble::Player.new("Joan")
+    word = "scary"
+
     it "should add input word to the plays Array" do
-      jane.plays(word).must_include("scary")
+      joan.play(word)
+      joan.plays.must_include("scary")
     end
+
+    it "should return the score of the word played" do
+      joan.play(word).must_equal(10)
+    end
+
+
 
   end
 
