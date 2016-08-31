@@ -57,6 +57,11 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.score("word").must_be_kind_of Fixnum
     end
 
+    #A test to check if it scores a (particular) word correctly (fox = 13)
+    it "should score fox as 13" do
+      Scrabble::Scoring.score("fox").must_equal(13)
+    end
+
   end
 
   describe "self.highest_score_from_array(array_of_words)" do
