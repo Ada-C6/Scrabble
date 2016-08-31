@@ -51,13 +51,17 @@ module Scrabble
         raise ArgumentError.new("invalid input type") unless word.is_a?(String)
       end
 
-      score_array = []
+      scored_hash = {}
       array_of_words.each do |word|
-        word_score = word.score
-        score_array << word_score
+        word_score = Scrabble::Scoring.score(word)
+        scored_hash[word_score] = []
+        scored_hash[word_score] << word
       end
 
-      return single_word_score.max
+      scored_hash
+
+      # array_of_highest_words = scored_hash.max
+      # array_of_highest_words[1]
     end
 
   end
