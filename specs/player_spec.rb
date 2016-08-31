@@ -19,7 +19,7 @@ describe Scrabble::Player do
       p.plays = []
       p.play("cat")
       p.play("bird")
-      p.plays.must_equal(["cat", "bird"])
+      p.plays.must_equal(["CAT", "BIRD"])
     end
 
   end
@@ -28,8 +28,17 @@ describe Scrabble::Player do
     it "should add the input word to the plays Array" do
       p.plays = []
       p.play("dog")
-      p.plays.must_equal(["dog"])
+      p.plays.must_equal(["DOG"])
     end
   end
+    describe "#total_score" do
 
+      it "should return the total score of played words" do
+      p.plays =[]
+      p.play("cat")
+      p.play("birdand")
+      p.play("home")
+      p.total_score.must_equal(75)
+    end
+  end
 end
