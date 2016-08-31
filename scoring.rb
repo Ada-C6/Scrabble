@@ -58,18 +58,35 @@ module Scrabble
           # puts scores
           #compare values ; hash.max_by{ |k,v| v }[0] ????
           greatest_val = scores.max_by{|k,v| v}[1] # this is the val
-          my_array = []
+          winners = []
           scores.each do |k,v|
             if v == greatest_val
-              my_array << k
+              winners << k
             end
           end
-          puts my_array
+          puts winners
+          if winners.length == 1
+              return winners[0]
+          else
+              winners.each do |word|
+                  if word.length == 7
+                      return word
+                  end
+              end
+              word_length = []
+              winners.each do |word|
+                  word_length << word.length
+              end
+              winners.each do |word|
+                  if word_length.min == word.length
+                      return word
+                  end
+              end
 
-          # Use my_array to look for all the preferences.
+          end
 
       end
   end
 end
 
-Scrabble::Scoring.highest_score_from(["rats", "tag", "aei"])
+puts Scrabble::Scoring.highest_score_from(["rats", "tag", "aei"])

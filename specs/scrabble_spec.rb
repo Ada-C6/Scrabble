@@ -44,7 +44,6 @@ describe Scrabble::Scoring do
 
     describe "highest_score_from(words_array)" do
         it "will return a String" do
-
             Scrabble::Scoring.highest_score_from(["cat"]).must_be_instance_of(String)
         end
 
