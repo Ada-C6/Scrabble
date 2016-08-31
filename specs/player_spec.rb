@@ -39,7 +39,8 @@ describe Scrabble::Player do
         end
 
         it "should return the score of the string input if not won" do
-            new_player.play("lioness").must_equal(57)
+            another_player = Scrabble::Player.new("Kelly")
+            another_player.play("lioness").must_equal(57)
         end
 
         it "should return false if player already won" do
@@ -47,6 +48,27 @@ describe Scrabble::Player do
             new_player.play("lioness").must_equal(false)
         end
     end # play(word)
+
+    describe "#total_score" do
+        it "returns the sum of scores of played words" do
+            new_player.plays = ['CAT', 'DOG', 'COW']
+            new_player.total_score.must_equal(18)
+        end
+    end
+
+    describe "#won?" do
+        it "If the player has over 100 points, returns true" do
+            winner = Scrabble::Player.new("Karen")
+            winner.total_score = 150
+            winner.won?.must_equal(true)
+        end
+
+        it "If the player has 100 points or less, returns false" do
+            loser = Scrabble::Player.new("Samba")
+            loser.total_score = 80
+            loser.won?.must_equal(false)
+        end
+    end
 
     # didn't finish the syntax :D
     describe "#highest_scoring_word" do
