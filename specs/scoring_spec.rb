@@ -12,7 +12,6 @@ describe Scrabble::Scoring do
       Scrabble::Scoring::POINTS.length.must_equal(26)
     end
 
-    # not a 100% accurate test of each letter's value, but the most efficient idea we could come up with aside from checking every letter's score individually
     it "should have a total score corresponding to each letter's score" do
       sum = 0
       Scrabble::Scoring::POINTS.each do |k, v|
@@ -37,13 +36,8 @@ describe Scrabble::Scoring do
     end
 
     it "should add 50 points if the word length is 7 letters" do
-      skip
       Scrabble::Scoring.new
-      if Scrabble::Scoring.word.length == 7
-        Scrabble::Scoring.bonus(word).must_equal(50)
-      else
-        Scrabble::Scoring.bonus(word).must_equal(0)
-      end
+      Scrabble::Scoring.score("GORILLA").must_equal(58)
     end
   end
 

@@ -34,35 +34,21 @@ module Scrabble
     def initialize
       @word = word
       @round_words = []
-      @bonus = bonus
     end
-
-    # def self.bonus(word)
-    #   @bonus = 0
-    #   if word.length == 7
-    #     @bonus = 50
-    #     return @bonus
-    #     # consider refactoring
-    #   end
-    # end
 
     def self.score(word)
       sum = 0
+      @bonus = 0
       Scrabble::Scoring::POINTS.each do |k, v|
         occurances = word.count(k.to_s)
         sum += v.to_i * occurances
       end
       puts "each word: #{word} #{sum}"
       if word.length == 7
-        sum += 50
+        @bonus = 50
       end
 
-      # puts sum.class
-      # bonus = self.bonus(word)
-      #
-      # # self.bonus(word).class
-      #
-      # sum += bonus
+      sum += @bonus
       return sum
     end
 
@@ -95,17 +81,20 @@ module Scrabble
       elsif array_of_highest_words.length > 1
 
         if array_of_highest_words.any? { |word| word.length == 7 }
-          # winner = word.length == 7 (HOLD)
-          puts winner
-          return winner
+          array_of_highest_words.each do |palabra|
+            if palabra.length == 7
+              winner = palabra
+              return winner
+            end
+          end
 
-         # The third tiebreaker condition (tile/point tie) is automatically met due to Ruby's preference to pick the first word with equal points and character length
          else
           winner = array_of_highest_words.min_by { |word| word.length }
           puts winner
           return winner
-      #     if
-      #
+
+        # The third tiebreaker condition (tile/point tie) is automatically met due to Ruby's preference to pick the first word with equal points and character length
+
         end
       end
 
@@ -124,6 +113,6 @@ Scrabble::Scoring.score("RAT")
 Scrabble::Scoring.score("LINES")
 Scrabble::Scoring.score("DOG")
 
-Scrabble::Scoring.highest_score_from(["QQQQQQJ", "GORILLA"])
+Scrabble::Scoring.highest_score_from(["QQQQQQJ", "GORILLA", "RAT"])
 Scrabble::Scoring.highest_score_from(["LINES","DOG","RAT"])
-Scrabble::Scoring.highest_score_from(["LINES","DOG","GOD","RAT"])
+Scrabble::Scoring.highest_score_from(["LINES","dog".upcase,"GOD","RAT"])
