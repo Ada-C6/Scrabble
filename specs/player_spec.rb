@@ -4,6 +4,8 @@ require_relative '../lib/Player'
 
 
 describe Scrabble::Player do
+
+# create a test that will check that you can get the name back 
 #1
   it 'Returns array of words played by player' do
     player1 = Scrabble::Player.new("Michael Jordan")
