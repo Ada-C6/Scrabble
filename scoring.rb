@@ -29,7 +29,7 @@ module Scrabble
       "Y" => 4,
       "Z" => 10}
 
-    attr_accessor :word, :round_words, :bonus, :highest_words
+    attr_accessor :word, :round_words, :bonus
 
     def initialize
       @word = word
@@ -43,7 +43,6 @@ module Scrabble
         occurances = word.count(k.to_s)
         sum += v.to_i * occurances
       end
-      puts "each word: #{word} #{sum}"
       if word.length == 7
         @bonus = 50
       end
@@ -57,17 +56,16 @@ module Scrabble
       array_of_words.each do |word|
         scored_word[word] = self.score(word)
       end
-      puts scored_word
       max_score = scored_word.max_by{|k,v| v}[1]
 
-      @highest_words = []
+      highest_words = []
 
       scored_word.each do |k,v|
         if v == max_score
-          @highest_words.push(k)
+          highest_words.push(k)
         end
       end
-      self.tie_breaker(@highest_words)
+      self.tie_breaker(highest_words)
     end
 
     def self.tie_breaker(array_of_highest_words)
@@ -84,6 +82,7 @@ module Scrabble
           array_of_highest_words.each do |palabra|
             if palabra.length == 7
               winner = palabra
+              puts winner
               return winner
             end
           end
@@ -113,6 +112,7 @@ Scrabble::Scoring.score("RAT")
 Scrabble::Scoring.score("LINES")
 Scrabble::Scoring.score("DOG")
 
-Scrabble::Scoring.highest_score_from(["QQQQQQJ", "GORILLA", "RAT"])
+Scrabble::Scoring.highest_score_from(["QQQQQJ", "GORILLA", "RAT"])
+Scrabble::Scoring.highest_score_from(["QQQQQFF", "GORILLA", "RAT"])
 Scrabble::Scoring.highest_score_from(["LINES","DOG","RAT"])
 Scrabble::Scoring.highest_score_from(["LINES","dog".upcase,"GOD","RAT"])
