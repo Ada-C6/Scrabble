@@ -14,6 +14,7 @@ module Scrabble
     }
 
     def initialize
+      @array_of_words = array_of_words
     end
 
     def collect_word_from_user(word)
@@ -42,6 +43,12 @@ module Scrabble
     end
 
     def self.highest_score_from_array(array_of_words)
+      raise ArgumentError.new("invalid input type") unless array_of_words.is_a?(Array)
+
+      array_of_words.each do |word|
+        raise ArgumentError.new("invalid input type") unless word.is_a?(String)
+      end
+
     end
 
   end

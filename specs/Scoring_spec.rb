@@ -63,6 +63,19 @@ describe Scrabble::Scoring do
 
   end
 
+  describe "self.highest_score_from_array(array_of_words)" do
+    it "should accept a parameter" do
+      Scrabble::Scoring.highest_score_from_array([]).must_respond_to(:array_of_words)
+    end
+
+    it "should raise an error when something that isn't an array is passed in" do
+      proc { Scrabble::Scoring.highest_score_from_array({}) }.must_raise(ArgumentError)
+    end
+
+    it "should raise an error when an element inside of the array isn't a string" do
+      proc { Scrabble::Scoring.highest_score_from_array( [1] )}.must_raise(ArgumentError)
+    end
+  end
 
   # Defunct collect game words into arrya (We don't need this right now, hopefully never)
   # describe "#store_all_game_words" do
