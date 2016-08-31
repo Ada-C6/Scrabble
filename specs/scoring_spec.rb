@@ -9,7 +9,7 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.score("DOG").must_equal(5)
     end
 
-    it "should throw an error when an invalid parameter is supplied" do
+    it "should raise an error when an invalid parameter is supplied" do
       proc {Scrabble::Scoring.score("123")}.must_raise(ArgumentError)
     end
 
@@ -29,10 +29,10 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.highest_score_from(["ddda", "eeeeeee"]).must_equal(["EEEEEEE"])
     end
 
-    it "should throw an error when an invalid parameter is supplied" do
+    it "should raise an error when an invalid parameter is supplied" do
       proc {Scrabble::Scoring.highest_score_from({})}.must_raise(ArgumentError)
     end
-    it "should choose the first letter if their length are the same" do
+    it "should choose the first word if their lengths are the same" do
       Scrabble::Scoring.highest_score_from(["aaaa", "eeee"]).must_equal("AAAA")
     end
 
