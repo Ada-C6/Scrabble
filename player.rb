@@ -22,10 +22,6 @@ module Scrabble
       end
     end
 
-    def plays
-      return @plays
-    end
-
     def total_score
       return @total
     end
