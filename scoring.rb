@@ -38,12 +38,26 @@ module Scrabble
 
 		def self.highest_score_from(array_of_words)
 			scoring_hash = {}
+			max_words = []
 			raise ArgumentError.new("Invalid input type") if !array_of_words.is_a?(Array)
 			array_of_words.each do |word|
 				scoring_hash[word] = Scrabble::Scoring.score(word)
 			end
+
 			max_val = scoring_hash.values.max
-			return scoring_hash.index(max_val)
+			scoring_hash.each do |key, value|
+				if value == max_val
+					max_words << key
+				end
+			end
+
+			max_words.sort_by! {|word| word.length}
+
+			if max_words.last.length == 7
+				return max_words.last
+			else
+				return max_words.first
+			end
 		end
 	end
 end

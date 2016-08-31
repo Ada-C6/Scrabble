@@ -9,7 +9,14 @@ known_words = {
 
 test_words = ["farm", "cat", "ferrets"]
 
-#create test array with tied score words with different lengths, one with seven
+#create test array with tied score words with different lengths,
+#one with seven
+
+tied_scores = ["zoos", "hex", "kittys"]
+
+tied_scores_seven = ["staring", "zzzzzx"]
+
+tied_scores_same_len = ["hex", "fox", "kittys", "zoos", "wix"]
 
 describe Scrabble::Scoring do
 	it "should have a constant equal to a hash" do
@@ -48,6 +55,18 @@ describe Scrabble::Scoring do
 		end
 
 		#separate tests with each tie breaker
+
+		it "should return the word with the fewest letters in case of tie" do
+			Scrabble::Scoring.highest_score_from(tied_scores).must_equal("hex")
+		end
+
+		it "should return a seven-letter word in case of a tie" do
+			Scrabble::Scoring.highest_score_from(tied_scores_seven).must_equal("staring")
+		end
+
+		it "should return the first word if all winning words are the same length" do
+			Scrabble::Scoring.highest_score_from(tied_scores_same_len).must_equal("hex")
+		end
 
 	end
 
