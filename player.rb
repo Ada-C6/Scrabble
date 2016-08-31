@@ -35,6 +35,6 @@ module Scrabble
     def highest_word_score
       highest_word = highest_scoring_word
       Scrabble::Scoring.score(highest_word)
-    end 
+    end
   end
 end

@@ -21,7 +21,7 @@ module Scrabble
     # return appropriate score for letter
     def self.score (word)
       score = 0
-      word_array = self.word_to_array(word) 
+      word_array = self.word_to_array(word)
 
       word_array.each do | i |
         SCORE_CHART.each do | key, value |
