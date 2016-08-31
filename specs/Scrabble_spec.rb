@@ -24,8 +24,15 @@ describe "Testing Scrabble" do
   end
 
   it "Testing to make sure tie returns word with exactly 7 characters" do
-    expect(Scrabble::Scoring.hash({"HELLO": 8, "CAT": 5, "MAJESTY": 69})  ).must_equal("MAJESTY")
+    expect(Scrabble::Scoring.hash({"ROASTED": 9, "KIP":9})  ).must_equal("ROASTED")
   end
+
+  it "Testing to make sure tie returns shorter word if neither word has a length of 7" do
+    expect(Scrabble::Scoring.hash({"ROASTED": 9, "APPLE":9})  ).must_equal("APPLE")
+  end
+
+
+
 
   # it "Testing to make sure all tied words are returned" do
   #   expect(Scrabble::Scoring.score_highest({"HELLO": 8, "POTATO": 8, "CAT": 5})  ).must_equal("HELLO", "POTATO")
