@@ -1,6 +1,6 @@
 module Scrabble
   class Scoring
-    attr_accessor :array_of_words, :word
+    attr_accessor :array_of_words, :word, :store_all_game_words, :length
     attr_reader
 
     SCORE_CHART = {
@@ -13,16 +13,17 @@ module Scrabble
       10 => ["Q", "Z"]
     }
 
-    @array_of_words = []
-    #
-    def initialize(word)
-      @word = word
-      collect_word(word)
+    def initialize
     end
 
-    def collect_word(word)
-      # @array_of_words << word
+    def collect_word_from_user(word)
+      @word = word
     end
+
+    # # nope
+    # def store_all_game_words(word)
+    #   @array_of_words << word
+    # end
 
     def self.score(word)
       letter_array = word.upcase.split(//)
@@ -37,7 +38,7 @@ module Scrabble
         end
       end
 
-      single_word_score.inject(:+)
+      single_word_score.reduce(:+)
     end
 
     def self.highest_score_from_array(array_of_words)
