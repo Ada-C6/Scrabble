@@ -20,7 +20,8 @@ module Scrabble
         return false
       end
       word_score = Scoring.score(word) #return score
-      @words_played << word
+      @words_played << word # dont forget this adds to instance variable every time it runs
+
       return word_score
     end
 
@@ -44,6 +45,11 @@ module Scrabble
     def highest_scoring_word
       best_word = Scoring.highest_score_from(plays)
       return best_word
+    end
+
+    def highest_word_score
+      best_score = Scoring.score(highest_scoring_word)
+      return best_score
     end
 
   end

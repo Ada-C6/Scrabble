@@ -70,12 +70,22 @@ module Scrabble
       it "should return the highest scoring word player played" do
         player.play("pizzazz")
         player.play("coffee")
-        Scoring.highest_score_from(player.plays).must_equal("pizzazz")
+        player.highest_scoring_word.must_equal("pizzazz")
       end
     end #end highest scoring word method
 
+    describe "#highest_word_score" do
+      let(:player) { Player.new("Alma") }
 
+      it "should return the score of the highest scoring word player played" do
+        player.play("pizzazz")
+        player.play("coffee")
+        player.highest_word_score.must_equal(95)
+      end
+    end
   end
+
+  # @todo WE WANT TO START HERE. ONE (1) MORE TEST (exception!)
 
 
 
