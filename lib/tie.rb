@@ -45,12 +45,11 @@ class Scrabble::Scoring
        word_hash[element] = score(element)
      end
 
-     if word_hash.values.length == word_hash.values.uniq.length
+      if word_hash.values.length != word_hash.values.uniq.length
        tie(word_hash)
-     else
+      else
        return word_hash.key(word_hash.values.max)
-     end
-
+      end
   end
 
   def self.tie(word_hash)
@@ -61,3 +60,7 @@ return tie_words
   end
 
 end # end of Scoring class
+
+ print Scrabble::Scoring.highest_score_from(["ZZZZ", "cat", "QQQQ"])
+# Scrabble::Scoring.score("CAT")
+# Scrabble::Scoring.score("QQQQ")
