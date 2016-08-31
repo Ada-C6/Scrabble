@@ -4,6 +4,9 @@ require_relative '../Scrabble.rb'
 
 class Scrabble::Scoring
 
+  @@word_array = []
+  @@word_hash = {}
+
   LETTER_SCORES = {"A"=>1, "B"=>3, "C"=>3, "D"=>2,
    "E"=>1, "F"=>4, "G"=>2, "H"=>4,
    "I"=>1, "J"=>8, "K"=>5, "L"=>1,
@@ -18,31 +21,27 @@ class Scrabble::Scoring
     @letters.each do |char|
     @score += LETTER_SCORES[char]
     end
-    puts "\n#{@word} scores #{@score} points\n\n"
+    hash(@word, @score)
+    # puts "\n#{@word} scores #{@score} points\n\n"
     return @score
   end
 
   def self.start_word(word)
     raise ArgumentError unless word.class == String
     @word = word.upcase
-    create_word_array(@word)
     @letters = @word.split(//)
     return @word
   end
 
-  def self.create_word_array(word)
-    @word_array = []
-    @word_array << word
+  def self.hash(word, score)
+    @@word_hash[word] = score
+    print @@word_hash
+    @@word_hash.each { |k, v| puts k if v == @@word_hash.values.max }
+    score_highest(@@word_hash)
   end
 
-  # def self.points
-  #   @word_hash = {}
-  #   @word_hash[:@score] => @word
-  #
-  #
-  # end
-
-  def self.score_highest(word_array)
+  def self.score_highest(word_hash)
+    @@word_hash.each { |k, v| return k if v == @@word_hash.values.max }
   end
 
   def self.tie(a,b)
@@ -50,4 +49,10 @@ class Scrabble::Scoring
 
 end
 
-puts tst = Scrabble::Scoring.start_word('potato')
+# tst1 = Scrabble::Scoring.score('majesty')
+
+# tst2 = Scrabble::Scoring.score('potato')
+
+# tst3 = Scrabble::Scoring.score('apple')
+
+# tst4 = Scrabble::Scoring.score('hello')

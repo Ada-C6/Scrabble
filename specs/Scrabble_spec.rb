@@ -7,10 +7,6 @@ describe "Testing Scrabble" do
     expect (proc { Scrabble::Scoring.start_word(11)} ).must_raise ArgumentError
   end
 
-  # it "It must raise an ArgumentError if LETTER_SCORES[char] is not a Fixnum" do
-  #   expect (proc { Scrabble::Scoring.score("hellO")} ).must_raise ArgumentError
-  # end
-
   it "Testing to remove case sensitivity" do
     expect(Scrabble::Scoring.start_word("HeLLo")  ).must_equal("HELLO")
   end
@@ -22,5 +18,17 @@ describe "Testing Scrabble" do
   it "Testing to make sure 7 tiles gets an extra 50 points" do
     expect(Scrabble::Scoring.score("majesty")  ).must_equal(69)
   end
+
+  it "Testing to make sure the highest scoring word(s) are returned" do
+    expect(Scrabble::Scoring.score_highest({"HELLO": 8, "CAT": 5, "MAJESTY": 69})  ).must_equal("MAJESTY")
+  end
+
+  it "Testing to make sure tie returns word with exactly 7 characters" do
+    expect(Scrabble::Scoring.hash({"HELLO": 8, "CAT": 5, "MAJESTY": 69})  ).must_equal("MAJESTY")
+  end
+
+  # it "Testing to make sure all tied words are returned" do
+  #   expect(Scrabble::Scoring.score_highest({"HELLO": 8, "POTATO": 8, "CAT": 5})  ).must_equal("HELLO", "POTATO")
+  # end
 
 end
