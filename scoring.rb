@@ -50,12 +50,19 @@ module Scrabble
 
             score_result = {}
 
-            # WIP for test 2 of highest_score_from method
             array_of_words.map do |word|
                 score = self.score(word)
-                score_result["score"] = [word]
+                if score_result.keys.include?(score)
+                    score_result[score] += [word]
+                else
+                    score_result[score] = [word]
+                end
             end
-
+            puts score_result # @todo - delete/debug
+            highest_score = score_result.keys.max
+            winning_word = score_result[highest_score].first
+            puts winning_word # @todo - delete/debug
+            return winning_word
         end
 
     end # Scoring class
