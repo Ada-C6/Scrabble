@@ -24,25 +24,33 @@ module Scrabble
           end
           return score_array.reduce(:+) + 50
         else
-        word.each_char do |l|
-          score_array << SCORE_CHART.values_at(l).join.to_i
-        end
-        return score_array.reduce(:+)
+          word.each_char do |l|
+            score_array << SCORE_CHART.values_at(l).join.to_i
+          end
+          return score_array.reduce(:+)
         end
       end
 
       def self.highest_score_from(array_of_words)
         letters = []
         max = ""
-        # This block evaluates words with the same value
+        value  = " "
+        #This block evaluates words with the same value
         array_of_words.max_by do |i|
           letters << self.score(i)
           max = self.score(i)
         end
+
         if max == letters.detect { |b| letters.count(b) > 1}
-          array_of_words.min_by do |a|
-            a.length
-          end
+           if array_of_words.map{|s| s.length}.include?(7)
+             return array_of_words.max_by{|s| s.length} 
+          else
+            array_of_words.min_by do |w|
+              w.length
+              value = w
+            end
+            return value
+           end
         else
           array_of_words.max_by do |i|
             self.score(i)
