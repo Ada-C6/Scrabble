@@ -56,6 +56,32 @@ describe Scrabble::Scoring do
       highest_test << "GORILLA"
       Scrabble::Scoring.highest_score_from(highest_test).must_equal("GORILLA")
     end
-  end
 
+    it "in a tie, it should prefer fewer tiles" do
+      Scrabble::Scoring.new
+      tile_test = []
+      tile_test  << "LINES"
+      tile_test  << "DOG"
+      tile_test  << "RAT"
+      Scrabble::Scoring.highest_score_from(tile_test).must_equal("DOG")
+
+      it "in a tie, it should prefer a word with seven characters" do
+        Scrabble::Scoring.new
+        seven_test = []
+        seven_test  << "QQQQQJ"
+        seven_test  << "GORILLA"
+        seven_test  << "RAT"
+        Scrabble::Scoring.highest_score_from(seven_test).must_equal("GORILLA")
+      end
+
+      it "in a tie (same length and score), it should prefer first entry" do
+        Scrabble::Scoring.new
+        entry_test = []
+        entry_test  << "RAN"
+        entry_test  << "RAT"
+        Scrabble::Scoring.highest_score_from(entry_test).must_equal("RAN")
+      end
+
+    end
+  end
 end

@@ -29,7 +29,7 @@ module Scrabble
       "Y" => 4,
       "Z" => 10}
 
-    attr_accessor :word, :round_words, :bonus
+    attr_accessor :word, :round_words, :bonus, :highest_words
 
     def initialize
       @word = word
@@ -70,12 +70,25 @@ module Scrabble
       array_of_words.each do |word|
         scored_word[word] = self.score(word)
       end
-      return scored_word.max_by{|k,v| v}[0]
+      puts scored_word
+      max_score = scored_word.max_by{|k,v| v}[1]
+
+      @highest_words = {}
+
+      scored_word.each do |k,v|
+        if v == max_score
+          @highest_words[k] = v
+        end
+      end
+      return @highest_words
     end
 
+    # def self.tie_breaker(hash_of_highest_words)
+    #   if hash_of_highest_words.length > 1
+    #     
+    #   end
 
-
-
+    # end
   end
 end
 
@@ -83,3 +96,11 @@ Scrabble::Scoring.new
 Scrabble::Scoring.score("HOUSE")
 Scrabble::Scoring.score("ANIMAL")
 Scrabble::Scoring.score("DOG")
+
+
+Scrabble::Scoring.new
+Scrabble::Scoring.score("RAT")
+Scrabble::Scoring.score("LINES")
+Scrabble::Scoring.score("DOG")
+
+Scrabble::Scoring.highest_score_from(["LINES","DOG","RAT"])
