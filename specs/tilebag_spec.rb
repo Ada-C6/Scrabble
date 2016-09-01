@@ -6,20 +6,21 @@ require_relative '../lib/tilebag'
 
 describe 'testing tilebag class' do
 
-  it 'testing that tilebag exist' do
+  it 'testing that Tilebag exists' do
     expect(Scrabble::Tilebag.must_be_instance_of(Class))
   end
 
-  it 'LETTER_ARRAY constant Must return correct letter and number of letters remaining' do
-    expect(Scrabble::LETTER_ARRAY.rassoc("A").length.must_equal(9))
-    # expect(Scrabble::LETTER_ARRAY[:D]).must_equal(4)
-    # expect(Scrabble::LETTER_ARRAY[:B]).must_equal(2)
-    # expect(Scrabble::LETTER_ARRAY[:F]).must_equal(2)
-    # expect(Scrabble::LETTER_ARRAY[:K]).must_equal(1)
-    # expect(Scrabble::LETTER_ARRAY[:X]).must_equal(1)
-    # expect(Scrabble::LETTER_ARRAY[:Q]).must_equal(1)
+  it 'LETTER_ARRAY constant must return number of letters remaining for a given letter' do
+    expect(Scrabble::LETTER_ARRAY.assoc("A").length.must_equal(9))
+    expect(Scrabble::LETTER_ARRAY.assoc("E").length.must_equal(12))
+    expect(Scrabble::LETTER_ARRAY.assoc("J").length.must_equal(1))
+    expect(Scrabble::LETTER_ARRAY.assoc("L").length.must_equal(4))
   end
 
 
+  it 'new instance of Tilebag should have a @tiles instance variable that is equivalent to the LETTER_ARRAY constant' do
+    bag = Tilebag.new
+    expect(bag.must_equal(Scrabble::LETTER_ARRAY))
+  end
 
 end #end of describe

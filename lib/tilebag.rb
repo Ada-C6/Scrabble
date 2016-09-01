@@ -3,4 +3,9 @@ require_relative 'scrabble_scoring.rb'
 require_relative 'scrabble_player.rb'
 
 class Scrabble::Tilebag
+
+  def initialize
+
+  end
+  
 end
