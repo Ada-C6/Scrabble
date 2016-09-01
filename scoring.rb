@@ -60,15 +60,7 @@ module Scrabble
 
             greatest_val = scores.max
 
-            winners = []
-
-            index = 0
-            while index < words_array.length
-                if scores[index] == greatest_val
-                    winners << words_array[index]
-                end
-                index += 1
-            end
+            winners = words_array.find_all {|word| score(word) == greatest_val}
 
             if winners.length == 1
                 return winners[0]
@@ -84,4 +76,4 @@ module Scrabble
     end
 end
 
-# Scrabble::Scoring.highest_score_from(["tag", "rats", "tag", "aei"])
+# puts Scrabble::Scoring.highest_score_from(["tag", "rats", "tag", "aei"])
