@@ -41,8 +41,12 @@ module Scrabble
     end
 
     def highest_scoring_word
-      highest_score_from_array
+      Scrabble::Scoring.highest_score_from_array(@word_array)
     end
 
+    def highest_word_score
+      word = highest_scoring_word
+      return Scrabble::Scoring.score(word)
+    end
   end
 end

@@ -77,6 +77,20 @@ describe Scrabble::Player do
   end
 
   describe "#highest_scoring_word" do
+    it "should return a string" do
+      m = Scrabble::Player.new("Marcus")
+      m.play("anyword")
+      m.highest_scoring_word.must_be_kind_of String
+    end
 
+  describe "#highest_word_score" do
+    it "should return a number" do
+      m = Scrabble::Player.new("Marcus")
+      m.play("anyword")
+      m.highest_word_score.must_be_kind_of Fixnum
+    end
+
+
+  end
   end
 end
