@@ -61,23 +61,24 @@ module Scrabble
             greatest_val = scores.max
 
             winners = []
-            winners_lengths = []
 
             index = 0
             while index < words_array.length
                 if scores[index] == greatest_val
                     winners << words_array[index]
-                    winners_lengths << words_array[index].length
                 end
                 index += 1
             end
 
             if winners.length == 1
                 return winners[0]
-            elsif winners_lengths.include?(7)
-                return winners[winners_lengths.index(7)]
             else
-                return winners[winners_lengths.index(winners_lengths.min)]
+                seven_letters = winners.find {|word| word.length == 7}
+                if seven_letters != nil
+                    return seven_letters
+                else
+                    return winners.min_by { |word| word.length}
+                end
             end
         end
     end
