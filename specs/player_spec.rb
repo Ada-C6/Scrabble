@@ -55,11 +55,16 @@ describe Scrabble::Player do
             end
             john.total_score.must_equal(36)
         end
+
+        it "should return 0 if no words have been played" do
+          john = Scrabble::Player.new("John")
+          john.total_score.must_equal(0)
+
+        end
     end
 
     describe "#won?" do
         winning_array = ["staring", "zzzzzx"]
-        empty_array =[]
         losing_array = ["cat", "dog"]
 
         it "should return true if score is > 100" do
