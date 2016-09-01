@@ -4,6 +4,9 @@ require_relative '../scoring'
 
 describe Scrabble::Player do
   describe "#initialize" do
+    # Jen = complete; Maddie = middle, Dan = not started
+    let(:player) { Scrabble::Player.new("Jen") }
+
     it "can initialize a new instance of Player" do
       player = Scrabble::Player.new(:name)
       player.must_be_instance_of(Scrabble::Player)
