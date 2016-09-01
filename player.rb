@@ -13,6 +13,7 @@ module Scrabble
         end
 
         def play(word)
+
             if won?
               return false
             end
@@ -28,10 +29,16 @@ module Scrabble
         end
 
         def highest_scoring_word
+
+          if @plays == []
+            raise ArgumentError.new("Oops! You haven't played anything")
+          end
+
           return Scoring.highest_score_from(@plays)
         end
 
         def highest_word_score
+
           return Scoring.score(highest_scoring_word)
         end
 
@@ -39,6 +46,7 @@ module Scrabble
             num = 7 - @tiles.length
             @tiles.concat(bag.draw_tiles(num))
         end
+
     end
 end
 
