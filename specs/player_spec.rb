@@ -92,8 +92,30 @@ describe Scrabble::Player do
     end
   end
 
+  describe "#collection of letters per player (max 7)" do
+    jill = Scrabble::Player.new("Jill")
+
+    it "should return an array" do
+      jill.tiles.must_be_instance_of(Array)
+    end
+
+    # it "should return an array of 7 letters or less" do
+    #   jill.tiles.length.must_be( :<=, 7)
+    # end
+  end
+
+  describe "#draw_tiles" do
+    jessie = Scrabble::Player.new("jessie")
+    it "should return an array of 7 letters" do
+        jessie.draw_tiles.must_be( :<=, 7)
+    end
+  end
 
 end
+
+
+#tiles a collection of letters that the player can play (max 7)
+#draw_tiles(tile_bag) fills tiles array until it has 7 letters from the given tile bag
 
 
 # Returns false if player has already won

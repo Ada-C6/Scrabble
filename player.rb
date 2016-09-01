@@ -1,13 +1,15 @@
 require_relative 'scoring'
+require_relative 'tilebag'
 
 module Scrabble
   class Player
-    attr_reader :name, :plays, :total_score
+    attr_reader :name, :plays, :total_score, :players_hand
 
     def initialize(name)
       @name = name
       @plays = []
       @total_score = 0
+      @players_hand = []
     end
 
     def play(word)
@@ -35,6 +37,23 @@ module Scrabble
     def highest_word_score
       highest_word = highest_scoring_word
       Scrabble::Scoring.score(highest_word)
+    end
+
+    def tiles
+      @players_hand = []
+    end
+
+    def players_hand_incomplete?
+      @players_hand.length < 7
+    end
+
+    def draw_tiles
+      if players_hand_incomplete?
+        number_of_tiles_to_draw = (7 - @players_hand.length)
+        new_tiles = Scrabble::TileBag.draw_tiles(number_of_tiles_to_draw)
+        @players_hand += new_tiles
+      end
+      return @players_hand
     end
   end
 end
