@@ -10,6 +10,7 @@ module Scrabble
       @plays = []
       @total_score = 0
       @players_hand = []
+      @tile_bag = Scrabble::TileBag.new
     end
 
     def play(word)
@@ -50,7 +51,7 @@ module Scrabble
     def draw_tiles
       if players_hand_incomplete?
         number_of_tiles_to_draw = (7 - @players_hand.length)
-        new_tiles = Scrabble::TileBag.draw_tiles(number_of_tiles_to_draw)
+        new_tiles = @tile_bag.draw_tiles(number_of_tiles_to_draw)
         @players_hand += new_tiles
       end
       return @players_hand

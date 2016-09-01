@@ -107,7 +107,7 @@ describe Scrabble::Player do
   describe "#draw_tiles" do
     jessie = Scrabble::Player.new("jessie")
     it "should return an array of 7 letters" do
-        jessie.draw_tiles.must_be( :<=, 7)
+        jessie.draw_tiles.length.must_be( :<=, 7)
     end
   end
 
