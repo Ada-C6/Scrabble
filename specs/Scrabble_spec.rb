@@ -4,11 +4,11 @@ require_relative 'spec_helper.rb'
 describe "Testing Scrabble" do
 
   it "It must raise an ArgumentError if given a Fixnum" do
-    expect (proc { Scrabble::Scoring.start_word(11)} ).must_raise ArgumentError
+    expect (proc { Scrabble::Scoring.capitalize_word(11)} ).must_raise ArgumentError
   end
 
   it "Testing to remove case sensitivity" do
-    expect(Scrabble::Scoring.start_word("HeLLo")  ).must_equal("HELLO")
+    expect(Scrabble::Scoring.capitalize_word("HeLLo")  ).must_equal("HELLO")
   end
 
   it "Testing to make sure score is correct" do
@@ -19,31 +19,30 @@ describe "Testing Scrabble" do
     expect(Scrabble::Scoring.score("majesty")  ).must_equal(69)
   end
 
-  it "Testing to make sure passed in parameters beat the established winner variable" do
-    expect(Scrabble::Scoring.set_tie_winner("ROASTED", 9)  ).must_equal(["ROASTED", 9])
+  ##########
+
+  it "Testing to make sure the highest scoring word(s) are returned" do
+    expect(Scrabble::Scoring.score_highest(["HELLO", "APPLE", "PET"])  ).must_equal("APPLE")
   end
 
-  it "Testing to make sure a new winner is always set" do
-    expect(Scrabble::Scoring.set_tie_winner("MAJESTY", 69)  ).must_equal(["MAJESTY", 69])
+  it "Testing to make sure tie returns word with exactly 7 characters - ROUND 1" do
+    expect(Scrabble::Scoring.score_highest(["COASTED", "ZZZZZZ"])  ).must_equal("COASTED")
   end
 
-  # it "Testing to make sure the highest scoring word(s) are returned" do
-  #   expect(Scrabble::Scoring.score_highest({"HELLO": 8, "CAT": 5, "MAJESTY": 69})  ).must_equal("MAJESTY")
-  # end
+  it "Testing to make sure tie returns word with exactly 7 characters - ROUND 2 swapped indices" do
+    expect(Scrabble::Scoring.score_highest(["ZZZZZZ", "COASTED"])  ).must_equal("COASTED")
+  end
 
-  # it "Testing to make sure tie returns word with exactly 7 characters" do
-  #   expect(Scrabble::Scoring.hash({"ROASTED": 9, "ACHE":9})  ).must_equal("ROASTED")
-  # end
+  it "Testing to make sure tie returns shorter word if neither are 7 letters long" do
+    expect(Scrabble::Scoring.score_highest(["POTATO", "HELLO"])  ).must_equal("HELLO")
+  end
 
-  # it "Testing to make sure tie returns shorter word if neither word has a length of 7" do
-  #   expect(Scrabble::Scoring.hash({"ROASTED": 9, "APPLE":9})  ).must_equal("APPLE")
-  # end
+  it "Testing to make sure tie returns first word if both are 7 letters long" do
+    expect(Scrabble::Scoring.score_highest(["OOOOOOO", "AAAAAAA"])  ).must_equal("OOOOOOO")
+  end
 
-
-
-
-  # it "Testing to make sure all tied words are returned" do
-  #   expect(Scrabble::Scoring.score_highest({"HELLO": 8, "POTATO": 8, "CAT": 5})  ).must_equal("HELLO", "POTATO")
-  # end
+  it "Testing to make sure tie returns first word if words are same score and length and not 7 letters long" do
+    expect(Scrabble::Scoring.score_highest(["IT", "AS", "IN"])  ).must_equal("IT")
+  end
 
 end
