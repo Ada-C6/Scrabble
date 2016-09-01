@@ -19,8 +19,23 @@ describe 'testing tilebag class' do
 
 
   it 'new instance of Tilebag should have a @tiles instance variable that is equivalent to the LETTER_ARRAY constant' do
-    bag = Tilebag.new
-    expect(bag.must_equal(Scrabble::LETTER_ARRAY))
+    bag = Scrabble::Tilebag.new
+    expect(bag.tiles.must_equal(Scrabble::LETTER_ARRAY))
   end
+
+    it 'draw_tiles must return number of random tiles in parameter' do
+      bag = Scrabble::Tilebag.new
+    expect(bag.draw_tiles(4).length.must_equal(4))
+  end
+
+    it 'draw_tiles must remove the tiles chosen from @tiles' do
+      bag = Scrabble::Tilebag.new
+      bag.draw_tiles(4)
+      expect(@tiles).flatten.length.must_equal(94)
+    end
+
+    it 'draw_tiles must return an array' do
+    end
+
 
 end #end of describe
