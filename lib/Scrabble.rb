@@ -71,17 +71,46 @@ class Scrabble::Scoring
 
 end
 
-# puts x =  Scrabble::Scoring.score_highest(["COASTED", "ZZZZZZ"])
-#
-# puts y = Scrabble::Scoring.score_highest(["ZZZZZZ", "COASTED"])
-# puts tst5 = Scrabble::Scoring.tie(["ROASTED", "ACHE"])
 
-# tst1 = Scrabble::Scoring.score('majesty')
-#
-# tst2 = Scrabble::Scoring.score('potato')
-#
-# tst3 = Scrabble::Scoring.score('apple')
-#
-# tst4 = Scrabble::Scoring.score('hello')
+class Scrabble::Player
 
-# tst9 = Scrabble::Scoring.score_highest(["APPLE", "HELLO", "PET"])
+  attr_reader :name, :player_words
+
+  def initialize(name)
+
+    raise ArgumentError unless name.class == String
+    @name = name
+    @player_words = []
+  end
+
+  def plays
+    return @player_words
+  end
+
+  def play(word)
+
+    if won? == true
+      puts "You have already won"
+      return false
+    else
+      @player_words << word
+      return Scrabble::Scoring.score(word)
+    end
+  end
+
+  def total_score
+  end
+
+  def won?
+  end
+
+  def highest_scoring_word
+  end
+
+  def highest_score_word
+  end
+
+end
+
+# test1 = Scrabble::Player.new("Olivia")
+# puts test2 = test1.play("potato")
