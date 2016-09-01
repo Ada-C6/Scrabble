@@ -75,7 +75,7 @@ Create a `Scrabble::Player` class with a __minimum of 11 specs__. The only requi
 - `#highest_scoring_word`: Returns the highest scoring played word
 - `#highest_word_score`: Returns the `highest_scoring_word` score
 
-<!--
+
 ## Wave 3
 ### Primary Requirements
 #### `TileBag`
@@ -111,4 +111,4 @@ Create specs for (__minimum 2__) and add to the `Player` class the following ins
 ### Optional Enhancements
 - Create a `Scrabble::Dictionary` class that includes a method (class or instance) for searching a list of words to determine if a given word is valid (__minimum of 5 specs__).
 - Create a `Scrabble::Board` class (__minimum of 15 specs__) that has a matrix (array of arrays) of tile places. Check if a word can be played on a given tile place in a certain direction (up/down or left/right).
--->
+
