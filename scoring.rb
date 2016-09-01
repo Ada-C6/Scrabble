@@ -100,19 +100,3 @@ module Scrabble
     end
   end
 end
-
-# Scrabble::Scoring.new
-# Scrabble::Scoring.score("HOUSE")
-# Scrabble::Scoring.score("ANIMAL")
-# Scrabble::Scoring.score("DOG")
-#
-# 
-# Scrabble::Scoring.new
-# Scrabble::Scoring.score("RAT")
-# Scrabble::Scoring.score("LINES")
-# Scrabble::Scoring.score("DOG")
-#
-# Scrabble::Scoring.highest_score_from(["QQQQQJ", "GORILLA", "RAT"])
-# Scrabble::Scoring.highest_score_from(["QQQQQFF", "GORILLA", "RAT"])
-# Scrabble::Scoring.highest_score_from(["LINES","DOG","RAT"])
-# Scrabble::Scoring.highest_score_from(["LINES","dog".upcase,"GOD","RAT"])

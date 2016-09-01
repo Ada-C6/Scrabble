@@ -64,26 +64,41 @@ describe Scrabble::Player do
   describe "#highest_scoring_word" do
     it "return the highest scoring played word by a player" do
       Scrabble::Scoring.new
-      # can we use the Scoring class' highest_score_from method?
       player = Scrabble::Player.new("Jen")
-      player.highest_scoring_word.must_equal(Scrabble::Scoring.highest_score_from(player.plays))
+      player.play("BEAR")
+      player.play("CHEETAH")
+      player.play("RAT")
+      player.play("CAT")
+      player.highest_scoring_word.must_equal("CHEETAH")
     end
 
     it "should be a string" do
       player = Scrabble::Player.new("Jen")
-      player.plays.highest_scoring_word.must_be_instance_of(String)
+      player.play("BEAR")
+      player.play("CHEETAH")
+      player.play("RAT")
+      player.play("CAT")
+      player.highest_scoring_word.must_be_instance_of(String)
     end
   end
 
   describe "#highest_word_score" do
     it "should return the highest_scoring_word score" do
       player = Scrabble::Player.new("Jen")
-      player.plays.highest_word_score.must_equal(63)
+      player.play("BEAR")
+      player.play("CHEETAH")
+      player.play("RAT")
+      player.play("CAT")
+      player.highest_word_score.must_equal(65)
     end
 
     it "should be a fixnum" do
       player = Scrabble::Player.new("Jen")
-      player.plays.highest_word_score.must_be_instance_of(Fixnum)
+      player.play("BEAR")
+      player.play("CHEETAH")
+      player.play("RAT")
+      player.play("CAT")
+      player.highest_word_score.must_be_instance_of(Fixnum)
     end
 
   end

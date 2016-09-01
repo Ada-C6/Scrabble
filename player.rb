@@ -33,21 +33,31 @@ module Scrabble
     end
 
     def won?
+      if total_score >= 100
+        return true
+      else
+        return false
+      end
     end
 
     def highest_scoring_word
+      return Scrabble::Scoring.highest_score_from(@play_array)
     end
 
     def highest_word_score
+      return Scrabble::Scoring.score(highest_scoring_word)
     end
 
   end
 end
 
-jm = Scrabble::Player.new("JM")
-puts jm.play("BEAR")
-puts jm.play("CHEETAH")
-puts jm.play("RAT")
-puts jm.play("CAT")
-puts jm.plays
-puts jm.total_score
+# Program output verification:
+#
+# jm = Scrabble::Player.new("JM")
+# puts jm.play("BEAR")
+# puts jm.play("CHEETAH")
+# puts jm.play("RAT")
+# puts jm.play("CAT")
+# puts jm.plays
+# puts jm.total_score
+# puts jm.highest_word_score
