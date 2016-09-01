@@ -70,11 +70,22 @@ describe Scrabble::Player do
   end
 
   describe "#letters_in_players_hand?(word)" do
+    janis = Scrabble::Player.new("Janis")
+    janis.players_hand = %w(D G T O V E J)
     it "should return true if letters in word are all available in players_hand" do
-      janis = Scrabble::Player.new("Janis")
-      janis.players_hand = %w(D G T O V E J)
       janis.letters_in_players_hand?("DOG").must_equal(true)
     end
+
+    it "should return false if letters in word are not in players_hand" do
+      janis.letters_in_players_hand?("CAT").must_equal(false)
+    end
+
+
+############### TRYING TO MAKE SURE THE CORRECT LETTERS ARE REMOVED FROM HAND WHEN ACCURATE WORD IS PLAYED. CONSIDERED .length
+    # it "should remove letters from players hand if the is possible for word to be played" do
+    #   janis.letters_in_players_hand?("DOG")
+    #   janis.players_hand.must_match(%w(T V E J))
+    # end
   end
 
   describe "#won?" do
@@ -111,9 +122,9 @@ describe Scrabble::Player do
       jill.tiles.must_be_instance_of(Array)
     end
 
-    # it "should return an array of 7 letters or less" do
-    #   jill.tiles.length.must_be( :<=, 7)
-    # end
+    it "should return an array of 7 letters or less" do
+      jill.tiles.length.must_be( :<=, 7)
+    end
   end
 
   describe "#draw_tiles" do

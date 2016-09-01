@@ -21,15 +21,15 @@ module Scrabble
     def letters_in_players_hand?(word_played)
       check_hand = @players_hand
       word_array_to_delete_from = word_to_array(word_played)
-      puts word_array_to_delete_from
 
       word_array_to_delete_from.each do | letter |
         if check_hand.include?(letter)
-          puts check_hand.slice!(check_hand.index(letter))
+          check_hand.slice!(check_hand.index(letter))
         else
           return false
         end
       end
+      @players_hand.slice!(@players_hand.index(letter))
       return true
     end
 
