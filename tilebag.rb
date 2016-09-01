@@ -64,12 +64,22 @@ module Scrabble
         @letters.delete_at(pick)
       end
       return random_tiles
-
     end
 
+    def tiles_remaining
+     num_tiles_remaining = @letters.length
+     return num_tiles_remaining
+    end
   end
 end
 
+
+p= Scrabble::TileBag.new
+
+puts p.draw_tiles(4)
+puts p.tiles_remaining
+puts p.draw_tiles(8)
+puts p.tiles_remaining
 
 #initialize Called when you use TileBag.new, sets up an instance with a collection of default tiles
 # 	• #draw_tiles(num) returns num number of random tiles, removes the tiles from the default set.
