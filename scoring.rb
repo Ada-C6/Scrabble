@@ -44,12 +44,13 @@ module Scrabble
         end # self.score method
 
         def self.highest_score_from(array_of_words)
-            if array_of_words.class != Array || array_of_words.length == 0
+            if array_of_words.class != Array # || array_of_words.length == 0
                 raise ArgumentError, "Invalid input"
             end
 
             # create a hash that store the score-word(s) pairs
             score_result = {}
+            winning_array = []
 
             array_of_words.map do |word|
                 w = word.upcase
@@ -63,6 +64,7 @@ module Scrabble
 
             # retrieve the highest score key in the hash
             highest_score = score_result.keys.max
+            # @todo THIS IS WHERE WE HAVE NIL VALUE WHEN NOTHING IS PLAYED.
 
             # retrieve the array value corresponding to the highest score key in the hash
             winning_array = score_result[highest_score]
@@ -88,6 +90,8 @@ module Scrabble
                 end
             elsif winning_array.length == 1
                 winning_word = winning_array.first
+            elsif winning_array.length == 0
+                winning_word = nil
             end
 
             return winning_word

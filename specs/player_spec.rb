@@ -76,6 +76,14 @@ describe Scrabble::Player do
             score_player.plays = ['CAT', 'QQQQQJ', 'AAAAAAG']
             score_player.highest_scoring_word.must_equal('AAAAAAG')
         end
+
+        it "should return nil if no word has been played" do
+            # i.e. @plays array is empty
+            nil_player = Scrabble::Player.new("Jeremy")
+            nil_player.highest_scoring_word.must_equal(nil)
+            # @todo decide if we want to handle error or throw ArgumentError
+            # STUCK AT LINE 67 OF SCORING.RB
+        end
     end # highest_scoring_word
 
     describe "#highest_word_score" do
