@@ -13,7 +13,8 @@ module Scrabble
           return false
       else
           @plays << word
-          return Scrabble::Scoring.score(word)
+          word_score = Scrabble::Scoring.score(word)
+          return word_score
       end
     end
 

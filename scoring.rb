@@ -5,7 +5,7 @@ module Scrabble
 			2 => %w(D G),
 			3 => %w(B C M P),
 			4 => %w(F H V W Y),
-			5 => ["K"],
+			5 => %w(K),
 			8 => %w(J X),
 			10 => %w(Q Z)
 		}
@@ -13,12 +13,8 @@ module Scrabble
 		def self.score(word)
 			score = 0
 			user_word = word.upcase.split("")
-
-			if word.length < 1 || word.length > 7
-				raise ArgumentError.new("Invalid word length")
-			end
-
 			valid_letters = []
+
 			LETTERS.values.each do |array|
 				array.each do |letter|
 					valid_letters << letter
@@ -29,6 +25,10 @@ module Scrabble
 				if !valid_letters.include?(letter)
 					raise ArgumentError.new("Invalid characters")
 				end
+			end
+
+			if word.length < 1 || word.length > 7
+				raise ArgumentError.new("Invalid word length")
 			end
 
 			user_word.each do |letter|
@@ -47,7 +47,9 @@ module Scrabble
 		def self.highest_score_from(array_of_words)
 			scoring_hash = {}
 			max_words = []
+
 			raise ArgumentError.new("Invalid input type") if !array_of_words.is_a?(Array)
+
 			array_of_words.each do |word|
 				scoring_hash[word] = Scrabble::Scoring.score(word)
 			end
