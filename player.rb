@@ -3,7 +3,8 @@ require_relative 'tilebag'
 
 module Scrabble
   class Player
-    attr_reader :name, :plays, :total_score, :players_hand
+    attr_reader :name, :plays, :total_score
+    attr_accessor :players_hand
 
     def initialize(name)
       @name = name
@@ -11,6 +12,25 @@ module Scrabble
       @total_score = 0
       @players_hand = []
       @tile_bag = Scrabble::TileBag.new
+    end
+
+    def word_to_array(word_played)
+      word_played.upcase.split(//)
+    end
+
+    def letters_in_players_hand?(word_played)
+      check_hand = @players_hand
+      word_array_to_delete_from = word_to_array(word_played)
+      puts word_array_to_delete_from
+
+      word_array_to_delete_from.each do | letter |
+        if check_hand.include?(letter)
+          puts check_hand.slice!(check_hand.index(letter))
+        else
+          return false
+        end
+      end
+      return true
     end
 
     def play(word)
@@ -41,7 +61,7 @@ module Scrabble
     end
 
     def tiles
-      @players_hand = []
+      return @players_hand
     end
 
     def players_hand_incomplete?

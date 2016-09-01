@@ -46,6 +46,11 @@ describe Scrabble::Player do
     joan_wins = Scrabble::Player.new("Joan_wins")
     word = "scary"
 
+    # it "should only let the user play if they have the letters for that word" do
+    #   jewel = Scrabble::Player.new("Jewel")
+    #   jewel.players_hand = %w(D G T O V E J)
+    #   proc { jewel.play("DOG").must_equal(false)}.must_raise(ArgumentError)
+    # end
 
     it "should add input word to the plays Array" do
       joan.play(word)
@@ -64,6 +69,13 @@ describe Scrabble::Player do
     end
   end
 
+  describe "#letters_in_players_hand?(word)" do
+    it "should return true if letters in word are all available in players_hand" do
+      janis = Scrabble::Player.new("Janis")
+      janis.players_hand = %w(D G T O V E J)
+      janis.letters_in_players_hand?("DOG").must_equal(true)
+    end
+  end
 
   describe "#won?" do
     jenny = Scrabble::Player.new("Jenny")
