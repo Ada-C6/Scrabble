@@ -25,7 +25,9 @@ describe Scrabble::Player do
     end
 
     it "returns False if the player has won" do
-      Scrabble::Player.new("Shari").play("qqqqkkj").must_equal(false)
+      s = Scrabble::Player.new("Shari")
+      s.play("qqqqkkj")
+      s.play("cat").must_equal(false)
     end
   end
 
@@ -43,16 +45,19 @@ describe Scrabble::Player do
 
     it "returns true if player has over 100 points" do
       y = Scrabble::Player.new("Yuri")
-      if y.total_score == 101
-        y.won?.must_equal(true)
-      end
+      y.play("zzzzzzz")
+      y.total_score
+      y.won?.must_equal(true)
+
     end
 
     it "returns false if player score is 100 points or less" do
       k = Scrabble::Player.new("Kari")
-      if k.total_score == 90
-        k.won?.must_equal(false)
-      end
+      k.play("qqqj")
+      k.play("zzzzzz")
+      k.total_score
+      k.won?.must_equal(false)
+
     end
 
   end

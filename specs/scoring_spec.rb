@@ -28,7 +28,7 @@ describe Scrabble::Scoring do
     end
 
     it "adds 50 points if the string is 7 characters" do
-      Scrabble::Scoring.score("atatata").must_equal(57)
+      Scrabble::Scoring.score("zzzzzzz").must_equal(120)
     end
   end
 
