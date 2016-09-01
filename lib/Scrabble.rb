@@ -88,7 +88,6 @@ class Scrabble::Player
   end
 
   def play(word)
-
     if won? == true
       puts "You have already won"
       return false
@@ -99,9 +98,19 @@ class Scrabble::Player
   end
 
   def total_score
+    total_score = 0
+    @player_words.each do |word|
+      total_score += Scrabble::Scoring.score(word)
+    end
+    return total_score
   end
 
   def won?
+     if total_score > 100 #calls the method
+      return true
+    else
+      false
+    end
   end
 
   def highest_scoring_word
@@ -113,4 +122,9 @@ class Scrabble::Player
 end
 
 # test1 = Scrabble::Player.new("Olivia")
-# puts test2 = test1.play("potato")
+# test1.play("potato")
+# test1.play("apple")
+# test1.play("majesty")
+# test1.play("xylophone")
+# puts test1.total_score
+# puts test1.won?

@@ -55,14 +55,18 @@ describe "Testing Scrabble" do
   end
 
   it "Testing to make sure play(word) adds the input word to the plays array" do
-    skip # ** not done yet
-    expect(Scrabble::Player.plays(["POTATO"])  ).must_equal(["POTATO"])
+    test1 = Scrabble::Player.new("Olivia")
+    test1.play("potato")
+    test1.play("hello")
+    expect(test1.plays  ).must_equal(["POTATO","HELLO"])
   end
 
   it "Testing to make sure play(word) returns false if player has already won" do
-    skip # ** not done yet
     test1 = Scrabble::Player.new("Olivia")
-    expect(Scrabble::Player.plays(["POTATO"])  ).must_equal(false)
+    test1.play("potato")
+    test1.play("majesty")
+    test1.play("xylophone")
+    expect(test1.play("cheese")).must_equal(false)
   end
 
   it "Testing to make sure play(word) returns the word score if they haven't already won" do
@@ -71,28 +75,33 @@ describe "Testing Scrabble" do
   end
 
   it "Testing to make sure total(score) returns the sum of the scores of played words" do
-    skip
     test1 = Scrabble::Player.new("Olivia")
-    expect(Scrabble::Player.play("POTATO", "HELLO")  ).must_equal(16)
+    test1.play("potato")
+    test1.play("hello")
+    expect(test1.total_score).must_equal(16)
   end
 
-  it "Testing to make sure won works and returns true for 100 points" do
-    skip
+  it "Testing to make sure won works and returns false for less than 100 points" do
     test1 = Scrabble::Player.new("Olivia")
-    expect(Scrabble::Player.won?(100)  ).must_equal(true)
+    test1.play("potato")
+    test1.play("apple")
+    test1.play("majesty")
+    expect(test1.won?).must_equal(false)
   end
 
   it "Testing to make sure won works and returns true for over 100 points" do
-    skip
     test1 = Scrabble::Player.new("Olivia")
-    expect(Scrabble::Player.won?(101)  ).must_equal(true)
+    test1.play("potato")
+    test1.play("majesty")
+    test1.play("xylophone")
+    expect(test1.won?).must_equal(true)
   end
 
-  it "Testing to make sure won returns false for  < 100 points" do
-    skip
+  it "Testing to make sure won returns false for exactly 100 points" do
     test1 = Scrabble::Player.new("Olivia")
-    expect(Scrabble::Player.won?(99)  ).must_equal(false)
-      expect(Scrabble::Player.won?(0)  ).must_equal(false)
+    test1.play("ZZZZZ")
+    test1.play("ZZZZZ")
+    expect(test1.won? ).must_equal(false)
   end
 
   it "Testing to return highest scoring word" do
