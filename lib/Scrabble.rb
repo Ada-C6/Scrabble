@@ -114,9 +114,11 @@ class Scrabble::Player
   end
 
   def highest_scoring_word
+    return Scrabble::Scoring.score_highest(@player_words)
   end
 
-  def highest_score_word
+  def highest_word_score
+    return Scrabble::Scoring.score(highest_scoring_word)
   end
 
 end

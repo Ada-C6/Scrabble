@@ -31,12 +31,13 @@ describe "Testing Scrabble" do
     expect(Scrabble::Scoring.score_highest(["ZZZZZZ", "COASTED"])  ).must_equal("COASTED")
   end
 
-  it "Testing to make sure tie returns shorter word if neither are 7 letters long" do
-    expect(Scrabble::Scoring.score_highest(["POTATO", "HELLO"])  ).must_equal("HELLO")
-  end
-
   it "Testing to make sure tie returns first word if both are 7 letters long" do
     expect(Scrabble::Scoring.score_highest(["OOOOOOO", "AAAAAAA"])  ).must_equal("OOOOOOO")
+  end
+
+  it "Testing to make sure tie returns shorter word if neither are 7 letters long" do
+    expect(Scrabble::Scoring.score_highest(["POTATO", "HELLO"])  ).must_equal("HELLO")
+      expect(Scrabble::Scoring.score_highest(["POTATO", "HELLO"])  ).must_equal("HELLO")
   end
 
   it "Testing to make sure tie returns first word if words are same score and length and not 7 letters long" do
@@ -105,15 +106,19 @@ describe "Testing Scrabble" do
   end
 
   it "Testing to return highest scoring word" do
-    skip
     test1 = Scrabble::Player.new("Olivia")
-    expect(Scrabble::Player.highest_scoring_word(["POTATO", "CAT", "PET"])  ).must_equal("POTATO")
+    test1.play("potato")
+    test1.play("majesty")
+    test1.play("xylophone")
+    expect(test1.highest_scoring_word).must_equal("MAJESTY")
   end
 
   it "Testing to return highest scoring word score" do
-    skip
     test1 = Scrabble::Player.new("Olivia")
-    expect(Scrabble::Player.highest_word_score(["POTATO", "CAT", "PET"])  ).must_equal(8)
+    test1.play("potato")
+    test1.play("majesty")
+    test1.play("xylophone")
+    expect(test1.highest_word_score).must_equal(69)
   end
 
 end
