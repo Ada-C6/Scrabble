@@ -39,5 +39,21 @@ module Scrabble
                 end
               end
         end # initialize
+
+        def draw_tiles(num)
+            if !num.is_a?(Fixnum)
+                raise ArgumentError, "Invalid input"
+            end
+
+            @collection.shuffle!
+
+            draw_array = @collection.pop(num)
+
+            return draw_array
+        end
+
+        def tiles_remaining
+            return @collection.length
+        end
     end # TileBag
 end # Scrabble
