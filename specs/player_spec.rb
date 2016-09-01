@@ -48,14 +48,37 @@ describe Scrabble::Player do
       player.play("CAT")
       player.total_score.must_equal(79)
     end
+
+    it "should be a Fixnum" do
+      player = Scrabble::Player.new("Jen")
+      player.play("BEAR")
+      player.play("CHEETAH")
+      player.play("RAT")
+      player.play("CAT")
+      player.total_score.must_be_instance_of(Fixnum)
+    end
   end
 
   describe "#won?" do
-    it "should display if the person has won the game or not" do
+    it "should display if the person has won the game" do
       player = Scrabble::Player.new("Jen")
+      player.play("BEAR")
+      player.play("CHEETAH")
+      player.play("RAT")
+      player.play("CAT")
+      player.play("QQQQQJ")
       if player.total_score >= 100
         player.won?.must_equal(true)
-      else
+      end
+    end
+
+    it "should display if the person has won the game or not" do
+      player = Scrabble::Player.new("Jen")
+      player.play("BEAR")
+      player.play("CHEETAH")
+      player.play("RAT")
+      player.play("CAT")
+      if player.total_score < 100
         player.won?.must_equal(false)
       end
     end
@@ -72,7 +95,7 @@ describe Scrabble::Player do
       player.highest_scoring_word.must_equal("CHEETAH")
     end
 
-    it "should be a string" do
+    it "should be a String" do
       player = Scrabble::Player.new("Jen")
       player.play("BEAR")
       player.play("CHEETAH")
@@ -92,7 +115,7 @@ describe Scrabble::Player do
       player.highest_word_score.must_equal(65)
     end
 
-    it "should be a fixnum" do
+    it "should be a Fixnum" do
       player = Scrabble::Player.new("Jen")
       player.play("BEAR")
       player.play("CHEETAH")
@@ -100,7 +123,5 @@ describe Scrabble::Player do
       player.play("CAT")
       player.highest_word_score.must_be_instance_of(Fixnum)
     end
-
   end
-
 end
