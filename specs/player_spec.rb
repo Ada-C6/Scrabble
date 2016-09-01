@@ -58,5 +58,25 @@ describe Scrabble::Player do
       m.play("anyword")
       m.total_score.must_be_kind_of Fixnum
     end
+
+    it "should correctly add all numbers within the array" do
+        m = Scrabble::Player.new("Marcus")
+        m.play("A")
+        m.play("AEEE")
+
+        m.total_score.must_equal(5)
+    end
+  end
+
+  describe "#won?" do
+    it "should return true if total_score is 100" do
+      m = Scrabble::Player.new("Marcus")
+      m.play("ZZZZBBF")
+      m.won?.must_equal(true)
+    end
+  end
+
+  describe "#highest_scoring_word" do
+
   end
 end

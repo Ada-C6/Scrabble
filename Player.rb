@@ -1,4 +1,4 @@
-require_relative 'scoring'
+require_relative 'Scoring'
 
 module Scrabble
   class Player
@@ -20,11 +20,28 @@ module Scrabble
       @word_array << word
       score = Scrabble::Scoring.score(word)
       @score_array << score
-      return score
+      if won? == true
+        puts "You won!"
+        return false
+      else
+        return score
+      end
     end
 
     def total_score
       @score_array.reduce(:+)
+    end
+
+    def won?
+      if total_score >= 100
+        return true
+      else
+        return false
+      end
+    end
+
+    def highest_scoring_word
+      highest_score_from_array
     end
 
   end
