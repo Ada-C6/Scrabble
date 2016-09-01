@@ -10,16 +10,16 @@ describe 'testing tilebag class' do
     expect(Scrabble::Tilebag.must_be_instance_of(Class))
   end
 
-  it 'Must return correct key value pair of letter and number of letters' do
-    expect(Scrabble::LETTER_HASH[:A]).must_equal(9)
-    expect(Scrabble::LETTER_HASH[:D]).must_equal(4)
-    expect(Scrabble::LETTER_HASH[:B]).must_equal(2)
-    expect(Scrabble::LETTER_HASH[:F]).must_equal(2)
-    expect(Scrabble::LETTER_HASH[:K]).must_equal(1)
-    expect(Scrabble::LETTER_HASH[:X]).must_equal(1)
-    expect(Scrabble::LETTER_HASH[:Q]).must_equal(1)
+  it 'LETTER_ARRAY constant Must return correct letter and number of letters remaining' do
+    expect(Scrabble::LETTER_ARRAY.rassoc("A").length.must_equal(9))
+    # expect(Scrabble::LETTER_ARRAY[:D]).must_equal(4)
+    # expect(Scrabble::LETTER_ARRAY[:B]).must_equal(2)
+    # expect(Scrabble::LETTER_ARRAY[:F]).must_equal(2)
+    # expect(Scrabble::LETTER_ARRAY[:K]).must_equal(1)
+    # expect(Scrabble::LETTER_ARRAY[:X]).must_equal(1)
+    # expect(Scrabble::LETTER_ARRAY[:Q]).must_equal(1)
   end
 
 
 
-end#end of spec
+end #end of describe
