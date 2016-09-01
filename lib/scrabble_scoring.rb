@@ -105,5 +105,5 @@ class Scrabble::Scoring
 
 
 end # end of Scoring class
-
-puts Scrabble::Scoring.tiebreaker(["sabrina", "knitting"])
+# 
+# puts Scrabble::Scoring.tiebreaker(["sabrina", "knitting"])
