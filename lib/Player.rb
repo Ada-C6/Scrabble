@@ -4,7 +4,7 @@ require_relative "../lib/Scoring"
 class Scrabble::Player
 
   attr_reader :name
-  
+
   def initialize(name)
     @name = name
     @word_score = 0
@@ -14,20 +14,21 @@ class Scrabble::Player
   end
 
   def plays
-    # returns Array of words played by player: # words_by_player = []
+    # returns Array of words played
     return @words_by_player
   end
 
   def play(word)
-    #play(word): Adds the input word to the plays Array:words_by_player
-    # if score, returns false if player has already won
+    # play(word): Function: adds the input word to words_by_player
+    # returns false if player has already won, otherwise return @word_score
 
     if @total_score > 100
       return false
     end
+
     @words_by_player << word
-    # Returns the score of the word: @word_score
     @word_score = Scrabble::Scoring.score(word)
+
     return @word_score
   end
 
@@ -36,11 +37,12 @@ class Scrabble::Player
     @words_by_player.each do |word|
        @total_score += Scrabble::Scoring.score(word)
     end
+
     return @total_score
   end
 
   def won?
-    # If the player has over 100 points, returns true, otherwise returns false: if statement, total_score >= 100 return true else return false
+    # If the player has over 100 points, returns true, otherwise returns false
     if @total_score >= 100
       return true
     else
@@ -54,13 +56,11 @@ class Scrabble::Player
   end
 
   def highest_word_score
-    # Returns the highest_scoring_word score
-    # include?? highest_score_from but also return max_scoring_word somehow??
+    # Returns the highest_scoring_word's score
     # proudest moment for Rachel lol
     high_score_word = highest_scoring_word
     highest_score = Scrabble::Scoring.score(high_score_word)
     return highest_score
-
   end
 
 # additonal wave 3 requirement:
