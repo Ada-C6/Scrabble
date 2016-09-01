@@ -3,31 +3,34 @@ module Scrabble
 
   class Player
     attr_reader :name
-    attr_accessor :plays
+    attr_accessor :plays, :final_score, :scores
 
     def initialize(name)
       @name = name
       @plays = []
       @scores = []
+      @final_score = 0
     end
 
     def play(word)
       @plays << word
 
-      if Scoring.score(word) >= 100
+      if won?
         return false
       else
         @scores << Scoring.score(word)
+        total_score
         return Scoring.score(word)
       end
     end
 
     def total_score
-      return @scores.reduce(:+)
+      @final_score = @scores.reduce(:+)
+      return @final_score
     end
 
     def won?
-      total_score > 100
+     @final_score >= 100
     end
 
     def highest_scoring_word
@@ -37,8 +40,6 @@ module Scrabble
     def highest_word_score
     return @scores.max
     end
-
-
 
 
   end
