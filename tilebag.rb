@@ -35,6 +35,21 @@ module Scrabble
       }
     end
 
+    def draw_tiles(num)
+      return_tiles = []
+
+      num.times do
+        tile = @all_tiles.keys.shuffle.pop
+        return_tiles << tile
+        @all_tiles[tile] -= 1
+      end
+
+      return return_tiles
+    end
+
+    def tiles_remaining
+      return @all_tiles.values.reduce(:+)
+    end
 
   end
 end

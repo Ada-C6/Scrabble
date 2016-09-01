@@ -9,7 +9,7 @@
 /test/tmp/
 /test/version_tmp/
 /tmp/
-/spec/.DS_Store
+/specs/.DS_Store
 .DS_Store
 
 ## Specific to RubyMotion:
