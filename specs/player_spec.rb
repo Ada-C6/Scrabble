@@ -84,9 +84,9 @@ describe Scrabble::Player do
         player_test.highest_scoring_word.must_equal("penguin")
       end
 
-      it "will raise a TypeError if no words have been played" do
-          proc {player_test.highest_scoring_word}.must_raise(TypeError)
-      end
+      # it "will raise a TypeError if no words have been played" do
+      #     proc {player_test.highest_scoring_word}.must_raise(TypeError)
+      # end
 
     end
 
@@ -99,8 +99,8 @@ describe Scrabble::Player do
         player_test.highest_word_score.must_equal(60)
       end
 
-      it "will raise a TypeError if no words have been played" do
-          proc {player_test.highest_word_score}.must_raise(TypeError)
-      end
+      # it "will raise a TypeError if no words have been played" do
+      #     proc {player_test.highest_word_score}.must_raise(TypeError)
+      # end
     end
 end
