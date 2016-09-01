@@ -28,14 +28,13 @@ describe Scrabble::TileBag do
   describe "#draw_tiles(num)" do
     it "should return the same number of tiles as the player's last word played" do
       tiles = Scrabble::TileBag.new
-
-      tiles.draw_tiles(num).must_equal(Scrabble::Scoring.word.length)
+      word = "BEAR"
+      tiles.draw_tiles(num).must_equal(word.length)
     end
 
     it "should remove the newly drawn tiles from the default set" do
       tiles = Scrabble::TileBag.new
-      player = Scrabble::Player.new("Jen")
-      player.play("SQUEEZE")
+      word = "BEAR"
       tiles.draw_tiles(num).must_equal( 98 - tiles.letters_available.length)
     end
   end

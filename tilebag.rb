@@ -50,6 +50,12 @@ module Scrabble
       return @letters_available
     end
 
+    # WIP: need to determine slice logic
+    def draw_tiles(num)
+      @letters_available = @letters_available [num, 99]
+      return num
+    end
+
   end
 
 end
