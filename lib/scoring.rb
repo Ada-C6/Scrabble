@@ -1,3 +1,4 @@
+# @todo fix error for empty word
 module Scrabble
 
   class Scoring
@@ -40,7 +41,12 @@ module Scrabble
 
     end
 
-    def self.score(word)
+    def self.score(word) #won't raise error for '' whyyyy
+      invalid_words = word.upcase[/[^A-Z]/]
+      current_word = word.upcase
+
+      raise ArgumentError.new("Invalid word") if
+      invalid_words == current_word
       score = 0
       word_array = word.upcase.split(//)
       word_array.each do |letter|

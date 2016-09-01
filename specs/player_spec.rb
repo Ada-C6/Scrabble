@@ -13,6 +13,7 @@ module Scrabble
       it "must respond to name attribute" do
         player.must_respond_to(:name)
       end
+
     end
 
     describe "#plays" do
@@ -28,6 +29,10 @@ module Scrabble
 
     describe "#play(word)" do
       let(:player) { Player.new("Alma") }
+      it "          " do 
+      # @todo fix this for error with no word played
+
+      end
 
       it "should append words to @words_played" do
         player.play("dog")

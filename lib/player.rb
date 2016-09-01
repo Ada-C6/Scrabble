@@ -16,6 +16,7 @@ module Scrabble
     end
 
     def play(word)
+        raise ArgumentError.new("Invalid word") if word.upcase[/[A-Z]+/] != word.upcase
       if @winner == true
         return false
       end
@@ -53,8 +54,6 @@ module Scrabble
     end
 
   end
-
-
 
 
 

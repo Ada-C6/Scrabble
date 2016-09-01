@@ -16,6 +16,10 @@ describe Scoring do
   end
 
   describe "#self.score(word)" do
+    it "should raise an error when tile is invalid" do
+      proc { Scoring.score('3') }.must_raise(ArgumentError)
+      proc { Scoring.score(' ') }.must_raise(ArgumentError)
+    end
     it "method will return a fixnum" do
       Scoring.score("string").must_be_instance_of(Fixnum)
     end
