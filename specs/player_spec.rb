@@ -108,6 +108,35 @@ end
     player1.play("cat")
     player1.play("milk")
     expect(player1.highest_word_score).must_equal(14)
-    end
+  end
+  #11
+  it 'Do tiles and draw_tiles methods appropiately subtract from tile bag /tiles remaining category.' do
+    player1 = Scrabble::Player.new("Frida Kahlo")
+    player1.tiles
+    player1.play("Cat")
+    player1.draw_tiles(3)
+    expect(tilebag1.tiles_remaining).must_equal(90)
+  end
+  #12
+  it 'Player cannot exceed 7 tiles in their hand' do
+    player1 = Scrabble::Player.new("Frida Kahlo")
+    player1.tiles
+    player1.play("Cat")
+    expect(player1.draw_tiles(4)).must_equal("You can't draw that amount of tiles.")
+  end
+  #13
+  it 'Test Player can draw 7 tiles' do
+    player1 = Scrabble::Player.new("Frida Kahlo")
+    picked_tiles << player1.tiles
+    player1.play("absent") # player plays 6 letter word.
+    player1.draw_tiles(6) # grabs 6 more.
+    expect(picked_tiles.length).must_equal(7)
+  end
+  #14
+  it 'Ensure player starts with a set of 7 tiles.' do
+    player1 = Scrabble::Player.new("Frida Kahlo")
+    picked_tiles << player1.tiles
+    expect(picked_tiles.length).must_equal(7)
+  end
 
 end

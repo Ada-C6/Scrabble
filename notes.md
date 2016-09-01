@@ -6,6 +6,13 @@ AAAAAAAAABBCCDDDDEEEEEEEEEEEEFFGGGHHIIIIIIIIIJKLLLLMMNNNNNNOOOOOOOOPPQRRRRRSSSST
 [["A", "C", "D", "G"]["M", "C"]]
 ["A", "C", "D", "G", "M", "C"]
 
+#notes: fills the tile tile array until it has 7 letters from the given tile bag.
+
+#note: Each play should only ever had 7 tiles in their hand. Until, their our not enough tiles to reach 7.
+
+#note: Each player should only ever have 7 tiles in their hand. Until, their our no enough tiles to reach 7.
+
+
 
 
 

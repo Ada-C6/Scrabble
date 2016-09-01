@@ -1,9 +1,11 @@
 require_relative "../module"
 require_relative "../lib/Scoring"
+require_relative "../lib/TileBag"
+# :: module reference
 
-class Scrabble::Player
+class Scrabble::Player < Scrabble::TileBag
 
-  attr_reader :name
+  attr_reader :name, :picked_tiles
 
   def initialize(name)
     @name = name
@@ -25,17 +27,27 @@ class Scrabble::Player
     if @total_score > 100
       return false
     end
-
-    @words_by_player << word
-    @word_score = Scrabble::Scoring.score(word)
-
-    return @word_score
+    #picked_tiles = []
+    #player1.play("C", "A", "T")
+      #if .any letters dont ! == playershand.
+        #throw an error
+      #else
+        #continue playing
+      #end
+    letters_played = word.char
+    if letters_played.all? { |letter| letter.include? picked_tiles }
+      @words_by_player << word
+      @word_score = Scrabble::Scoring.score(word)
+      return @word_score
+    else
+      return "You can't don't have correct letters to play that word, friend!"
+    end
   end
 
   def total_score
     # Returns the sum of scores of played words: @total_score
     @words_by_player.each do |word|
-       @total_score += Scrabble::Scoring.score(word)
+      @total_score += Scrabble::Scoring.score(word)
     end
 
     return @total_score
@@ -65,24 +77,38 @@ class Scrabble::Player
 
 # additonal wave 3 requirement:
   def tiles
-# a collection of letters that they player can play. At (max: 7).
-#when plays a workd, make sure he has letters so that he can play the word, and then remove tiles from the bag 
-
+# a collection of letters that they player can play.(max: 7).
+#when plays a word, make sure user has letters so that they can play their word, and then remove tiles from the bag
+#[come back to this. ]
+    tilebag1 = Scrabble::TileBag.new
+    # taking this logic out:
+    # picked_tiles << @flattened_default_tile_bag.pop(7)
+    tilebag1.draw_tiles(7)
   end
-  def draw_tiles(tilebag)
-# fills the tile tile array until it has 7 letters from the given tile bag.
 
+  def draw_tiles(num_of_tiles)
+# fills the tile array until it has 7 letters from the given tile bag.
+
+    if @picked_tiles + num_of_tiles >= 7
+      return "hit error!"
+    else
+      # inherit from Tilebag class. & figure out proper syntax.
+      super + tilebag1
+    end
   end
-
-
 end
 
 
 
 
-# player1 = Scrabble::Player.new("Joe")
+
+player1 = Scrabble::Player.new("Joe")
+puts  player1.tiles.play("cat")
+
+
+
 # puts player1.play("cats")
-# #=> ["cats"] 6
+#=> ["cats"] 6
 
 # same length, same score.
 # player1 = Scrabble::Scoring.total_score([["sizzles", "fuzz", "dog", "cat"])
