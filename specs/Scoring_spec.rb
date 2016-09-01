@@ -78,6 +78,10 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.highest_score_from_array(["sdf","sdfds"]).must_be_kind_of String
     end
 
+    it "should return the first word in a tie" do
+      test_array = ["J", "X"] #J and X are both worth 8 points
+      Scrabble::Scoring.highest_score_from_array(test_array).must_equal("J")
+    end
   end
 
   # Defunct collect game words into arrya (We don't need this right now, hopefully never)
