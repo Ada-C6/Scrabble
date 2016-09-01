@@ -20,12 +20,12 @@ describe Scrabble::Player do
     end
 
     describe "#play(word)" do
-        test_array = ["hex", "bats", "kittys"]
-        winning_array = ["staring", "zzzzzx"]
 
         it "should add player's words to @plays array" do
             john = Scrabble::Player.new("John")
-            test_array.each do |word|
+            played_words = ["hex", "bats", "kittys"]
+
+            played_words.each do |word|
                 john.play(word)
             end
             john.plays.length.must_equal(3)
@@ -38,6 +38,8 @@ describe Scrabble::Player do
 
         it "should return false if player has won" do
             john = Scrabble::Player.new("John")
+            winning_array = ["staring", "zzzzzx"]
+
             winning_array.each do |word|
                 john.play(word)
             end
@@ -47,10 +49,12 @@ describe Scrabble::Player do
     end
 
     describe "#total_score" do
-        other_test = ["kittys", "fox", "cat", "dog"]
+
         it "should return sum of all words' scores" do
             john = Scrabble::Player.new("John")
-            other_test.each do |word|
+            animals = ["kittys", "fox", "cat", "dog"]
+
+            animals.each do |word|
                 john.play(word)
             end
             john.total_score.must_equal(36)
@@ -64,11 +68,10 @@ describe Scrabble::Player do
     end
 
     describe "#won?" do
-        winning_array = ["staring", "zzzzzx"]
-        losing_array = ["cat", "dog"]
 
         it "should return true if score is > 100" do
             john = Scrabble::Player.new("John")
+            winning_array = ["staring", "zzzzzx"]
 
             winning_array.each do |word|
                 john.play(word)
@@ -84,6 +87,8 @@ describe Scrabble::Player do
 
         it "should return false if not winning" do
             john = Scrabble::Player.new("John")
+            losing_array = ["cat", "dog"]
+
             losing_array.each do |word|
                 john.play(word)
             end
@@ -92,11 +97,12 @@ describe Scrabble::Player do
     end
 
     describe "#highest_scoring_word" do
-        other_test = ["kittys", "fox", "cat", "dog"] # => "fox"
 
         it "should return the highest scoring word played" do
             john = Scrabble::Player.new("John")
-            other_test.each do |word|
+            animals = ["kittys", "fox", "cat", "dog"] # => "fox"
+
+            animals.each do |word|
                 john.play(word)
             end
 
@@ -113,8 +119,8 @@ describe Scrabble::Player do
     describe "#highest_word_score" do
         it "must return the numerical score of highest_scoring_word" do
             john = Scrabble::Player.new("John")
-            other_test = ["kittys", "fox", "cat", "dog"]
-            other_test.each do |word|
+            animals = ["kittys", "fox", "cat", "dog"]
+            animals.each do |word|
                 john.play(word)
             end
             john.highest_word_score.must_equal(13)
