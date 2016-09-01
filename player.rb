@@ -11,7 +11,6 @@ module Scrabble
     end
 
     def plays
-
       return @play_array
     end
 
@@ -26,6 +25,11 @@ module Scrabble
     end
 
     def total_score
+      sum = 0
+      @play_array.each do |word|
+        sum += Scrabble::Scoring.score(word)
+      end
+      return sum
     end
 
     def won?
@@ -42,8 +46,8 @@ end
 
 jm = Scrabble::Player.new("JM")
 puts jm.play("BEAR")
-puts jm.plays
 puts jm.play("CHEETAH")
 puts jm.play("RAT")
 puts jm.play("CAT")
 puts jm.plays
+puts jm.total_score

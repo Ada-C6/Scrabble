@@ -13,6 +13,10 @@ describe Scrabble::Player do
   describe "#plays" do
     it "should have an array of played words" do
       player = Scrabble::Player.new("Jen")
+      player.play("BEAR")
+      player.play("CHEETAH")
+      player.play("RAT")
+      player.play("CAT")
       player.plays.must_equal(["BEAR", "CHEETAH", "RAT", "CAT"])
     end
   end
@@ -37,8 +41,12 @@ describe Scrabble::Player do
 
   describe "#total_score" do
     it "should return the sum of the scores of played words" do
-      Scrabble::Player.new("Jen")
-      ["BEAR", "CHEETAH", "RAT", "CAT"].must_equal(77)
+      player = Scrabble::Player.new("Jen")
+      player.play("BEAR")
+      player.play("CHEETAH")
+      player.play("RAT")
+      player.play("CAT")
+      player.total_score.must_equal(79)
     end
   end
 
