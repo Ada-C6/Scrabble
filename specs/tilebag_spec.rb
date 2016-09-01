@@ -9,6 +9,12 @@ p = Scrabble::TileBag.new
 	 	p.must_be_instance_of(Scrabble::TileBag)
 	  end
   end
+
+	describe "draw_tiles" do
+		it "should return designated number of random tiles" do
+			p.draw_tiles(2).class.must_equal(Array)
+		end
+	end
 end
 
 
