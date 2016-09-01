@@ -42,11 +42,21 @@ module Scrabble
         end
 
         def highest_scoring_word
-            return Scrabble::Scoring.highest_score_from(@plays)
+            if @plays.length == 0
+                puts "This player hasn't played yet."
+                return nil
+            else
+                return Scrabble::Scoring.highest_score_from(@plays)
+            end
         end
 
         def highest_word_score
-            return Scrabble::Scoring.score(highest_scoring_word)
+            if highest_scoring_word == nil
+                puts "He/she has no score!"
+                return nil
+            else
+                return Scrabble::Scoring.score(highest_scoring_word)
+            end
         end
     end # Player class
 end # Scrabble class

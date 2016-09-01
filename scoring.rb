@@ -44,7 +44,9 @@ module Scrabble
         end # self.score method
 
         def self.highest_score_from(array_of_words)
-            if array_of_words.class != Array # || array_of_words.length == 0
+            if array_of_words.class != Array
+                raise ArgumentError, "Invalid input"
+            elsif array_of_words.length == 0
                 raise ArgumentError, "Invalid input"
             end
 
@@ -68,6 +70,7 @@ module Scrabble
 
             # retrieve the array value corresponding to the highest score key in the hash
             winning_array = score_result[highest_score]
+            puts winning_array.class
 
             # check whether winning array has 1 word or >1 word
             if winning_array.length > 1

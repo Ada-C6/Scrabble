@@ -77,10 +77,11 @@ describe Scrabble::Player do
             score_player.highest_scoring_word.must_equal('AAAAAAG')
         end
 
-        it "should return nil if no word has been played" do
+        it "should return an argument error if no word has been played" do
             # i.e. @plays array is empty
             nil_player = Scrabble::Player.new("Jeremy")
             nil_player.highest_scoring_word.must_equal(nil)
+            # proc {nil_player.highest_scoring_word}.must_raise(ArgumentError)
             # @todo decide if we want to handle error or throw ArgumentError
             # STUCK AT LINE 67 OF SCORING.RB
         end
