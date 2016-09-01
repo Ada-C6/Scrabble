@@ -29,8 +29,9 @@ module Scrabble
 
     describe "#play(word)" do
       let(:player) { Player.new("Alma") }
-      it "          " do 
-      # @todo fix this for error with no word played
+
+      it "should raise an error if word is not provided at all" do
+        proc{player.play('')}.must_raise(ArgumentError) 
 
       end
 
