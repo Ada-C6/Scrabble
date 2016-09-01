@@ -66,6 +66,7 @@ class Scrabble::Player
 # additonal wave 3 requirement:
   def tiles
 # a collection of letters that they player can play. At (max: 7).
+#when plays a workd, make sure he has letters so that he can play the word, and then remove tiles from the bag 
 
   end
   def draw_tiles(tilebag)

@@ -27,19 +27,18 @@ describe Scrabble::TileBag do
 #4
   it "After drawing 100 tiles, remaining tiles should = 0" do
     tilebag1 = Scrabble::TileBag.new
-    tilebag1.draw_tiles(100)
-
+    tilebag1.draw_tiles(50)
+    tilebag1.draw_tiles(50)
     expect(tilebag1.tiles_remaining).must_equal(0)
   end
 #5
+  it "Throw an error if you try to draw more than there are left in the bag." do
+    tilebag1 = Scrabble::TileBag.new
+    tilebag1.draw_tiles(50)
+    tilebag1.draw_tiles(48)
+    expect(tilebag1.draw_tiles(5)).must_equal("You can't draw that number of tiles. There are not enough tiles left in the bag.")
+  end
 
-
-    # check total tiles -> 7 tiles (check edge cases for that)
-    # what happens if draw and no more tiles left in bag - Throw error if draw more than that
 
 
 end
-
-#
-#
-#
