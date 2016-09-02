@@ -29,12 +29,5 @@ describe Scrabble::Dictionary do
       proc {Scrabble::Dictionary.word_valid?(word)}.must_raise(ArgumentError)
       # Scrabble::Dictionary.word_valid?(word)
     end
-
-    # it "should raise an error if a word is not in the dictionary" do
-    #   word = "tpain"
-    #   Scrabble::Dictionary.word_valid?(word).must_equal(false).must_raise
-    # end
   end
 end
-
-#### technically, the words in the dictionary shouldn't contain more occurrences of certain letters than available in the tile bag, for example, the word "buzz" cannot be in the dictionary because "z" is only in the tile bag once, but this is hard. so, no.

@@ -67,7 +67,9 @@ describe Scrabble::Player do
     janis = Scrabble::Player.new("Janis")
     janis.players_hand = %w(D G T O V E J)
     it "should return true if letters in word are all available in players_hand" do
-      janis.letters_in_players_hand?("DOG").must_equal(true)
+      jasmine = Scrabble::Player.new("Jasmine")
+      jasmine.players_hand = %w(D G T O V E J)
+      jasmine.letters_in_players_hand?("DOG").must_equal(true)
     end
 
     it "should return false if letters in word are not in players_hand" do
