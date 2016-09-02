@@ -34,29 +34,38 @@ describe Scrabble::Player do
       p.plays.must_equal(["DOG"])
     end
 
+    it "should check availability of double-instances of letters in list" do
+      p.total = 0
+      p.tiles = ["h", "e", "l", "o"]
+      p.play("hello").must_equal(nil)
+    end
+
     it "should return false if player has already won" do
+        p.tiles = ["a", "i", "h"]
         p.total = 101
         p.play("hi").must_equal(false)
     end
-    #
-    # it "should check if the the word is inculded in the tile bag tell the player
-    # he cant use the word and return nil" do
-    #   r = Scrabble::Player.new("name")
-    #   r.tiles = ["h", "e", "l", "l", "o","c", "w"]
-    #   r.play("son").must_equal(nil)
-    # end
-    # it "should add the word played into the the plays array" do
-    #   s = Scrabble::Player.new("name")
-    #       s.tiles = ["h", "e", "l", "l", "o","c", "w"]
-    #       s.play("cow")
-    #       s.plays.must_equal(["COW"])
-    # end
-    # it "should delete the letters included in the word used from the tile bag " do
-    #     r = Scrabble::Player.new("name")
-    #     r.tiles = ["h", "e", "l", "l", "o","c", "w"]
-    #     r.play("cow")
-    #     r.tiles.must_equal(["h", "e", "l", "l"])
-    # end
+
+    it "should check if the the word is inculded in the tile bag, if not tell the player
+    he cant use the word and return nil" do
+      r = Scrabble::Player.new("name")
+      r.tiles = ["h", "e", "l", "l", "o","c", "w"]
+      r.play("son").must_equal(nil)
+    end
+
+    it "should add the word played into the the plays array" do
+      s = Scrabble::Player.new("name")
+          s.tiles = ["h", "e", "l", "l", "o","c", "w"]
+          s.play("cow")
+          s.plays.must_equal(["COW"])
+    end
+
+    it "should delete the letters included in the word used from the tile rack" do
+        r = Scrabble::Player.new("name")
+        r.tiles = ["h", "e", "l", "l", "o","c", "w"]
+        r.play("cow")
+        r.tiles.must_equal(["h", "e", "l", "l"])
+    end
 
     it "should return word_score if player has not already won" do
       p.tiles = ["h","i"]
@@ -68,13 +77,15 @@ describe Scrabble::Player do
   describe "#total_score" do
     it "should return the total score of played words" do
       w = Scrabble::Player.new("name")
-      w.tiles = ["c","a","t","b","i","r","d","a","n","d","h","o","m","e"]
+      w.tiles = ["c","a","t","b","i","r"]
       w.plays = []
       w.total = 0
       w.play("cat")
+      w.tiles = ["b", "i", "r", "d","a","n","d"]
       w.play("birdand")
-      w.total_score.must_equal(75)
+      w.tiles = ["a", "n", "d","h","o","m","e"]
       w.play("home")
+      w.total_score.must_equal(75)
     end
   end
 

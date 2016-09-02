@@ -14,20 +14,29 @@ module Scrabble
     end
 
     def play(word)
+      # check if each letter of the word is included in the tiles list
       a = word.scan /\w/
+      check_tiles = @tiles.clone
       a.each do |i|
-        if !@tiles.include?(i)
-          puts"it's not a valid word"
+        # if it's included, remove from temporary list to account for duplicate letters in a word
+        if check_tiles.include?(i)
+          check_tiles.delete_at(check_tiles.index(i))
+        # exit method and don't change list of tiles
+        else
+          puts "it's not a valid word"
           return nil
+          # end
         end
       end
+
+      # update list of remaining tiles
+      @tiles = check_tiles
+      # add word to list of player's played words
       @plays << word
+      # calculate and add word score
       word_score = Scrabble::Scoring.score(word)
       @total += word_score
 
-      a.each do |r|
-        @tiles.delete(r)
-      end
       if won?
         return false
       else
@@ -68,11 +77,14 @@ module Scrabble
     end
 
     def draw_tiles(tile_bag)
+      # calculate number of tiles needed to fill rack
       tiles_needed = 7 - @tiles.length
+      # if there are enough tiles to fill rack, fill it
       if tiles_needed < tile_bag.tiles_remaining
         tiles_needed.times do
           @tiles << tile_bag.draw_tiles(1)
         end
+        # if there are not enough tiles to fill the rack, take as many as are left
       else
         until tile_bag.tiles_remaining == 0
           @tiles << tile_bag.draw_tiles(1)
