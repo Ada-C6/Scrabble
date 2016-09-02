@@ -31,16 +31,6 @@ describe Scrabble::TileBag do
 				new_game.tiles[key].must_equal(value)
 			end
 		end
-
-		# it "must be initialized with all available letters" do
-		# 	new_game = Scrabble::TileBag.new
-		# 	available_tiles = ["A", "B", "C", "D", "E",
-		# 		"F", "G", "H", "I", "J", "K", "L", "M",
-		# 		"N", "O", "P", "Q", "R", "S", "T", "U",
-		# 		"V", "W", "X", "Y", "Z"]
-		#
-		# 	new_game.available_tiles.must_equal(available_tiles)
-		# end
 	end
 
 	describe "#draw_tiles(num)" do

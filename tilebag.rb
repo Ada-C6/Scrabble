@@ -20,8 +20,6 @@ module Scrabble
 				"Y" => 2, "Z" => 1
 			}
 
-			# @available_tiles = @tiles.keys
-
 		end
 
 		def draw_tiles(num)
