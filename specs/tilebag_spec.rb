@@ -3,6 +3,9 @@ require_relative '../player'
 require_relative '../tilebag'
 
 describe Scrabble::TileBag do
+
+  # We tried to learn how to do a before block and refactor but had more difficulty with this than expected. 
+
   describe "#initialize" do
     it "should initialize a new instance of TileBag" do
       tiles = Scrabble::TileBag.new

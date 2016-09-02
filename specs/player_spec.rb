@@ -4,26 +4,24 @@ require_relative '../scoring'
 require_relative '../tilebag'
 
 describe Scrabble::Player do
-  describe "#initialize" do
-    # TO DO: Refactor
-    # Jen = complete; Maddie = middle, Dan = not started
-    # let(:player_ip) { Scrabble::Player.new("Jen") }
-    # player_ip.play("BEAR")
-    # player_ip.play("CHEETAH")
-    # player_ip.play("RAT")
-    # player_ip.play("CAT")
-    #
-    # let(:player_b) { Scrabble::Player.new}("Dan") }
-    #
-    # let(:player_won) { Scrabble::Player.new}("Maddie") }
-    # player_won.play("BEAR")
-    # player_won.play("CHEETAH")
-    # player_won.play("RAT")
-    # player_won.play("CAT")
-    # player_won.pla
 
+  # TRYING TO REFACTOR, if we had more time we would finish this. We had trouble figuring out and implementing the refactoring.
+
+  # before do
+  #   @player_ip = Scrabble::Player.new("Jen")
+  #   @player_b = Scrabble::Player.new("Dan")
+  #   @player_w = Scrabble::Player.new("Maddie")
+  # end
+  #
+  # after do
+  #   @player_ip.destroy!
+  #   @player_b.destroy!
+  #   @player_w.destroy!
+  # end
+
+  describe "#initialize" do
     it "can initialize a new instance of Player" do
-      player = Scrabble::Player.new(:name)
+      player = Scrabble::Player.new("Jen")
       player.must_be_instance_of(Scrabble::Player)
     end
   end
@@ -45,6 +43,7 @@ describe Scrabble::Player do
       player.play("DOG")
       player.plays.must_include("DOG")
     end
+    # If we had time, we would have added a test to give an error is the user didn't enter a word. 
 
     it "should return false if player has already won game else return the score" do
       player = Scrabble::Player.new("Jen")
