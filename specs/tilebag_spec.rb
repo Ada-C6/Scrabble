@@ -32,15 +32,15 @@ describe Scrabble::TileBag do
 			end
 		end
 
-		it "must be initialized with all available letters" do
-			new_game = Scrabble::TileBag.new
-			available_tiles = ["A", "B", "C", "D", "E",
-				"F", "G", "H", "I", "J", "K", "L", "M",
-				"N", "O", "P", "Q", "R", "S", "T", "U",
-				"V", "W", "X", "Y", "Z"]
-
-			new_game.available_tiles.must_equal(available_tiles)
-		end
+		# it "must be initialized with all available letters" do
+		# 	new_game = Scrabble::TileBag.new
+		# 	available_tiles = ["A", "B", "C", "D", "E",
+		# 		"F", "G", "H", "I", "J", "K", "L", "M",
+		# 		"N", "O", "P", "Q", "R", "S", "T", "U",
+		# 		"V", "W", "X", "Y", "Z"]
+		#
+		# 	new_game.available_tiles.must_equal(available_tiles)
+		# end
 	end
 
 	describe "#draw_tiles(num)" do
@@ -58,8 +58,19 @@ describe Scrabble::TileBag do
 			new_game.draw_tiles(3).length.must_equal(3)
 		end
 
-		it "should remove the tiles" do
+		it "should not pick a tile[key] that has tile[value] = 0" do
+			new_game = Scrabble::TileBag.new
+			new_game.draw_tiles(98) #98 is total num of tiles
+			all_tiles = new_game.tiles.values.reduce(:+)
+			all_tiles.must_equal(0)
+		end
 
+		it "should decrease the num of available tiles inside tiles hash" do
+			new_game = Scrabble::TileBag.new
+			original_values = new_game.tiles.values.clone
+			new_game.draw_tiles(1)
+			new_game.tiles.values.wont_equal(original_values)
 		end
 	end
+
 end

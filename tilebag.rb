@@ -20,17 +20,24 @@ module Scrabble
 				"Y" => 2, "Z" => 1
 			}
 
-			@available_tiles = @tiles.keys
+			# @available_tiles = @tiles.keys
 
 		end
 
 		def draw_tiles(num)
 			raise ArgumentError.new("Invalid argument type") if !num.is_a?(Fixnum)
 
-			# remove tiles from @available_tiles if @tiles[key] == 0
-			# decrement value when a tile key is selected
-			# return [num_tiles]
-			return [3,3,3]
+			pick = []
+			until pick.length == num
+				tile = @tiles.keys.sample
+				until @tiles[tile] != 0
+					tile = @tiles.keys.sample
+				end
+				pick << tile
+				@tiles[tile] -= 1
+			end
+
+			return pick
 		end
 	end
 end
