@@ -1,7 +1,5 @@
 require_relative 'spec_helper'
 require_relative '../scrabble' # this is the module file
-require_relative '../lib/scrabble_scoring'
-require_relative '../lib/scrabble_player'
 require_relative '../lib/tilebag'
 
 describe 'testing tilebag class' do

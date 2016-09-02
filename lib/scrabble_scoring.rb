@@ -1,5 +1,6 @@
 require_relative '../scrabble'
 
+
 class Scrabble::Scoring
 
   def self.score(word)

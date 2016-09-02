@@ -1,7 +1,7 @@
 require_relative 'spec_helper'
 require_relative '../scrabble' # this is the module file
-require_relative '../lib/scrabble_scoring'
-require_relative '../lib/scrabble_player'
+require_relative '../lib/Scrabble_Player'
+require_relative '../lib/tilebag'
 
 describe 'testing player class' do
 
@@ -85,7 +85,7 @@ describe 'testing player class' do
     expect(player.tiles.length.must_equal(7))
     expect(bag_six.tiles_remaining.must_equal(91))
   end
-  
+
   it 'tiles method must return a collection of letters that the player can play (max 7)' do
     player = Scrabble::Player.new("Lauren7")
     bag_seven = Scrabble::Tilebag.new

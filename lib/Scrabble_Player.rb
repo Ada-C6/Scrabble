@@ -1,4 +1,5 @@
 require_relative '../scrabble'
+require_relative '../lib/tilebag'
 
 
 class Scrabble::Player
@@ -60,10 +61,10 @@ class Scrabble::Player
   end
 
   def player_draw_tiles(tile_bag)
-    puts "#{@player_tiles} <---- this is before hand"
+    # puts "#{@player_tiles} <---- this is before hand"
 
     @player_tiles << tile_bag.draw_tiles(number_to_draw)
-    puts "#{@player_tiles} <---- this is after the tiles are drawn"
+    # puts "#{@player_tiles} <---- this is after the tiles are drawn"
 
     return @player_tiles.flatten!
   end

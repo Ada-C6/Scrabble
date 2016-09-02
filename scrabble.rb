@@ -1,6 +1,6 @@
-require_relative './lib/crabble_scoring'
-require_relative './lib/Scrabble_Player'
-require_relative './lib/tilebag'
+#require_relative './lib/Scrabble_scoring'
+#require_relative './lib/Scrabble_Player'
+#require_relative './lib/tilebag'
 require 'awesome_print'
 
 
