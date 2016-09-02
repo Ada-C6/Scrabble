@@ -14,9 +14,20 @@ module Scrabble
     end
 
     def play(word)
+      a = word.scan /\w/
+      a.each do |i|
+        if !@tiles.include?(i)
+          puts"it's not a valid word"
+          return nil
+        end
+      end
       @plays << word
       word_score = Scrabble::Scoring.score(word)
       @total += word_score
+
+      a.each do |r|
+        @tiles.delete(r)
+      end
       if won?
         return false
       else
@@ -47,6 +58,7 @@ module Scrabble
       return highest_score
     end
 
+    # @tiles is an array of an individual player.
     def tiles
       if @tiles.length <= 7
         return @tiles
@@ -72,9 +84,11 @@ module Scrabble
   end
 end
 
-
-# p= Scrabble::Player.new("hello")
-# p.play
-# p.plays = ["car", "birdand", "home"]
-# puts p.highest_scoring_word
-# puts p.highest_word_score
+# p= Scrabble::Player.new("selam")
+# # p.play
+# # p.plays = ["car", "birdand", "home"]
+# # puts p.highest_scoring_word
+# # puts p.highest_word_score
+# p.tiles = ["h", "e", "l", "l", "o","c", "w"]
+# puts p.play("son")
+# puts p.tiles

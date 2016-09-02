@@ -74,7 +74,7 @@ module Scrabble
 end
 
 
-p= Scrabble::TileBag.new
+# p= Scrabble::TileBag.new
 
 # puts p.draw_tiles(4)
 # puts p.tiles_remaining

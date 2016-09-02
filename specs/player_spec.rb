@@ -18,6 +18,7 @@ describe Scrabble::Player do
 
   describe "plays" do
     it "should return an Array of the words played by the player" do
+      p.tiles = ["c","a","t","b","i","r","d"]
       p.plays = []
       p.play("cat")
       p.play("bird")
@@ -27,6 +28,7 @@ describe Scrabble::Player do
 
   describe "play" do
     it "should add the input word to the plays Array" do
+      p.tiles = ["d","o","g","b","i","r","d"]
       p.plays = []
       p.play("dog")
       p.plays.must_equal(["DOG"])
@@ -36,8 +38,28 @@ describe Scrabble::Player do
         p.total = 101
         p.play("hi").must_equal(false)
     end
+    #
+    # it "should check if the the word is inculded in the tile bag tell the player
+    # he cant use the word and return nil" do
+    #   r = Scrabble::Player.new("name")
+    #   r.tiles = ["h", "e", "l", "l", "o","c", "w"]
+    #   r.play("son").must_equal(nil)
+    # end
+    # it "should add the word played into the the plays array" do
+    #   s = Scrabble::Player.new("name")
+    #       s.tiles = ["h", "e", "l", "l", "o","c", "w"]
+    #       s.play("cow")
+    #       s.plays.must_equal(["COW"])
+    # end
+    # it "should delete the letters included in the word used from the tile bag " do
+    #     r = Scrabble::Player.new("name")
+    #     r.tiles = ["h", "e", "l", "l", "o","c", "w"]
+    #     r.play("cow")
+    #     r.tiles.must_equal(["h", "e", "l", "l"])
+    # end
 
     it "should return word_score if player has not already won" do
+      p.tiles = ["h","i"]
       p.total = 0
       p.play("hi").must_equal(5)
     end
@@ -45,12 +67,14 @@ describe Scrabble::Player do
 
   describe "#total_score" do
     it "should return the total score of played words" do
-      p.plays = []
-      p.total = 0
-      p.play("cat")
-      p.play("birdand")
-      p.play("home")
-      p.total_score.must_equal(75)
+      w = Scrabble::Player.new("name")
+      w.tiles = ["c","a","t","b","i","r","d","a","n","d","h","o","m","e"]
+      w.plays = []
+      w.total = 0
+      w.play("cat")
+      w.play("birdand")
+      w.total_score.must_equal(75)
+      w.play("home")
     end
   end
 
@@ -64,7 +88,6 @@ describe Scrabble::Player do
       p.total = 100
       p.won?.must_equal(false)
     end
-
   end
 
   describe "#highest_scoring_word" do
@@ -96,5 +119,5 @@ describe Scrabble::Player do
        q.draw_tiles(r)
        q.tiles.length.must_equal(7)
      end
-   end
+    end
 end
