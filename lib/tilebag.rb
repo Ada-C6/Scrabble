@@ -29,9 +29,14 @@ attr_reader :tiles
 
     return rack
   end
+
+  def tiles_remaining
+    return @tiles.flatten.length
+  end
+
 end
 #
-joe = Scrabble::Tilebag.new
+#joe = Scrabble::Tilebag.new
 
 # rack = joe.draw_tiles(7)
 # ap rack

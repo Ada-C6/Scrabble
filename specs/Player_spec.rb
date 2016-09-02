@@ -77,4 +77,19 @@ describe 'testing player class' do
     player.play("kitsch")
     expect(player.won?.must_equal(false))
   end
+
+  it 'player_draw_tiles()fills tiles array until player has 7 letters from the given tile bag' do
+    player = Scrabble::Player.new("Lauren6")
+    bag_six = Scrabble::Tilebag.new
+    player.player_draw_tiles(bag_six)
+    expect(player.tiles.length.must_equal(7))
+    expect(bag_six.tiles_remaining.must_equal(91))
+  end
+  it 'tiles method must return a collection of letters that the player can play (max 7)' do
+    player = Scrabble::Player.new("Lauren7")
+    bag_seven = Scrabble::Tilebag.new
+    player.player_draw_tiles(bag_seven)
+    expect(player.tiles.length.must_equal(7))
+  end
+  
 end#end of test

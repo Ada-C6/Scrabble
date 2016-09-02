@@ -47,6 +47,14 @@ describe 'testing tilebag class' do
     expect(bag_four.tiles.flatten.length.must_equal(94)) # total length of tiles initially is 98, so if you draw 4 it should equal 94
   end
 
+  it 'tiles_remaining must return the number of tiles remaining in the bag after a draw' do
+    bag_five = Scrabble::Tilebag.new
+    bag_five.draw_tiles(6)
+    expect(bag_five.tiles_remaining.must_equal(92))
+    bag_five.draw_tiles(7)
+    expect(bag_five.tiles_remaining.must_equal(85))
+
+  end
 
 
 end #end of describe
