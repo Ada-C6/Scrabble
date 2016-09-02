@@ -95,12 +95,3 @@ module Scrabble
     end
   end
 end
-
-# p= Scrabble::Player.new("selam")
-# # p.play
-# # p.plays = ["car", "birdand", "home"]
-# # puts p.highest_scoring_word
-# # puts p.highest_word_score
-# p.tiles = ["h", "e", "l", "l", "o","c", "w"]
-# puts p.play("son")
-# puts p.tiles

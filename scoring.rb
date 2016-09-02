@@ -64,15 +64,5 @@ module Scrabble
         return shortest_word
       end
     end
-
-    # highest_score = 0
-    # highest_word = ""
-    # array_of_words.each do |i|
-    #   if score(i) > highest_score
-    #     highest_score = score(i)
-    #     highest_word = i
-    #   end
-    # end
-    # return highest_word
   end
 end
