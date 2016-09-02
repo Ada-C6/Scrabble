@@ -17,6 +17,7 @@ class Scrabble::Scoring
 
     letters.each do |letter|
       total += Scrabble::LETTER_HASH[letter]
+      
     end
 
     return total
@@ -26,7 +27,7 @@ class Scrabble::Scoring
   def self.highest_score_from(array_of_words)
     # initialize two variables in order to hold max_score and max_scoring_word
     # iterate through the array_of_words and use if statements to determine when the word and score are stored in the local variables
-    # use tie-breaking logic in if statements to determine when to score word/score into variable 
+    # use tie-breaking logic in if statements to determine when to score word/score into variable
     max_score = 0
     max_scoring_word = ""
 

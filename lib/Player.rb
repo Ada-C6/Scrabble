@@ -28,9 +28,10 @@ class Scrabble::Player
     if won?
       return false
     else
-      letters_played = word.upcase.chars
-      print "lettersplayed #{letters_played}"
       # if letters_played.all? { |letter| picked_tiles.include?(letter) }
+        words.each_char do |letter|
+          @picked_tiles.delete_at(@picked_tiles.index(letter))
+        end
         @words_by_player << word
         # @picked_tiles.each do |tile|
         #   if letters_played.include?(tile)
