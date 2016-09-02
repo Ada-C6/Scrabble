@@ -49,6 +49,14 @@ describe Scrabble::Player do
         end
     end
 
+    describe "#valid_word?(word)" do
+        it "returns false if the word is not in the player's tile set" do
+            current_bag = Scrabble::TileBag.new
+            player_test.draw_tiles(current_bag)
+            player_test.valid_word?("fizz").must_equal(false)
+        end
+    end
+
     describe "#play(word)" do
         it "returns the score of a word before winning" do
             player_test.play("check").must_equal(16)
@@ -71,11 +79,14 @@ describe Scrabble::Player do
         end
 
         it "will return false if score is over 100" do
-
             player_test.play("penguin")
             player_test.play("sunrise")
             player_test.play("week").must_equal(false)
+        end
 
+        it "will raise an ArgumentError if the word is invalid, not in the player's tiles" do
+            proc {player_test.draw_tiles(Scrabble::TileBag.new)
+                player_test.play("fizz")}.must_raise(ArgumentError)
         end
     end
 
