@@ -24,6 +24,22 @@ module Scrabble
                 raise ArgumentError, "Invalid input. Please give us a string."
             end
 
+            # verify if the played word is in the tiles array, and remove the letters in word from tiles array
+            played_letter = word.upcase.split("")
+
+            clone_tiles = @tiles.clone
+            played_letter.each do |letter|
+                index = clone_tiles.find_index(letter)
+                if index.is_a?(Fixnum)
+                    clone_tiles.delete_at(index)
+                else
+                    puts "This word is not calling from your tiles!"
+                    return nil
+                end
+            end
+
+            @tiles = clone_tiles
+
             # add new word to @plays instance variable
             @plays << word.upcase
 

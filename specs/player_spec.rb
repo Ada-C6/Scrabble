@@ -31,24 +31,52 @@ describe Scrabble::Player do
         end
 
         it "@plays array should be different after calling the play(word) method" do
-            original_array = new_player.plays.clone
-            new_player.play("SHOWERS")
-            new_player.plays.wont_equal(original_array)
+            player_1 = Scrabble::Player.new("Yoyo")
+            player_1.tiles = %w(S H O W E R S)
+            original_array = player_1.plays.clone
+            player_1.play("SHOWERS")
+            player_1.plays.wont_equal(original_array)
         end
 
         it "the word passed in to play(word) method should be the last item in @plays array" do
-            new_player.play("SHOWERS")
-            new_player.plays.last.must_equal("SHOWERS")
+            player_2 = Scrabble::Player.new("Yaya")
+            player_2.tiles = %w(S H O W E R S)
+            player_2.play("SHOWERS")
+            player_2.plays.last.must_equal("SHOWERS")
         end
 
         it "should return the score of the string input if not won" do
             another_player = Scrabble::Player.new("Kelly")
+            another_player.tiles = %w(L I O N E S S)
             another_player.play("lioness").must_equal(57)
         end
 
         it "should return false if player already won" do
             new_player.won = true
+            new_player.tiles = %w(L I O N E S S)
             new_player.play("lioness").must_equal(false)
+        end
+
+        it "should raise an error when the played word is NOT in the @tile array" do
+            bad_player = Scrabble::Player.new("Maleficient")
+            bad_player.tiles = %w(A B C D E F G)
+            bad_player.play('XYZ').must_equal(nil)
+        end
+
+        it "should return an updated @tiles array after play(word) is called" do
+            another_bad_player = Scrabble::Player.new("Mustafa")
+            another_bad_player.tiles = %w(A B C D E F G)
+            copy_original_tiles = another_bad_player.tiles.clone
+            another_bad_player.play('ABC')
+            another_bad_player.tiles.wont_equal(copy_original_tiles)
+        end
+
+        it "should return the original @tiles array if the play(word) is called with letters which don't exist in the @tiles array" do
+            last_player = Scrabble::Player.new("Pikachu")
+            last_player.tiles = %w(P O K E M O N S)
+            copy_last_player_tiles = last_player.tiles.clone
+            last_player.play('POKER')
+            last_player.tiles.must_equal(copy_last_player_tiles)
         end
     end # play(word)
 
