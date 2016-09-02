@@ -16,13 +16,14 @@ module Scrabble
             if won?
               return false
             end
-            if !valid_word?(word)
-                raise ArgumentError.new("Oops, you don't have tiles to play this word--please try another word.")
-                return false
-            end
+            # if !valid_word?(word)
+            #     raise ArgumentError.new("Oops, you don't have tiles to play this word--please try another word.")
+            #     return false
+            # end
             result = Scoring.score(word)
             @plays << word
             @total_score += result
+            remove_tiles(word)
             return result
         end
 
@@ -30,13 +31,19 @@ module Scrabble
             temporary_tiles = @tiles.clone
             word.chars.each do |ch|
                 if temporary_tiles.include?(ch)
-                    temporary_tiles.delete(ch)
+                    temporary_tiles.slice!(temporary_tiles.index(ch))
+
                 else
                     return false
                 end
             end
-            @tiles = temporary_tiles
             return true
+        end
+
+        def remove_tiles(word)
+            word.chars.each do |ch|
+              @tiles.delete(ch)
+            end
         end
 
         def won?
@@ -60,8 +67,13 @@ module Scrabble
         end
     end
 end
-
+#
 # c = Scrabble::Player.new("me")
+#
+# print c.tiles.concat(%w(g p e n u i n))
+# c.valid_word?("penguin")
+#
+
 # current_bag = Scrabble::TileBag.new
 # c.draw_tiles(current_bag)
 # puts "Here's our tiles #{c.tiles.to_s}."

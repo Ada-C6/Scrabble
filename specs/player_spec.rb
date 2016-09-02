@@ -3,6 +3,7 @@ require_relative '../player'
 
 describe Scrabble::Player do
     let(:player_test) {Scrabble::Player.new("InuYasha")}
+    # let(:bag_test) {Scrabble::TileBag.new}
     describe "#initialize" do
         it "can create a new instance of Player" do
             player_test.must_be_instance_of(Scrabble::Player)
@@ -27,6 +28,7 @@ describe Scrabble::Player do
 
     describe "#won?" do
         it "returns false if total score is less than 100" do
+
             player_test.won?.must_equal(false)
         end
 
@@ -55,6 +57,13 @@ describe Scrabble::Player do
             player_test.draw_tiles(current_bag)
             player_test.valid_word?("fizz").must_equal(false)
         end
+
+        it "returns true if the word is in the tile set" do
+          player_test.tiles.concat(%w(p e n g u i n))
+          player_test.valid_word?("penguin").must_equal(true)
+        end
+
+
     end
 
     describe "#play(word)" do
@@ -83,11 +92,11 @@ describe Scrabble::Player do
             player_test.play("sunrise")
             player_test.play("week").must_equal(false)
         end
-
-        it "will raise an ArgumentError if the word is invalid, not in the player's tiles" do
-            proc {player_test.draw_tiles(Scrabble::TileBag.new)
-                player_test.play("fizz")}.must_raise(ArgumentError)
-        end
+        #
+        # it "will raise an ArgumentError if the word is invalid, not in the player's tiles" do
+        #     proc {player_test.draw_tiles(Scrabble::TileBag.new)
+        #         player_test.play("fizz")}.must_raise(ArgumentError)
+        # end
     end
 
     describe "#highest_scoring_word" do
