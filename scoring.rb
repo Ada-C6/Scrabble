@@ -35,22 +35,31 @@ module Scrabble
         letters = []
         max = ""
         value  = " "
+        word_length = []
         #This block evaluates words with the same value
         array_of_words.max_by do |i|
           letters << self.score(i)
           max = self.score(i)
         end
+        array_of_words.each do |word|
+          word_length << word.length
+        end
 
         if max == letters.detect { |b| letters.count(b) > 1}
-           if array_of_words.map{|s| s.length}.include?(7)
-             return array_of_words.max_by{|s| s.length} 
+         if word_length.detect{|x| word_length.count(x) > 1}
+           array_of_words.max_by do |d|
+           self.score(d)
+           end
+         elsif array_of_words.map{|s| s.length}.include?(7)
+             return array_of_words.max_by{|s| s.length}
           else
             array_of_words.min_by do |w|
               w.length
               value = w
             end
             return value
-           end
+
+         end
         else
           array_of_words.max_by do |i|
             self.score(i)
