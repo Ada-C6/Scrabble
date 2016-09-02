@@ -45,8 +45,7 @@ describe Scrabble::Scoring do
       Scrabble::Scoring.highest_score_from(["foursts", "qqzzqq"]).must_equal("foursts")
     end
     it "will return the first word even if it has the same value and tiles as another" do
-      skip
-      Scrabble::Scoring.highest_score_from(["dog", "boy", "cow"]).must_equal("boy")
+      Scrabble::Scoring.highest_score_from(["dog", "pou", "boy", "cow"]).must_equal("boy")
     end
   end
 end
