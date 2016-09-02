@@ -39,8 +39,8 @@ describe Scrabble::Player do
       jane.plays.must_equal(%w(bottle poppin salsa))
     end
   end
-#play(word): Adds the input word to the plays Array
 
+#play(word): Adds the input word to the plays Array
   describe "#play_word" do
     joan = Scrabble::Player.new("Joan")
     joan_wins = Scrabble::Player.new("Joan_wins")
@@ -80,12 +80,10 @@ describe Scrabble::Player do
       janis.letters_in_players_hand?("CAT").must_equal(false)
     end
 
-
-############### TRYING TO MAKE SURE THE CORRECT LETTERS ARE REMOVED FROM HAND WHEN ACCURATE WORD IS PLAYED. CONSIDERED .length
-    # it "should remove letters from players hand if the is possible for word to be played" do
-    #   janis.letters_in_players_hand?("DOG")
-    #   janis.players_hand.must_match(%w(T V E J))
-    # end
+    it "should remove letters from players hand if it is possible for word to be played" do
+      janis.letters_in_players_hand?("DOG")
+      janis.players_hand.must_equal(%w(T V E J))
+    end
   end
 
   describe "#won?" do

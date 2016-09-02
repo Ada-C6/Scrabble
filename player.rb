@@ -19,17 +19,20 @@ module Scrabble
     end
 
     def letters_in_players_hand?(word_played)
-      check_hand = @players_hand
-      word_array_to_delete_from = word_to_array(word_played)
+      check_hand = @players_hand.clone
+      word_played_array = word_to_array(word_played)
 
-      word_array_to_delete_from.each do | letter |
+      word_played_array.each do | letter |
         if check_hand.include?(letter)
           check_hand.slice!(check_hand.index(letter))
         else
           return false
         end
       end
-      @players_hand.slice!(@players_hand.index(letter))
+
+      word_played_array.each do | letter |
+        @players_hand.slice!(@players_hand.index(letter))
+      end
       return true
     end
 
