@@ -10,29 +10,29 @@ module Scrabble
         A: 9,
         B: 2,
         C: 2,
-        # D: 4,
-        # E: 12,
-        # F: 2,
-        # G: 3,
-        # H: 2,
-        # I: 9,
-        # J: 1,
-        # K: 1,
-        # L: 4,
-        # M: 2,
-        # N: 6,
-        # O: 8,
-        # P: 2,
-        # Q: 1,
-        # R: 6,
-        # S: 4,
-        # T: 6,
-        # U: 4,
-        # V: 2,
-        # W: 2,
-        # X: 1,
-        # Y: 2,
-        # Z: 1
+        D: 4,
+        E: 12,
+        F: 2,
+        G: 3,
+        H: 2,
+        I: 9,
+        J: 1,
+        K: 1,
+        L: 4,
+        M: 2,
+        N: 6,
+        O: 8,
+        P: 2,
+        Q: 1,
+        R: 6,
+        S: 4,
+        T: 6,
+        U: 4,
+        V: 2,
+        W: 2,
+        X: 1,
+        Y: 2,
+        Z: 1
       }
     end
 
@@ -41,6 +41,9 @@ module Scrabble
 
       num.times do
         @all_tiles.delete_if {|key, value| value == 0 }
+
+        raise ArgumentError.new("There are not that many tiles left in the bag.
+        You can only draw #{ @all_tiles.values.reduce(:+) } or less.") if num > @all_tiles.values.reduce(:+)
 
         tile = @all_tiles.keys.shuffle.pop
         return_tiles << tile
@@ -56,8 +59,3 @@ module Scrabble
 
   end
 end
-  # 
-  # m = Scrabble::Tilebag.new
-  # puts m.tb_draw_tiles(14z)
-  #
-  # puts m.all_tiles
