@@ -41,6 +41,7 @@ module Scrabble
           letters << self.score(i)
           max = self.score(i)
         end
+        
         array_of_words.each do |word|
           word_length << word.length
         end
