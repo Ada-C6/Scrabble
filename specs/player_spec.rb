@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 require_relative '../player'
+require_relative '../tilebag'
 
 describe Scrabble::Player do
 
@@ -17,6 +18,16 @@ describe Scrabble::Player do
         it "must be able to return player's plays" do
             jane.must_respond_to(:plays)
         end
+
+        it "must be able to return player's tiles" do
+            jane.must_respond_to(:tiles)
+        end
+
+#        it "must not have more than 7 tiles" do
+#            kelly = Scrabble::Player.new("Kelly")
+#            proc { kelly.tiles = ["a", "b", "c", "d", "e", "f", "g", "h"] }.must_raise(ArgumentError)
+#        end
+
     end
 
     describe "#play(word)" do
@@ -132,4 +143,12 @@ describe Scrabble::Player do
         end
     end
 
+    describe "draw_tiles(tile_bag)" do
+        it "must fill tile array until tiles is seven letters" do
+            noelle = Scrabble::Player.new("Noelle")
+            tile_bag = Scrabble::TileBag.new
+            noelle.draw_tiles(tile_bag)
+            noelle.tiles.length.must_equal(7)
+        end
+    end
 end
