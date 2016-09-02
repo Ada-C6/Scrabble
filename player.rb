@@ -2,12 +2,13 @@ require_relative 'scoring'
 
 module Scrabble
   class Player
-    attr_accessor :name, :play_array, :word
+    attr_accessor :name, :play_array, :word, :player_letters
 
     def initialize(name)
       @name = name
       @play_array = []
       @word = word
+      @player_letters = []
     end
 
     def plays
@@ -48,8 +49,15 @@ module Scrabble
       return Scrabble::Scoring.score(highest_scoring_word)
     end
 
+    def tiles
+      return @player_letters.length
+    end
+
   end
 end
+
+jm = Scrabble::Player.new("JM")
+puts jm.player_letters.class
 
 # Program output verification:
 #

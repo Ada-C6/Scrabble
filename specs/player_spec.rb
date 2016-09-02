@@ -1,6 +1,7 @@
 require_relative 'spec_helper'
 require_relative '../player'
 require_relative '../scoring'
+require_relative '../tilebag'
 
 describe Scrabble::Player do
   describe "#initialize" do
@@ -140,4 +141,13 @@ describe Scrabble::Player do
       player.highest_word_score.must_be_instance_of(Fixnum)
     end
   end
+
+  describe "#tiles" do
+    it "should be a collection of letters the player can play (up to 7)" do
+      player = Scrabble::Player.new("Jen")
+
+      player.tiles.must_be :<=, 7
+    end
+  end
+
 end
