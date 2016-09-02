@@ -1,4 +1,5 @@
-require_relative 'Scoring'
+require_relative 'scoring'
+require_relative 'player'
 
 module Scrabble
   class Tilebag
@@ -35,7 +36,7 @@ module Scrabble
       }
     end
 
-    def draw_tiles(num)
+    def tb_draw_tiles(num)
       return_tiles = []
 
       num.times do

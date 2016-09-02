@@ -16,13 +16,13 @@ describe Scrabble::Tilebag do
     end
   end
 
-  describe "#draw_tiles" do
+  describe "#tb_draw_tiles" do
     it "should return an array" do
-      Scrabble::Tilebag.new.draw_tiles(1).must_be_kind_of Array
+      Scrabble::Tilebag.new.tb_draw_tiles(1).must_be_kind_of Array
     end
 
     it "should return an array that has a length equal to number of tiles drawn" do
-      Scrabble::Tilebag.new.draw_tiles(1).length.must_equal(1)
+      Scrabble::Tilebag.new.tb_draw_tiles(1).length.must_equal(1)
     end
   end
 

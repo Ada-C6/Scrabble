@@ -1,14 +1,17 @@
-require_relative 'Scoring'
+require_relative 'scoring'
+require_relative 'tilebag'
 
 module Scrabble
   class Player
     attr_accessor :name, :score_array
-    attr_reader :word_array
+    attr_reader :word_array, :tiles
 
     def initialize(name)
       @name = name
       @word_array = []
       @score_array = []
+      @tile_bag = Scrabble::Tilebag.new
+      @tiles = []
     end
 
     def plays
@@ -48,5 +51,26 @@ module Scrabble
       word = highest_scoring_word
       return Scrabble::Scoring.score(word)
     end
+
+    def draw_tiles(tile_bag)
+      raise ArgumentError.new("you cannot draw more than 7 or less than 1") if (tile_bag > 7 || tile_bag < 1)
+
+      draw_array = []
+      draw_array = @tile_bag.tb_draw_tiles(tile_bag)
+
+
+      raise ArgumentError.new("you cannot have more than 7 in your hand") if @tiles.length + draw_array.length > 7
+
+      draw_array.each do |tile|
+        @tiles << tile
+      end
+
+
+    end
+
+    def tiles
+      return @tiles
+    end
+
   end
 end
