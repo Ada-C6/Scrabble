@@ -91,23 +91,15 @@ describe Scrabble::Player do
     expect(player1.won?).must_equal(true)
   end
 #10
-  it 'Do tiles and draw_tiles methods appropriately subtract from tile bag /tiles remaining category.' do
-    player1 = Scrabble::Player.new("Frida Kahlo")
-    tilebag1 = Scrabble::TileBag.new
-    player1.play("Cat")
-    player1.draw_tiles(3)
-    expect(tilebag1.tiles_remaining).must_equal(90)
-  end
-#11
-  it 'Test Player can draw 7 tiles' do
+  it 'Test to see if the correct letters will be extracted?' do
     player1 = Scrabble::Player.new("Frida Kahlo")
     tilebag1 = Scrabble::TileBag.new
     picked_tiles = player1.draw_tiles(tilebag1)
-    player1.play("absent") # player plays 6 letter word.
-    picked_tiles = player1.draw_tiles(6) # grabs 6 more.
-    expect(picked_tiles.length).must_equal(7)
+    current_tiles = player1.tiles
+    player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2])
+    expect(picked_tiles.length).must_equal(4)
   end
-#12
+#11
   it 'Ensure player starts with a set of 7 tiles.' do
     player1 = Scrabble::Player.new("Frida Kahlo")
     tilebag1 = Scrabble::TileBag.new
