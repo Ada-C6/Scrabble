@@ -28,6 +28,9 @@ module Scrabble
 			raise ArgumentError.new("Invalid argument type") if !num.is_a?(Fixnum)
 
 			pick = []
+			if num > tiles_remaining
+				num = tiles_remaining
+			end
 			until pick.length == num
 				tile = @tiles.keys.sample
 				until @tiles[tile] != 0
@@ -38,6 +41,11 @@ module Scrabble
 			end
 
 			return pick
+		end
+
+		def tiles_remaining
+			remaining_val = @tiles.values.reduce(:+)
+			return remaining_val
 		end
 	end
 end

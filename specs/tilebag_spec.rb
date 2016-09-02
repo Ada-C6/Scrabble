@@ -71,6 +71,20 @@ describe Scrabble::TileBag do
 			new_game.draw_tiles(1)
 			new_game.tiles.values.wont_equal(original_values)
 		end
+
+		it "should return remaining tiles if num is greater than remaining tiles" do
+			new_game = Scrabble::TileBag.new
+			new_game.draw_tiles(96)
+			new_game.draw_tiles(3).length.must_equal(2) # Only two tiles left
+		end
 	end
 
+	describe "#tiles_remaining" do
+
+		it "must return the numbers of tiles left in tilebag" do
+			another_game = Scrabble::TileBag.new
+			another_game.draw_tiles(2)
+			another_game.tiles_remaining.must_equal(96)
+		end
+	end
 end
