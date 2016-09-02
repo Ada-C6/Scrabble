@@ -30,10 +30,16 @@ describe Scrabble::TileBag do
 
   describe "#tiles_remaining" do
 
-    it "returns the number of remaining default tiles" do
+    it "should not have the same amount of tiles returned as it started with" do
       s = Scrabble::TileBag.new
       s.draw_tiles(5)
       s.default_tiles.wont_equal(:default_tiles)
+    end
+
+    it "should return the number of tiles in default tiles after tiles have been drawn " do
+      y = Scrabble::TileBag.new
+      y.draw_tiles(5)
+      y.tiles_remaining.must_equal(95)
     end
   end
 end
