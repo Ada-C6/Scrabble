@@ -34,26 +34,9 @@ module Scrabble
 
       it "should return an error if withdrawing more tiles than available in bag" do
         error_tile_bag = TileBag.new
-        puts error_tile_bag.game_tile_bag.values.reduce(:+)
-        error_tile_bag.draw_tiles(86)
-        #puts error_tile_bag.game_tile_bag.to_s
-        puts error_tile_bag.draw_tiles(1)
-        #puts error_tile_bag.game_tile_bag.to_s + "2"
-        # puts tile_bag.draw_tiles(1).to_s + "3"
-        # puts tile_bag.game_tile_bag.to_s + "3"
-        # puts tile_bag.draw_tiles(1).to_s + "4"
-        # puts tile_bag.game_tile_bag.to_s + "4"
-        # tile_bag.draw_tiles(100) # this should empty out the bag
-        # puts "5555555555555" +tile_bag.game_tile_bag.to_s + "5"
+        error_tile_bag.draw_tiles(87)
         proc {error_tile_bag.draw_tiles(1)}.must_raise(Exception)
       end
-
-
-      #
-      # it "should not allow player to draw more tiles than tray_max" do
-      #
-      # end
-      # player need to care about their own tray
     end
 
 

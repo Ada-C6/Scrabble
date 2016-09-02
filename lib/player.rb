@@ -3,12 +3,13 @@ require_relative "scoring"
 module Scrabble
   class Player
 
-    attr_reader :name, :winner, :words_played
+    attr_reader :name, :winner, :words_played, :tile_tray
 
     def initialize(name)
       @name = name
       @words_played = []
       @winner = false
+      @tile_tray = []
     end
 
     def plays
@@ -51,6 +52,14 @@ module Scrabble
     def highest_word_score
       best_score = Scoring.score(highest_scoring_word)
       return best_score
+    end
+
+    def tiles
+      return @tile_tray
+    end
+
+    def draw_tiles(tile_bag) # @todo finish this method
+
     end
 
   end

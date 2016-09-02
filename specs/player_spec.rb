@@ -31,7 +31,7 @@ module Scrabble
       let(:player) { Player.new("Alma") }
 
       it "should raise an error if word is not provided at all" do
-        proc{player.play('')}.must_raise(ArgumentError) 
+        proc{player.play('')}.must_raise(ArgumentError)
 
       end
 
@@ -89,14 +89,36 @@ module Scrabble
         player.highest_word_score.must_equal(95)
       end
     end
+
+    describe "#tiles" do
+      let(:player) { Player.new("Alma") }
+
+      it "should return an array of letters" do
+        player.tiles.must_be_instance_of(Array)
+      end
+
+      it "should limit the tray to a max of 7" do
+        player.tiles.length.must_be(:<=, 7)
+      end
+    end
+
+    describe "#draw_tiles(tile_bag)" do
+      let(:player) { Player.new("Alma") }
+      it "should draw tiles until tray has 7 tiles" do
+
+        player.tile_tray.length.must_equal(7)
+      end
+    end
   end
 
-  # @todo WE WANT TO START HERE. ONE (1) MORE TEST (exception!)
 
 
 
-
-
+  #
+  # it "should not allow player to draw more tiles than tray_max" do
+  #
+  # end
+  # player need to care about their own tray
 
 
 

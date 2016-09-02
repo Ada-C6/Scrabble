@@ -38,30 +38,22 @@ module Scrabble
     end
 
     def draw_tiles(num)
-      puts "XXXXXXXXXXXXX"
       sum_of_all_tiles = @game_tile_bag.values.reduce(:+)
-      puts "SUM OF ALL TILES #{sum_of_all_tiles}"
       if sum_of_all_tiles < num
-        puts @game_tile_bag
-        puts "33333333333333333333333"
         raise Exception.new("Cannot draw more tiles than currently in bag.")
       end
       new_player_tiles = 0
       alphabet_array = []
-      available_player_tiles = @game_tile_bag.map do |key, value|
+     @game_tile_bag.map do |key, value|
         value.times do
           alphabet_array << key
           # =>["A", "A", "A", "F", "F", "G"]
         end
       end
-      #puts "AVAIL: #{available_player_tiles}"
 
       new_player_tiles = alphabet_array.sample(num) #array of drawn letters
-      puts "COOL : " + new_player_tiles.to_s
       new_player_tiles.each do |letter|
-        puts "Letter #{letter} has #{@game_tile_bag[letter]} number of letters (before)"
         @game_tile_bag[letter] -= 1
-        puts "Letter #{letter} has #{@game_tile_bag[letter]} number of letters (after)"
       end
       return new_player_tiles #array of letters
     end #draw_tiles
