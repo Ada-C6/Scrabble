@@ -39,4 +39,15 @@ describe Scrabble::TileBag do
       tiles.letters_available.length.must_equal(98 - 4)
     end
   end
+
+  describe "#tiles_remaining" do
+    it "should return the number of tiles remaining in the bag" do
+      tiles = Scrabble::TileBag.new
+      tiles.fill_bag
+      tiles.draw_tiles(4)
+      tiles.tiles_remaining.must_equal(98 - 4)
+
+    end
+  end
+
 end

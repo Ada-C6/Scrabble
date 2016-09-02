@@ -56,6 +56,9 @@ module Scrabble
       return num
     end
 
+    def tiles_remaining
+      return @letters_available.length
+    end
   end
 
 end
