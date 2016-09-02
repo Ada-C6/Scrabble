@@ -1,5 +1,6 @@
 require_relative 'spec_helper'
 require_relative '../player'
+require_relative '../tilebag'
 
 describe Scrabble::Player do
 
@@ -79,6 +80,21 @@ describe Scrabble::Player do
        @plays = []
        p.plays = ["car", "birdand", "home"]
        p.highest_word_score.must_equal(61)
+     end
+   end
+
+   describe "#tiles" do
+     it "should have at most seven tiles at a time" do
+       p.tiles.length.must_be :<=, 7
+     end
+   end
+
+   describe "#draw_tiles" do
+     it "should fill the tiles array to 7 when there are tiles remaining in the tile bag" do
+       q = Scrabble::Player.new("name")
+       r = Scrabble::TileBag.new
+       q.draw_tiles(r)
+       q.tiles.length.must_equal(7)
      end
    end
 end
