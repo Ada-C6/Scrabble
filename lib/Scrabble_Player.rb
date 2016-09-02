@@ -1,5 +1,5 @@
-require_relative '../scrabble.rb'
-require_relative 'scrabble_scoring.rb'
+require_relative '../scrabble'
+
 
 class Scrabble::Player
   attr_reader :name, :plays
@@ -10,6 +10,7 @@ class Scrabble::Player
 
     @name = name
     @plays = []
+    @player_tiles = [] # now this is empty but later when we are more advanced we will initialize it with 7 tiles.
   end
 
   # allows the player to plays a word as long as they have not already won
@@ -53,4 +54,29 @@ class Scrabble::Player
     end
   end
 
+
+  def tiles
+    return @player_tiles
+  end
+
+  def player_draw_tiles(tile_bag)
+    puts "#{@player_tiles} <---- this is before hand"
+
+    @player_tiles << tile_bag.draw_tiles(number_to_draw)
+    puts "#{@player_tiles} <---- this is after the tiles are drawn"
+
+    return @player_tiles.flatten!
+  end
+
+  def number_to_draw
+    number_to_draw = Scrabble::MAX_TILES - @player_tiles.length
+    return number_to_draw
+  end
+
 end # end of class
+
+
+player = Scrabble::Player.new("Lauren7")
+bag_seven = Scrabble::Tilebag.new
+
+player.player_draw_tiles(bag_seven)

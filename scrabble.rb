@@ -1,3 +1,8 @@
+require_relative './lib/crabble_scoring'
+require_relative './lib/Scrabble_Player'
+require_relative './lib/tilebag'
+require 'awesome_print'
+
 
 module Scrabble
 
@@ -32,4 +37,9 @@ module Scrabble
                   ["X"],
                   ["Y", "Y"],
                   ["Z"]]
+
+
+  MAX_TILES = 7
+
+  MAX_IN_BAG = LETTER_ARRAY.flatten.length
 end

@@ -1,7 +1,4 @@
-require_relative '../scrabble.rb'
-require_relative 'scrabble_scoring.rb'
-require_relative 'scrabble_player.rb'
-require 'awesome_print'
+require_relative '../scrabble'
 
 class Scrabble::Tilebag
 attr_reader :tiles

@@ -85,11 +85,12 @@ describe 'testing player class' do
     expect(player.tiles.length.must_equal(7))
     expect(bag_six.tiles_remaining.must_equal(91))
   end
+  
   it 'tiles method must return a collection of letters that the player can play (max 7)' do
     player = Scrabble::Player.new("Lauren7")
     bag_seven = Scrabble::Tilebag.new
     player.player_draw_tiles(bag_seven)
     expect(player.tiles.length.must_equal(7))
   end
-  
+
 end#end of test

@@ -1,4 +1,4 @@
-require_relative '../scrabble.rb'
+require_relative '../scrabble'
 
 class Scrabble::Scoring
 
@@ -105,5 +105,5 @@ class Scrabble::Scoring
 
 
 end # end of Scoring class
-# 
+#
 # puts Scrabble::Scoring.tiebreaker(["sabrina", "knitting"])
