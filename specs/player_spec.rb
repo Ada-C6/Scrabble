@@ -80,4 +80,18 @@ describe Scrabble::Player do
       s.highest_word_score.must_equal(12)
     end
   end
+
+  describe "#draw_tiles" do
+
+    it "can only play a maximum of 7 tiles" do
+      y = Scrabble::Player.new("Yuri")
+      proc {y.draw_tiles.length == 8}.must_raise(ArgumentError)
+    end
+
+    it "should return an array of tiles" do
+      skip
+      s = Scrabble::Player.new("Shari")
+      s.draw_tiles.must_be_instance_of(Array)
+    end
+  end
 end
