@@ -53,6 +53,14 @@ module Scrabble
       return @player_letters.length
     end
 
+    def draw_tiles(tile_bag)
+      until tiles == 7
+        if tile_bag
+
+          # COME BACK HERE
+        end 
+      end
+    end
   end
 end
 

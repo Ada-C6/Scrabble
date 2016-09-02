@@ -150,4 +150,13 @@ describe Scrabble::Player do
     end
   end
 
+  describe "#draw_tiles(tile_bag)" do
+    it "should fill player_tiles array until it has 7 letters from the tile bag" do
+      player = Scrabble::Player.new("Jen")
+      bag_o_tiles = Scrabble::TileBag.new
+      player.draw_tiles(bag_o_tiles).must_equal(7)
+    end
+  end
+
+
 end
