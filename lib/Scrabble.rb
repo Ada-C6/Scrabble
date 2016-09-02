@@ -75,13 +75,14 @@ end
 
 class Scrabble::Player
 
-  attr_reader :name, :player_words
+  attr_reader :name, :player_words, :player_hand
 
   def initialize(name)
 
     raise ArgumentError unless name.class == String
     @name = name
     @player_words = []
+    @player_hand = []
   end
 
   def plays
@@ -122,6 +123,18 @@ class Scrabble::Player
     return Scrabble::Scoring.score(highest_scoring_word)
   end
 
+  def tiles
+    return @player_hand
+  end
+
+  def draw_tiles(tile_bag)
+
+    @player_hand << tile_bag.draw_tiles(7 - @player_hand.length)
+
+    return @player_hand.flatten!
+
+  end
+
 end
 
 class Scrabble::TileBag
@@ -136,6 +149,10 @@ class Scrabble::TileBag
   end
 
   def draw_tiles(num)
+    unless num <= 7
+      raise ArgumentError.new("You cannot draw more than 7 tiles")
+    end
+
     draw_tiles = []
     while num > 0
       tile = @tile_bag.keys.sample(1)[0]
@@ -157,9 +174,23 @@ class Scrabble::TileBag
 
 end
 
-test1 = Scrabble::TileBag.new
-# puts test1.draw_tiles(12)
-print test1.tiles_remaining
+#test1 = Scrabble::TileBag.new
+# testplayer = Scrabble::Player.new("Elle")
+
+t = Scrabble::TileBag.new
+person = Scrabble::Player.new("Bill")
+puts person.draw_tiles(t)
+
+# print testplayer.player_bag.inspect
+# print testplayer.player_hand
+# puts testplayer.inspect
+# print testplayer.inspect
+#print testplayer.player_bag
+
+
+#print testplayer.draw_tiles(@player_hand)
+# # puts test1.draw_tiles(12)
+# print test1.tiles_remaining
 
 # test1.play("potato")
 # test1.play("apple")

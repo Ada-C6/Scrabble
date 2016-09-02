@@ -156,5 +156,19 @@ describe "Testing Scrabble" do
     expect(test1.tiles_remaining).must_equal(91)
   end
 
+  it "Testing to see if new player's pulled tiles remove the tiles player's from the tile_bag" do
+    original_tile_bag = Scrabble::TileBag.new
+    game_tile_bag = Scrabble::TileBag.new
+    test2 = Scrabble::Player.new("Been")
+    test2.draw_tiles(game_tile_bag)
+    expect(game_tile_bag).wont_equal(original_tile_bag)
+  end
+
+  it "Tests if draw_tiles only draws up to 7 tiles" do
+    t = Scrabble::TileBag.new
+    person = Scrabble::Player.new("Bill")
+    person.draw_tiles(t)
+    expect(person.player_hand.length).must_equal(7)
+  end
 
 end
