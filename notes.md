@@ -1,22 +1,3 @@
-11 SPECS
-Letter Holder:
-AAAAAAAAABBCCDDDDEEEEEEEEEEEEFFGGGHHIIIIIIIIIJKLLLLMMNNNNNNOOOOOOOOPPQRRRRRSSSSTTTTTTUUUUVVVVWWXYYZ
-
-
-[["A", "C", "D", "G"]["M", "C"]]
-["A", "C", "D", "G", "M", "C"]
-
-#notes: fills the tile tile array until it has 7 letters from the given tile bag.
-
-#note: Each play should only ever had 7 tiles in their hand. Until, their our not enough tiles to reach 7.
-
-#note: Each player should only ever have 7 tiles in their hand. Until, their our no enough tiles to reach 7.
-
-
-
-
-
-
 _____________
 CURRENT IDEA:
 1. create a variable for max_score and max_scoring_word
@@ -34,13 +15,6 @@ then put this for both: max_score = score(word)
 max_scoring_word = word
 
 This SHOULD account for the tie-breaker situations we wrote tests for earlier.  I forgot about the .chars method that you can call on a string - it just looks at the characters and then the .count method counts them up!
-
-
-
-
-
-
-
 ____________
 OLD IDEAS:
 1. when looping through array of words, assign key as word (as string) and value as total amount
@@ -49,7 +23,7 @@ OLD IDEAS:
 3. are there any repeating values :.map same as .collect : goes through array or hash and does whatever you ask it to do -> then sticks answer into an array
 4. only keep highest repeating values (delete others)
 5. if there are highest repeating values THEN continue:
-    6. create array of key lengths of remaining repeating values
+6. create array of key lengths of remaining repeating values
 hash = { "Cat" => 7, "Doggy" => 15, "Joe" => 5 }
 array = []
 
@@ -59,7 +33,6 @@ hash.each do |k, v|
 end
 
 puts array
-
 _________
 OLD CODE:
 def self.highest_score_from(array_of_words)
@@ -70,10 +43,7 @@ def self.highest_score_from(array_of_words)
   end
   return scored_words_array.max
 end
-
 ________________
-
-
 Ideas:
 if max_scores_array has length of 1 - then DONE and return word that wins
 else

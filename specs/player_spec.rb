@@ -91,7 +91,7 @@ describe Scrabble::Player do
     expect(player1.won?).must_equal(true)
   end
 #10
-  it 'Test to see if the correct letters will be extracted?' do
+  it 'Test to see if the correct letters will be extracted from tile bag?' do
     player1 = Scrabble::Player.new("Frida Kahlo")
     tilebag1 = Scrabble::TileBag.new
     picked_tiles = player1.draw_tiles(tilebag1)

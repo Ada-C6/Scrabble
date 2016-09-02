@@ -31,71 +31,12 @@ describe Scrabble::TileBag do
     # we can't have more than our alotted 7 tiles
     proc {tilebag1.draw_tiles(2)}.must_raise(ArgumentError)
   end
- # how do you test to see if error happens, if you aren't able to have more than 7 tiles?
+#5
  it "Raise error if player tries to draw more than 7" do
    tilebag1 = Scrabble::TileBag.new
    # we can't have more than our alotted 7 tiles
    # proc, we didn't know you. till we did!
    proc {tilebag1.draw_tiles(8)}.must_raise(ArgumentError)
  end
-
- it "Raise error if player tries to draw tiles when none are left. " do
-  player1 = Scrabble::Player.new("Frida Kahlo")
-  tilebag1 = Scrabble::TileBag.new
-  player1.draw_tiles(tilebag1)
-  current_tiles = player1.tiles
-  # 1
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-  # 2
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-  # 3
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-  #4
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-  #5
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-  #6
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-  #7
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-  #8
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-  #9
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-  #9
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-  #10
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-  #11
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-  #12
-  player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  player1.draw_tiles(7)
-  #13
-  # player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-  # player1.draw_tiles(7)
-  #14
-
-   proc {player1.play(current_tiles[0] + current_tiles[1] + current_tiles[2] + current_tiles[3] + current_tiles[4] + current_tiles[5] + current_tiles[6])
-   player1.draw_tiles(7)}.must_raise(ArgumentError)
- end
- # tilebag1.draw_tiles(7)
- # player1.play(word[1][2])
-
 
 end

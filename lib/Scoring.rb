@@ -17,7 +17,7 @@ class Scrabble::Scoring
 
     letters.each do |letter|
       total += Scrabble::LETTER_HASH[letter]
-      
+
     end
 
     return total

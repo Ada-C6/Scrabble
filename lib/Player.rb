@@ -76,29 +76,5 @@ class Scrabble::Player
     @picked_tiles << tile_bag.draw_tiles(7 - @picked_tiles.length)
     return @picked_tiles.flatten!
   end
-
-
 # class end
 end
-
-
-
-
-
-# player1 = Scrabble::Player.new("Joe")
-# tilebag1 = Scrabble::TileBag.new
-# player1.draw_tiles(tilebag1)
-# # print @picked_tiles
-# print player1.play("ON")
-# # print player1.tiles.play("cat")
-
-
-
-# puts player1.play("cats")
-#=> ["cats"] 6
-
-# same length, same score.
-# player1 = Scrabble::Scoring.total_score([["sizzles", "fuzz", "dog", "cat"])
-# #
-# #
-# puts player1.total_score
