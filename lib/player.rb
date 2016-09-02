@@ -58,9 +58,14 @@ module Scrabble
       return @tile_tray
     end
 
-    def draw_tiles(tile_bag) # @todo finish this method
+    def draw_tiles(tile_bag)
+      begin
+      result = tile_bag.draw_tiles(1)
+      @tile_tray << result
+    end until @tile_tray.length == 7
+      return @tile_tray
 
-    end
+    end   # @todo finish this method
 
   end
 

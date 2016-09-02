@@ -105,7 +105,7 @@ module Scrabble
     describe "#draw_tiles(tile_bag)" do
       let(:player) { Player.new("Alma") }
       it "should draw tiles until tray has 7 tiles" do
-
+        player.draw_tiles(TileBag.new)
         player.tile_tray.length.must_equal(7)
       end
     end
