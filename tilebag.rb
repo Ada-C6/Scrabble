@@ -5,55 +5,16 @@ module Scrabble
     def initialize
       # @letters_values ={"A"=>9, "B"=>2, "C"=>2, "D"=>4, "E"=>12,"F"=>2,"G"=>3, "H"=>2, "I"=>9, "J"=>1, "K"=>1, "L"=>4, "M"=>2, "N"=>6, "O"=>8, "P"=>2, "Q"=>1,"R"=>6, "S"=>4, "T"=>6, "U"=>4, "V"=>2, "W"=>2, "X"=>1, "Y"=>2, "Z"=>1}
       @letters = []
-      9.times do
-        letters << "A"
-        letters << "I"
-      end
+      9.times{|i| @letters << ["A", "I"]}
+      8.times{|i| @letters << "O"}
+      6.times{|i| @letters << ["N", "R", "T"]}
+      4.times{|i| @letters << ["D", "S", "U", "L"]}
+      3.times{|i| @letters << ["G"]}
+      2.times{|i| @letters << ["B", "C", "F", "H", "M", "P", "V", "W", "Y"]}
+      1.times{|i| @letters << ["J", "K", "Q", "X", "Z"]}
+      12.times{|i| @letters << ["E"]}
 
-      8.times do
-        letters << "O"
-      end
-
-      6.times do
-        letters << "N"
-        letters << "R"
-        letters << "T"
-      end
-
-      4.times do
-        letters << "D"
-        letters << "S"
-        letters << "U"
-        letters << "L"
-      end
-
-      3.times do
-        letters << "G"
-      end
-
-      2.times do
-        letters << "B"
-        letters << "C"
-        letters << "F"
-        letters << "H"
-        letters << "M"
-        letters << "P"
-        letters << "V"
-        letters << "W"
-        letters << "Y"
-      end
-
-      1.times do
-        letters << "J"
-        letters << "K"
-        letters << "Q"
-        letters << "X"
-        letters << "Z"
-      end
-
-      12.times do
-        letters << "E"
-      end
+      @letters.flatten!
     end
 
     def draw_tiles(num)
