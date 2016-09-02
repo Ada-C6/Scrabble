@@ -12,7 +12,7 @@ class Scrabble::Player
     @word_score = 0
     @total_score = 0
     @words_by_player = []
-    @picked_tiles = ["A", "B"]
+    @picked_tiles = []
 
   end
 
@@ -24,29 +24,17 @@ class Scrabble::Player
   def play(word)
     # play(word): Function: adds the input word to words_by_player
     # returns false if player has already won, otherwise return @word_score
-
     if won?
       return false
     else
-      # if letters_played.all? { |letter| picked_tiles.include?(letter) }
-        words.each_char do |letter|
+      word.each_char do |letter|
+        if picked_tiles.include? letter
           @picked_tiles.delete_at(@picked_tiles.index(letter))
         end
-        @words_by_player << word
-        # @picked_tiles.each do |tile|
-        #   if letters_played.include?(tile)
-        #     @picked_tiles.pop(tile)
-        #   else
-        #     puts "error"
-        #   end
-        # end
-        # @picked_tiles.reject { |letter| letters_played.include?(letter) }
-        print @picked_tiles
-        @word_score = Scrabble::Scoring.score(word)
-        return @word_score
-      # else
-      #   return "You don't have correct letters to play that word, friend!"  #change to ArgumentError ??
-      # end
+      end
+      @words_by_player << word
+      @word_score = Scrabble::Scoring.score(word)
+      return @word_score
     end
   end
 
@@ -79,7 +67,9 @@ class Scrabble::Player
     highest_score = Scrabble::Scoring.score(high_score_word)
     return highest_score
   end
-
+  def tiles
+    return @picked_tiles
+  end
 
   def draw_tiles(tile_bag)
 # fills the tile array until it has 7 letters from the given tile bag
@@ -95,12 +85,12 @@ end
 
 
 
-player1 = Scrabble::Player.new("Joe")
-tilebag1 = Scrabble::TileBag.new
-player1.draw_tiles(tilebag1)
-print @picked_tiles
-# print player1.play("on")
-# print player1.tiles.play("cat")
+# player1 = Scrabble::Player.new("Joe")
+# tilebag1 = Scrabble::TileBag.new
+# player1.draw_tiles(tilebag1)
+# # print @picked_tiles
+# print player1.play("ON")
+# # print player1.tiles.play("cat")
 
 
 

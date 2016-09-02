@@ -36,8 +36,8 @@ attr_reader :picked_tiles
   # if statement for number of tiles left in bag!  Throw error if try to draw more tiles than are left in bag: "There are only #{num_tiles_remain} left in the bag!"
     @flattened_default_tile_bag.shuffle!
 
-    if @flattened_default_tile_bag.length < num || num > 7
-      raise ArgumentError
+    if @flattened_default_tile_bag.length < num || num > 7 || num + picked_tiles.length > 7
+      raise ArgumentError, "This is a friendly reminder that you're terminal."
     else
       picked_tiles << @flattened_default_tile_bag.pop(num)
       return picked_tiles.flatten!
