@@ -1,6 +1,6 @@
 require_relative '../lib/Scoring'
-require_relative '../lib/Player'
 require_relative '../module'
+require 'awesome_print'
 
 class Scrabble::TileBag
 
@@ -36,11 +36,13 @@ attr_reader :picked_tiles
   # if statement for number of tiles left in bag!  Throw error if try to draw more tiles than are left in bag: "There are only #{num_tiles_remain} left in the bag!"
     @flattened_default_tile_bag.shuffle!
 
-    if @flattened_default_tile_bag.length < num
-      return "You can't draw that number of tiles. There are not enough tiles left in the bag."
+    if @flattened_default_tile_bag.length < num || num > 7
+      raise ArgumentError
+    else
+      picked_tiles << @flattened_default_tile_bag.pop(num)
+      return picked_tiles.flatten!
     end
-    picked_tiles << @flattened_default_tile_bag.pop(num)
-    return picked_tiles.flatten!
+
   end
 
   def tiles_remaining
@@ -52,9 +54,11 @@ attr_reader :picked_tiles
 
 end
 
-tilebag1 = Scrabble::TileBag.new
-
-print tilebag1.draw_tiles(5)
+# tilebag1 = Scrabble::TileBag.new
+#
+# ap tilebag1.draw_tiles(5)
+# ap tilebag1.draw_tiles(2)
+# ap tilebag1.tiles_remaining
 
 
 

@@ -1,17 +1,18 @@
 require_relative "../module"
-require_relative "../lib/Scoring"
 require_relative "../lib/TileBag"
+require_relative "../lib/Scoring"
 # :: module reference
 
-class Scrabble::Player < Scrabble::TileBag
+class Scrabble::Player
 
-  attr_reader :name, :picked_tiles
+  attr_reader :name, :total_score, :picked_tiles, :tilebag1
 
   def initialize(name)
     @name = name
     @word_score = 0
     @total_score = 0
     @words_by_player = []
+    @picked_tiles = ["A", "B"]
 
   end
 
@@ -24,23 +25,27 @@ class Scrabble::Player < Scrabble::TileBag
     # play(word): Function: adds the input word to words_by_player
     # returns false if player has already won, otherwise return @word_score
 
-    if @total_score > 100
+    if won?
       return false
-    end
-    #picked_tiles = []
-    #player1.play("C", "A", "T")
-      #if .any letters dont ! == playershand.
-        #throw an error
-      #else
-        #continue playing
-      #end
-    letters_played = word.char
-    if letters_played.all? { |letter| letter.include? picked_tiles }
-      @words_by_player << word
-      @word_score = Scrabble::Scoring.score(word)
-      return @word_score
     else
-      return "You can't don't have correct letters to play that word, friend!"
+      letters_played = word.upcase.chars
+      print "lettersplayed #{letters_played}"
+      # if letters_played.all? { |letter| picked_tiles.include?(letter) }
+        @words_by_player << word
+        # @picked_tiles.each do |tile|
+        #   if letters_played.include?(tile)
+        #     @picked_tiles.pop(tile)
+        #   else
+        #     puts "error"
+        #   end
+        # end
+        # @picked_tiles.reject { |letter| letters_played.include?(letter) }
+        print @picked_tiles
+        @word_score = Scrabble::Scoring.score(word)
+        return @word_score
+      # else
+      #   return "You don't have correct letters to play that word, friend!"  #change to ArgumentError ??
+      # end
     end
   end
 
@@ -49,7 +54,6 @@ class Scrabble::Player < Scrabble::TileBag
     @words_by_player.each do |word|
       @total_score += Scrabble::Scoring.score(word)
     end
-
     return @total_score
   end
 
@@ -75,27 +79,15 @@ class Scrabble::Player < Scrabble::TileBag
     return highest_score
   end
 
-# additonal wave 3 requirement:
-  def tiles
-# a collection of letters that they player can play.(max: 7).
-#when plays a word, make sure user has letters so that they can play their word, and then remove tiles from the bag
-#[come back to this. ]
-    tilebag1 = Scrabble::TileBag.new
-    # taking this logic out:
-    # picked_tiles << @flattened_default_tile_bag.pop(7)
-    tilebag1.draw_tiles(7)
+
+  def draw_tiles(tile_bag)
+# fills the tile array until it has 7 letters from the given tile bag
+    @picked_tiles << tile_bag.draw_tiles(7 - @picked_tiles.length)
+    return @picked_tiles.flatten!
   end
 
-  def draw_tiles(num_of_tiles)
-# fills the tile array until it has 7 letters from the given tile bag.
 
-    if @picked_tiles + num_of_tiles >= 7
-      return "hit error!"
-    else
-      # inherit from Tilebag class. & figure out proper syntax.
-      super + tilebag1
-    end
-  end
+# class end
 end
 
 
@@ -103,7 +95,11 @@ end
 
 
 player1 = Scrabble::Player.new("Joe")
-puts  player1.tiles.play("cat")
+tilebag1 = Scrabble::TileBag.new
+player1.draw_tiles(tilebag1)
+print @picked_tiles
+# print player1.play("on")
+# print player1.tiles.play("cat")
 
 
 

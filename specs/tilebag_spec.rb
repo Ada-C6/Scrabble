@@ -25,19 +25,19 @@ describe Scrabble::TileBag do
     expect(tilebag1.tiles_remaining).must_equal(93)
   end
 #4
-  it "After drawing 100 tiles, remaining tiles should = 0" do
+  it "There is an error if you try to hold more than 7 letters in your tile bag" do
     tilebag1 = Scrabble::TileBag.new
-    tilebag1.draw_tiles(50)
-    tilebag1.draw_tiles(50)
-    expect(tilebag1.tiles_remaining).must_equal(0)
+    tilebag1.draw_tiles(6)
+    tilebag1.draw_tiles(2)
+    expect(tilebag1.draw_tiles(2)).must_equal(ArgumentError)
   end
-#5
-  it "Throw an error if you try to draw more than there are left in the bag." do
-    tilebag1 = Scrabble::TileBag.new
-    tilebag1.draw_tiles(50)
-    tilebag1.draw_tiles(48)
-    expect(tilebag1.draw_tiles(5)).must_equal("You can't draw that number of tiles. There are not enough tiles left in the bag.")
-  end
+#5 # how do you test to see if error happens, if you aren't able to have more than 7 tiles?
+  # it "Throw an error if you try to draw more than there are left in the bag." do
+  #   tilebag1 = Scrabble::TileBag.new
+  #   tilebag1.draw_tiles(50)
+  #   tilebag1.draw_tiles(48)
+  #   expect(tilebag1.draw_tiles(5)).must_equal("You can't draw that number of tiles. There are not enough tiles left in the bag.")
+  # end
 
 
 
