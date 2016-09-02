@@ -46,12 +46,6 @@ describe Scrabble::Player do
     joan_wins = Scrabble::Player.new("Joan_wins")
     word = "scary"
 
-    # it "should only let the user play if they have the letters for that word" do
-    #   jewel = Scrabble::Player.new("Jewel")
-    #   jewel.players_hand = %w(D G T O V E J)
-    #   proc { jewel.play("DOG").must_equal(false)}.must_raise(ArgumentError)
-    # end
-
     it "should add input word to the plays Array" do
       joan.play(word)
       joan.plays.must_include("scary")

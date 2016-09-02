@@ -9,9 +9,31 @@ describe Scrabble::Dictionary do
   end
 
   describe "#word_valid?" do
-    it "should return TRUE if the word played is a valid word from the dictionary" do
-      Scrabble::Dictionary.word_valid?.must_equal(true)
+    it "should return TRUE if the word played is from our dictionary" do
+      word = "CRAZY"
+      Scrabble::Dictionary.word_valid?(word).must_equal(true)
     end
+
+    it "should return False if the word played is not from our dictionary" do
+      word = "I"
+      Scrabble::Dictionary.word_valid?(word).must_equal(false)
+    end
+
+    it "should return true if downcase is input as a word" do
+      word = "crazy"
+      Scrabble::Dictionary.word_valid?(word).must_equal(true)
+    end
+
+    it "should return false if the word played is from our dictionary" do
+      word = "CRAZY CATLADY"
+      proc {Scrabble::Dictionary.word_valid?(word)}.must_raise(ArgumentError)
+      # Scrabble::Dictionary.word_valid?(word)
+    end
+
+    # it "should raise an error if a word is not in the dictionary" do
+    #   word = "tpain"
+    #   Scrabble::Dictionary.word_valid?(word).must_equal(false).must_raise
+    # end
   end
 end
 
