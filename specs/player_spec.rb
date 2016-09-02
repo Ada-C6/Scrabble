@@ -1,9 +1,8 @@
 # test for Player class
 
 require_relative '../player'
+require_relative '../tile_bag'
 require_relative 'spec_helper'
-
-
 
 describe Scrabble::Player do
     new_player = Scrabble::Player.new("Jasper")
@@ -19,6 +18,10 @@ describe Scrabble::Player do
 
         it "should raise an error if a non-string parameter input is passed in" do
             proc {Scrabble::Player.new(123)}.must_raise(ArgumentError)
+        end
+
+        it "should have a tiles property" do
+            new_player.must_respond_to(:tiles)
         end
     end
 
@@ -92,6 +95,27 @@ describe Scrabble::Player do
             more_player = Scrabble::Player.new("Dianne")
             more_player.plays = ['CAT', 'COW', 'LIONESS']
             more_player.highest_word_score.must_equal(57)
+        end
+    end
+
+    describe "#draw_tiles(tile_bag)" do
+        it "should raise an error if the parameter input is not an object of the TileBag class" do
+            proc { new_player.draw_tiles(123) }.must_raise(ArgumentError)
+        end
+
+        it "ensure the @tiles array has 7 letters after drawing tiles" do
+            yeni = Scrabble::Player.new("Yeni")
+            yenis_tile_bag = Scrabble::TileBag.new
+            yeni.draw_tiles(yenis_tile_bag)
+            yeni.tiles.length.must_equal(7)
+        end
+
+        it "should mutate the original @tiles array after drawing tiles" do
+            kelly = Scrabble::Player.new("Kelly")
+            kellys_tile_bag = Scrabble::TileBag.new
+            original_tiles = kelly.tiles.clone
+            kelly.draw_tiles(kellys_tile_bag)
+            kelly.tiles.wont_equal(original_tiles)
         end
     end
 end

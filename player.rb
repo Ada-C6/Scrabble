@@ -1,14 +1,16 @@
 # create the Player class
 
 require_relative 'scoring'
+require_relative 'tile_bag'
 
 module Scrabble
     class Player
-        attr_accessor :name, :plays, :won, :total_score
+        attr_accessor :name, :plays, :won, :total_score, :tiles
 
         def initialize(name)
             @name = name
             @plays = []
+            @tiles = []
             @won = false
             @total_score = 0
 
@@ -58,5 +60,21 @@ module Scrabble
                 return Scrabble::Scoring.score(highest_scoring_word)
             end
         end
+
+        def draw_tiles(tile_bag)
+            if !tile_bag.is_a?(Scrabble::TileBag)
+                raise ArgumentError, "Parameter should be an instance of the TileBag class"
+            end
+
+            if @tiles.length < 7
+                tiles_needed = 7 - @tiles.length
+                @tiles += tile_bag.draw_tiles(tiles_needed)
+            else
+                puts "This player cannot draw more tiles."
+            end
+
+            return @tiles
+        end # draw_tiles
+
     end # Player class
 end # Scrabble class
