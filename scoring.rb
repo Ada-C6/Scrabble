@@ -93,10 +93,8 @@ module Scrabble
           return winner
 
         # The third tiebreaker condition (tile/point tie) is automatically met due to Ruby's preference to pick the first word with equal points and character length
-
         end
       end
-
     end
   end
 end

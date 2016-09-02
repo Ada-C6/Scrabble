@@ -3,7 +3,7 @@ require_relative '../scoring'
 
 describe Scrabble::Scoring do
   describe "#initialize" do
-    it "can create a new instance of Scoring" do    
+    it "can create a new instance of Scoring" do
       score = Scrabble::Scoring.new
       score.must_be_instance_of(Scrabble::Scoring)
     end
@@ -29,7 +29,6 @@ describe Scrabble::Scoring do
       score_test["ANIMAL"] = 8
       score_test["DOG"] = 5
       score_test["GORILLA"] = 58
-
       score_test.each do |k, v|
         Scrabble::Scoring.score(k).must_equal(v)
       end
@@ -76,6 +75,5 @@ describe Scrabble::Scoring do
       entry_test  << "RAT"
       Scrabble::Scoring.highest_score_from(entry_test).must_equal("RAN")
     end
-
   end
 end

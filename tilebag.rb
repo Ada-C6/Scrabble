@@ -31,8 +31,7 @@ module Scrabble
 
   class TileBag
     attr_accessor :letters_available, :snapshot
-
-
+    
     def initialize
       @letters_available=[]
       @snapshot = []
@@ -50,18 +49,19 @@ module Scrabble
       return @letters_available
     end
 
-    # WIP: need to determine slice logic
     def draw_tiles(num)
-      @letters_available = @letters_available[num, 99]
+      num.times do
+        @letters_available.pop
+      end
       return num
     end
 
     def tiles_remaining
       return @letters_available.length
     end
+
+    def available_letter_array
+      return @letters_available
+    end
   end
-
 end
-
-jm = Scrabble::TileBag.new
-jm.fill_bag

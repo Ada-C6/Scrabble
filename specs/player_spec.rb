@@ -5,6 +5,7 @@ require_relative '../tilebag'
 
 describe Scrabble::Player do
   describe "#initialize" do
+    # TO DO: Refactor
     # Jen = complete; Maddie = middle, Dan = not started
     # let(:player_ip) { Scrabble::Player.new("Jen") }
     # player_ip.play("BEAR")
@@ -145,7 +146,6 @@ describe Scrabble::Player do
   describe "#tiles" do
     it "should be a collection of letters the player can play (up to 7)" do
       player = Scrabble::Player.new("Jen")
-
       player.tiles.must_be :<=, 7
     end
   end
@@ -154,9 +154,16 @@ describe Scrabble::Player do
     it "should fill player_tiles array until it has 7 letters from the tile bag" do
       player = Scrabble::Player.new("Jen")
       bag_o_tiles = Scrabble::TileBag.new
-      player.draw_tiles(bag_o_tiles).must_equal(7)
+      bag_o_tiles.fill_bag
+      player.draw_tiles(bag_o_tiles).length.must_equal(7)
+    end
+
+    it "should not add nil values to array when no tiles remain" do
+      player = Scrabble::Player.new("Jen")
+      bag_o_tiles = Scrabble::TileBag.new
+      bag_o_tiles.fill_bag
+      bag_o_tiles.draw_tiles(98)
+      proc { player.draw_tiles(bag_o_tiles) }.must_raise("No tiles left")
     end
   end
-
-
 end

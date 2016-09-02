@@ -1,4 +1,5 @@
 require_relative 'scoring'
+require_relative 'tilebag'
 
 module Scrabble
   class Player
@@ -16,7 +17,6 @@ module Scrabble
     end
 
     def play(word)
-
       @play_array << word
       if won?
         return false
@@ -54,26 +54,14 @@ module Scrabble
     end
 
     def draw_tiles(tile_bag)
-      until tiles == 7
-        if tile_bag
-
-          # COME BACK HERE
-        end 
+      until @player_letters.length > 6
+        if tile_bag.tiles_remaining > 0
+          @player_letters.push(tile_bag.available_letter_array.pop)
+        else
+          ArgumentError("No tiles left")
+        end
       end
+      return @player_letters
     end
   end
 end
-
-jm = Scrabble::Player.new("JM")
-puts jm.player_letters.class
-
-# Program output verification:
-#
-# jm = Scrabble::Player.new("JM")
-# puts jm.play("BEAR")
-# puts jm.play("CHEETAH")
-# puts jm.play("RAT")
-# puts jm.play("CAT")
-# puts jm.plays
-# puts jm.total_score
-# puts jm.highest_word_score
