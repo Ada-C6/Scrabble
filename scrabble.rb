@@ -1,3 +1,5 @@
+# let's add a comment to this to test if github username changing worked!
+
 #require_relative './lib/Scrabble_scoring'
 #require_relative './lib/Scrabble_Player'
 #require_relative './lib/tilebag'
