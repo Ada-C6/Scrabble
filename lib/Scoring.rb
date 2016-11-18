@@ -32,16 +32,20 @@ class Scrabble::Scoring
     max_scoring_word = ""
 
     array_of_words.each do |word|
+
       if score(word).to_i > max_score
         max_score = score(word)
         max_scoring_word = word
+
       elsif score(word).to_i == max_score
         if word.chars.count >= 7
           max_score = score(word)
           max_scoring_word = word
+
         elsif word.chars.count < max_scoring_word.chars.count
           max_score = score(word)
           max_scoring_word = word
+
         end
       end
     end
