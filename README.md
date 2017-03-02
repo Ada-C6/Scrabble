@@ -19,7 +19,7 @@ Do not move onto a new tier of requirements until the minimum requirements of th
 Utilize good pair programming practices. Refer to articles from the [Agile Alliance](http://guide.agilealliance.org/guide/pairing.html) and the [Agile Institute](http://powersoftwo.agileinstitute.com/2015/02/benefits-of-pair-programming-revisited.html) if you need a refresher for some best practices. Switch _driver_ and _navigator_ roles often. When there is uncertainity or confusion, step away from the keyboard and discuss, plan, and document on paper or whiteboard before continuing.
 
 ## Baseline
-### Setup
+<!-- ### Setup
 1. You'll be working with an assigned pair. High-five your pair.
 1. Choose one person to fork the project repo.
 1. Add the other person in the pair to the forked repo as a _collaborator_.
@@ -30,7 +30,7 @@ Utilize good pair programming practices. Refer to articles from the [Agile Allia
 
 ### Requirements
 #### Pair Plan
-First, come up with a "plan of action" for how you want to work as a pair. Discuss your learning style, how you prefer to recive feedback, and one team communication skill you want to improve with this experience. Second, review the requirements for Wave 1 and come up with a "plan of action" for your implementation.
+First, come up with a "plan of action" for how you want to work as a pair. Discuss your learning style, how you prefer to receive feedback, and one team communication skill you want to improve with this experience. Second, review the requirements for Wave 1 and come up with a "plan of action" for your implementation.
 
 #### Implementation
 - Create a `Scrabble` module at the project root.
@@ -58,12 +58,12 @@ Create a `Scrabble::Scoring` class with a __minimum of 8 specs__. The class shou
 - `self.highest_score_from(array_of_words)`: returns **the word in the array with the highest score**. In the case of tie, use these tiebreaking rules:
     - It’s better to use fewer tiles, in the case of a tie, prefer the work with the fewest letters.
     - There is a bonus for words that are seven letters. If the top score is tied between multiple words and one used all seven letters, choose the one with seven letters over the one with fewer tiles.
-    - If the there are multiple words that are the same score and same length, pick the first one in the supplied list.
+    - If the there are multiple words that are the same score and same length, pick the first one in the supplied list. -->
 
 
 ## Wave 2
 ### Primary Requirements
-Create a `Scrabble::Player` class with a __minimum of 11 specs__. The only required paramter for instances of the class is the player's `name`. Instances of the class should repond to the following messages:
+Create a `Scrabble::Player` class with a __minimum of 11 specs__. The only required parameter for instances of the class is the player's `name`. Instances of the class should respond to the following messages:
 
 - `#name`: returns the value of the `@name` instance variable
 - `#plays`: returns an Array of the words played by the player
@@ -72,6 +72,8 @@ Create a `Scrabble::Player` class with a __minimum of 11 specs__. The only requi
     - Returns the score of the `word`
 - `#total_score`: Returns the sum of scores of played words
 - `#won?`: If the player has over 100 points, returns `true`, otherwise returns `false`
+
+## what is the difference between these two? (NE)
 - `#highest_scoring_word`: Returns the highest scoring played word
 - `#highest_word_score`: Returns the `highest_scoring_word` score
 
