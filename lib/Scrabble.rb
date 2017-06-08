@@ -1,5 +1,6 @@
 # STUCK? Did you remember to .self the method?
 #STUCK STILL?? Check the class!!!
+# I'm a sample comment!
 
 require_relative '../Scrabble.rb'
 require_relative 'Player.rb'
